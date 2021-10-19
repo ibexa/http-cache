@@ -3,7 +3,7 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\EventSubscriber;
+namespace spec\Ibexa\HttpCache\EventSubscriber;
 
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\API\Repository\Values\Content\Section;

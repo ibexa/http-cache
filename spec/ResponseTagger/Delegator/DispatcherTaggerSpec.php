@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator;
+namespace spec\Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\DispatcherTagger;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
+use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 
 class DispatcherTaggerSpec extends ObjectBehavior

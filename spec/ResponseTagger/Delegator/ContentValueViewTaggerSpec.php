@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator;
+namespace spec\Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\ContentValueViewTagger;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
+use Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
