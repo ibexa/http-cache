@@ -1,7 +1,7 @@
 services:
     # EventSubscriber
     ezplatform.view_cache.response_subscriber:
-        class: EzSystems\PlatformHttpCacheBundle\EventSubscriber\HttpCacheResponseSubscriber
+        class: Ibexa\HttpCache\EventSubscriber\HttpCacheResponseSubscriber
         arguments:
             - '@ezplatform.view_cache.response_configurator'
             - '@ezplatform.view_cache.response_tagger.dispatcher'
@@ -9,38 +9,38 @@ services:
             - { name: kernel.event_subscriber }
 
     ezplatform.x_location_id.response_subscriber:
-        class: EzSystems\PlatformHttpCacheBundle\EventSubscriber\XLocationIdResponseSubscriber
+        class: Ibexa\HttpCache\EventSubscriber\XLocationIdResponseSubscriber
         arguments: ['@fos_http_cache.http.symfony_response_tagger', '@ezpublish.api.repository']
         tags:
             - { name: kernel.event_subscriber }
 
     ezplatform.rest_cache_tagging.view_subscriber:
-        class: EzSystems\PlatformHttpCacheBundle\EventSubscriber\RestKernelViewSubscriber
+        class: Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber
         arguments: ['@fos_http_cache.http.symfony_response_tagger']
         tags:
             - { name: kernel.event_subscriber }
 
     ezplatform.user_context_tagger.response_subscriber:
-        class: EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSubscriber
+        class: Ibexa\HttpCache\EventSubscriber\UserContextSubscriber
         arguments: ['@ezplatform.http_cache.repository_tag_prefix', '%fos_http_cache.tag_handler.response_header%']
         tags:
             - { name: kernel.event_subscriber }
 
     ezplatform.hidden_location.exception_subscriber:
-        class: EzSystems\PlatformHttpCacheBundle\EventSubscriber\HiddenLocationExceptionSubscriber
+        class: Ibexa\HttpCache\EventSubscriber\HiddenLocationExceptionSubscriber
         arguments: ['@ezplatform.view_cache.response_tagger.location', '@ezplatform.view_cache.response_tagger.content_info']
         tags:
             - { name: kernel.event_subscriber }
 
-    EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSiteAccessMatchSubscriber:
+    Ibexa\HttpCache\EventSubscriber\UserContextSiteAccessMatchSubscriber:
         decorates: ezpublish.siteaccess_match_listener
         arguments:
-            - '@EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSiteAccessMatchSubscriber.inner'
+            - '@Ibexa\HttpCache\EventSubscriber\UserContextSiteAccessMatchSubscriber.inner'
             - '@fos_http_cache.user_context.request_matcher'
         tags:
             - { name: kernel.event_subscriber }
 
-    EzSystems\PlatformHttpCacheBundle\EventSubscriber\RequestEventSubscriber:
+    Ibexa\HttpCache\EventSubscriber\RequestEventSubscriber:
         arguments:
             - "@=container.getParameter('fos_http_cache.event_listener.user_context.options')['user_hash_header']"
         tags:
@@ -48,29 +48,29 @@ services:
 
     # ResponseConfigurator
     ezplatform.view_cache.response_configurator:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ConfigurableResponseCacheConfigurator
+        class: Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator
         arguments:
             - '@ezpublish.config.resolver'
 
     # ResponseTagger dispatcher
     ezplatform.view_cache.response_tagger.dispatcher:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\DispatcherTagger
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger
         # Taggers are added by a compiler pass
         arguments:
             - []
 
     # Alias for ResponseTagger interface => DispatcherTagger
-    EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger: '@ezplatform.view_cache.response_tagger.dispatcher'
+    Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger: '@ezplatform.view_cache.response_tagger.dispatcher'
 
     # ResponseTagger proxy/extract
     ezplatform.view_cache.response_tagger.content_value_view:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\ContentValueViewTagger
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger
         arguments: ['@ezplatform.view_cache.response_tagger.content_info']
         tags:
             - {name: ezplatform.cache_response_tagger}
 
     ezplatform.view_cache.response_tagger.location_value_view:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\LocationValueViewTagger
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger
         arguments: ['@ezplatform.view_cache.response_tagger.location']
         tags:
             - {name: ezplatform.cache_response_tagger}
@@ -81,20 +81,20 @@ services:
         arguments: ['@fos_http_cache.http.symfony_response_tagger']
 
     ezplatform.view_cache.response_tagger.content_info:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\ContentInfoTagger
+        class: Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
         parent: ezplatform.view_cache.response_tagger.abstract_value
         tags:
             - {name: ezplatform.cache_response_tagger}
 
     ezplatform.view_cache.response_tagger.location:
-        class: EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\LocationTagger
+        class: Ibexa\HttpCache\ResponseTagger\Value\LocationTagger
         parent: ezplatform.view_cache.response_tagger.abstract_value
         tags:
             - {name: ezplatform.cache_response_tagger}
 
     # Twig
     ezplatform.view_cache.twig_extension:
-        class: EzSystems\PlatformHttpCacheBundle\Twig\ContentTaggingExtension
+        class: Ibexa\HttpCache\Twig\ContentTaggingExtension
         arguments:
             - '@ezplatform.view_cache.response_tagger.dispatcher'
             - '@fos_http_cache.http.symfony_response_tagger'

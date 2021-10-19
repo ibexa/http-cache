@@ -4,8 +4,8 @@ services:
         autowire: true
         public: false
 
-    EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\:
-        resource: '../../EventSubscriber/CachePurge/*'
+    Ibexa\HttpCache\EventSubscriber\CachePurge\:
+        resource: '../../../lib/EventSubscriber/CachePurge/*'
         arguments:
             $purgeClient: '@ezplatform.http_cache.purge_client'
             $locationHandler: '@ezpublish.spi.persistence.cache.locationHandler'

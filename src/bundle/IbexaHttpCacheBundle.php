@@ -11,6 +11,7 @@ use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\VarnishCachePass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\ResponseTaggersPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\KernelPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\DriverPass;
+use Ibexa\Bundle\HttpCache\DependencyInjection\IbexaHttpCacheExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -31,7 +32,7 @@ class IbexaHttpCacheBundle extends Bundle
 
     public function getContainerExtensionClass()
     {
-        return 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\EzPlatformHttpCacheExtension';
+        return IbexaHttpCacheExtension::class;
     }
 
     public function getContainerExtension()

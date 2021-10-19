@@ -1,8 +1,8 @@
 parameters:
-    ezplatform.http_cache.controller.invalidatetoken.class: EzSystems\PlatformHttpCacheBundle\Controller\InvalidateTokenController
-    ezplatform.http_cache.listener.vary_header.class: EzSystems\PlatformHttpCacheBundle\EventListener\ConditionallyRemoveVaryHeaderListener
+    ezplatform.http_cache.controller.invalidatetoken.class: Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController
+    ezplatform.http_cache.listener.vary_header.class: Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener
     ezplatform.http_cache.proxy_client.http_dispatcher.class: FOS\HttpCache\ProxyClient\HttpDispatcher
-    # Set in \EzSystems\PlatformHttpCacheBundle\DependencyInjection\Compiler\VarnishCachePass
+    # Set in \Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\VarnishCachePass
     # equal to settings under fos_http_cache.proxy_client.varnish.http.servers|base_url
     ezplatform.http_cache.varnish.http.servers: []
     ezplatform.http_cache.varnish.http.base_url: ~
@@ -13,7 +13,7 @@ parameters:
     ezplatform.http_cache.tags.header_reduced_ttl: null
 
 services:
-    EzSystems\PlatformHttpCacheBundle\ProxyClient\HttpDispatcherFactory:
+    Ibexa\HttpCache\ProxyClient\HttpDispatcherFactory:
         arguments:
             - '@ezpublish.config.resolver'
             - '@ezpublish.config.dynamic_setting.parser'
@@ -23,7 +23,7 @@ services:
         class: '%ezplatform.http_cache.proxy_client.http_dispatcher.class%'
         decorates: fos_http_cache.proxy_client.varnish.http_dispatcher
         lazy: true
-        factory: ['@EzSystems\PlatformHttpCacheBundle\ProxyClient\HttpDispatcherFactory', 'buildHttpDispatcher']
+        factory: ['@Ibexa\HttpCache\ProxyClient\HttpDispatcherFactory', 'buildHttpDispatcher']
         arguments:
             $servers: '%ezplatform.http_cache.varnish.http.servers%'
             $baseUrl: '%ezplatform.http_cache.varnish.http.base_url%'
@@ -32,21 +32,21 @@ services:
         alias: ezplatform.http_cache.purge_client_decorator
 
     ezplatform.http_cache.purge_client_decorator:
-        class: EzSystems\PlatformHttpCacheBundle\PurgeClient\RepositoryPrefixDecorator
+        class: Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
         arguments: ['@ezplatform.http_cache.purge_client_internal', '@ezplatform.http_cache.repository_tag_prefix']
 
     ezplatform.http_cache.purge_client_internal:
         alias: ezplatform.http_cache.purge_client.local
 
     ezplatform.http_cache.purge_client.varnish:
-        class: EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient
+        class: Ibexa\HttpCache\PurgeClient\VarnishPurgeClient
         arguments:
             - '@fos_http_cache.cache_manager'
         tags:
             - {name: ezplatform.http_cache.purge_client, purge_type: varnish}
 
     ezplatform.http_cache.purge_client.local:
-        class: EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient
+        class: Ibexa\HttpCache\PurgeClient\LocalPurgeClient
         arguments: ['@ezplatform.http_cache.tag_aware_store']
         tags:
             - {name: ezplatform.http_cache.purge_client, purge_type: local}
@@ -57,7 +57,7 @@ services:
             - cache_directory: '%ezplatform.http_cache.store.root%'
 
     ezplatform.http_cache.fos_tag_handler.xkey:
-        class: EzSystems\PlatformHttpCacheBundle\Handler\TagHandler
+        class: Ibexa\HttpCache\Handler\TagHandler
         arguments:
          - '@ezplatform.http_cache.repository_tag_prefix'
          - '@logger'
@@ -68,7 +68,7 @@ services:
            tag_max_length_ttl: '%ezplatform.http_cache.tags.header_reduced_ttl%'
 
     ezplatform.http_cache.user_context_provider.role_identify:
-        class: EzSystems\PlatformHttpCacheBundle\ContextProvider\RoleIdentify
+        class: Ibexa\HttpCache\ContextProvider\RoleIdentify
         arguments:
             - '@ezpublish.api.repository'
             - '@eZ\Publish\API\Repository\PermissionResolver'
@@ -93,12 +93,12 @@ services:
             - { name: kernel.event_subscriber, priority: -100 }
 
     ezplatform.http_cache.repository_tag_prefix:
-        class: EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix
+        class: Ibexa\HttpCache\RepositoryTagPrefix
         # Use config resolver to be able to lazy load reading SA setting "repository" to avoid scope change issues
         arguments: ["@ezpublish.config.resolver", '%ezpublish.repositories%']
 
     fos_http_cache.proxy_client.varnish:
-        class: EzSystems\PlatformHttpCacheBundle\ProxyClient\Varnish
+        class: Ibexa\HttpCache\ProxyClient\Varnish
         arguments:
             $configResolver: '@ezpublish.config.resolver'
             $httpDispatcher: '@fos_http_cache.proxy_client.varnish.http_dispatcher'
