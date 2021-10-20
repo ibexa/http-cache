@@ -1,8 +1,11 @@
 {
-    "name": "ezsystems/ezplatform-http-cache",
-    "description": "HTTP cache handling for eZ Platform.",
-    "type": "ezplatform-bundle",
+    "name": "ibexa/http-cache",
+    "description": "HTTP cache handling for Ibexa DXP.",
+    "type": "ibexa-bundle",
     "license": "GPL-2.0-only",
+    "replace": {
+        "ezsystems/ezplatform-http-cache": "*"
+    },
     "authors": [
         {
             "name": "eZ Systems",
@@ -39,7 +42,16 @@
     "autoload": {
         "psr-4": {
             "EzSystems\\PlatformHttpCacheBundle\\": "src",
-            "EzSystems\\PlatformHttpCacheBundle\\Tests\\": "tests"
+            "Ibexa\\HttpCache\\": "src/lib/",
+            "Ibexa\\Bundle\\HttpCache\\": "src/bundle/",
+            "Ibexa\\Contracts\\HttpCache\\": "src/contracts/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EzSystems\\PlatformHttpCacheBundle\\Tests\\": "tests",
+            "Ibexa\\Tests\\HttpCache\\": "tests/lib/",
+            "Ibexa\\Tests\\Bundle\\HttpCache\\": "tests/bundle/"
         }
     },
     "scripts": {
@@ -53,7 +65,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.0.x-dev"
+            "dev-main": "4.0.x-dev"
         }
     }
 }
