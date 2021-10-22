@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator;
+namespace spec\Ibexa\HttpCache\ResponseTagger\Delegator;
 
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\LocationValueViewTagger;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
+use Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use PhpSpec\ObjectBehavior;
