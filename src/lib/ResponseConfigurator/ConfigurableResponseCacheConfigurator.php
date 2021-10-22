@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ResponseConfigurator;
 
-use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\HttpFoundation\Response;
 
