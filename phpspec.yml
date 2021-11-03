@@ -1,4 +1,4 @@
 suites:
     http_cache:
-        namespace: EzSystems\PlatformHttpCacheBundle
-        psr4_prefix: EzSystems\PlatformHttpCacheBundle
+        namespace: Ibexa\HttpCache
+        psr4_prefix: Ibexa\HttpCache
