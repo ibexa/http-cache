@@ -38,19 +38,46 @@ class ContentTaggingExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'ez_http_cache_tag_location',
-                [$this, 'tagHttpCacheForLocation']
+                [$this, 'tagHttpCacheForLocation'],
+                [
+                    'deprecated' => '4.0',
+                    'alternative' => 'ibexa_http_cache_tag_location',
+                ]
             ),
-            // For 2.5 BC, and to be consistent with the other functions, to be cleaned up with new prefix in the future
             new TwigFunction(
                 'ez_http_tag_location',
-                [$this, 'tagHttpCacheForLocation']
+                [$this, 'tagHttpCacheForLocation'],
+                [
+                    'deprecated' => '4.0',
+                    'alternative' => 'ibexa_http_cache_tag_location',
+                ]
             ),
             new TwigFunction(
                 'ez_http_tag_relation_ids',
-                [$this, 'tagHttpCacheForRelationIds']
+                [$this, 'tagHttpCacheForRelationIds'],
+                [
+                    'deprecated' => '4.0',
+                    'alternative' => 'ibexa_http_cache_tag_relation_ids',
+                ]
             ),
             new TwigFunction(
                 'ez_http_tag_relation_location_ids',
+                [$this, 'tagHttpCacheForRelationLocationIds'],
+                [
+                    'deprecated' => '4.0',
+                    'alternative' => 'ibexa_http_cache_tag_relation_location_ids',
+                ]
+            ),
+            new TwigFunction(
+                'ibexa_http_cache_tag_location',
+                [$this, 'tagHttpCacheForLocation']
+            ),
+            new TwigFunction(
+                'ibexa_http_cache_tag_relation_ids',
+                [$this, 'tagHttpCacheForRelationIds']
+            ),
+            new TwigFunction(
+                'ibexa_http_cache_tag_relation_location_ids',
                 [$this, 'tagHttpCacheForRelationLocationIds']
             ),
         ];
