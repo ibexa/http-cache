@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use Ibexa\HttpCache\RepositoryTagPrefix;
 use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;

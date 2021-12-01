@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\ContextProvider;
 
+use FOS\HttpCache\UserContext\ContextProvider;
+use FOS\HttpCache\UserContext\UserContext;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\UserService;
-use FOS\HttpCache\UserContext\ContextProvider;
-use FOS\HttpCache\UserContext\UserContext;
 
 /**
  * Identity definer based on current user role ids and role limitations.
@@ -51,7 +51,7 @@ class RoleIdentify implements ContextProvider
 
         /** @var \Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment[] $roleAssignments */
         $roleAssignments = $this->repository->sudo(
-            function (Repository $repository) use ($user) {
+            static function (Repository $repository) use ($user) {
                 return $repository->getRoleService()->getRoleAssignmentsForUser($user, true);
             }
         );

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\PurgeClient;
 
-use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 use FOS\HttpCacheBundle\CacheManager;
+use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 
 /**
  * Purge client based on FOSHttpCacheBundle.

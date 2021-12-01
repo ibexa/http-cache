@@ -1,11 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Tests\HttpCache\ContextProvider;
 
+use FOS\HttpCache\UserContext\UserContext;
 use Ibexa\Contracts\Core\Repository\RoleService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
@@ -16,7 +17,6 @@ use Ibexa\Core\Repository\Permission\PermissionResolver;
 use Ibexa\Core\Repository\Repository;
 use Ibexa\Core\Repository\Values\User\UserRoleAssignment;
 use Ibexa\HttpCache\ContextProvider\RoleIdentify;
-use FOS\HttpCache\UserContext\UserContext;
 use PHPUnit\Framework\TestCase;
 
 /**
