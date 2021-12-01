@@ -6,7 +6,7 @@
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\Core\MVC\Exception\HiddenLocationException;
+use Ibexa\Core\MVC\Exception\HiddenLocationException;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -16,12 +16,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\LocationTagger;
+     * @var \Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
      */
     private $locationTagger;
 
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\ContentInfoTagger
+     * @var \Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
      */
     private $contentInfoTagger;
 
@@ -42,7 +42,7 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
             return;
         }
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
         $location = $event->getThrowable()->getLocation();
         $this->locationTagger->tag($location);
         $this->contentInfoTagger->tag($location->getContentInfo());

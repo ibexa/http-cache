@@ -38,7 +38,7 @@ class KernelPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
     protected function removeKernelRoleIdContextProvider(ContainerBuilder $container)
     {

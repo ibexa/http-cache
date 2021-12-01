@@ -6,7 +6,7 @@
  */
 namespace Ibexa\HttpCache\ResponseTagger\Value;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
 class LocationTagger extends AbstractValueTagger

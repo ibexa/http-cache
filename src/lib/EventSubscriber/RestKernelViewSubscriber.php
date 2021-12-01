@@ -6,14 +6,14 @@
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\API\Repository\Values\Content\Section;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use EzSystems\EzPlatformRest\Values\Root;
-use EzSystems\EzPlatformRest\Server\Values\CachedValue;
-use EzSystems\EzPlatformRest\Server\Values\ContentTypeGroupList;
-use EzSystems\EzPlatformRest\Server\Values\ContentTypeGroupRefList;
-use EzSystems\EzPlatformRest\Server\Values\RestContentType;
-use EzSystems\EzPlatformRest\Server\Values\VersionList;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Rest\Values\Root;
+use Ibexa\Rest\Server\Values\CachedValue;
+use Ibexa\Rest\Server\Values\ContentTypeGroupList;
+use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
+use Ibexa\Rest\Server\Values\RestContentType;
+use Ibexa\Rest\Server\Values\VersionList;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use FOS\HttpCache\ResponseTagger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

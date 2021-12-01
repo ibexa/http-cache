@@ -6,15 +6,15 @@
  */
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\ConfigResolver;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface;
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 class HttpCacheConfigParser implements ParserInterface
 {
     /**
-     * @var ExtensionInterface
+     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
      */
     private $httpCacheExtension;
 
@@ -89,7 +89,7 @@ class HttpCacheConfigParser implements ParserInterface
     }
 
     /**
-     * @return ParserInterface[]
+     * @return \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
      */
     private function getExtraConfigParsers()
     {

@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\Content\CopyContentEvent;
-use eZ\Publish\API\Repository\Events\Content\CreateContentDraftEvent;
-use eZ\Publish\API\Repository\Events\Content\DeleteContentEvent;
-use eZ\Publish\API\Repository\Events\Content\DeleteVersionEvent;
-use eZ\Publish\API\Repository\Events\Content\HideContentEvent;
-use eZ\Publish\API\Repository\Events\Content\PublishVersionEvent;
-use eZ\Publish\API\Repository\Events\Content\RevealContentEvent;
-use eZ\Publish\API\Repository\Events\Content\UpdateContentEvent;
-use eZ\Publish\API\Repository\Events\Content\UpdateContentMetadataEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\CopyContentEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\CreateContentDraftEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\DeleteContentEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\DeleteVersionEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\HideContentEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\PublishVersionEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\RevealContentEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\UpdateContentEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\UpdateContentMetadataEvent;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
 final class ContentEventsSubscriber extends AbstractSubscriber

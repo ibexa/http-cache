@@ -6,14 +6,14 @@
  */
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
+use Ibexa\Core\MVC\Symfony\View\ContentValueView;
 
 class ContentValueViewTagger implements ResponseTagger
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger
+     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
      */
     private $contentInfoTagger;
 

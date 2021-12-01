@@ -16,10 +16,10 @@ use Ibexa\HttpCache\RepositoryTagPrefix;
  */
 class RepositoryPrefixDecorator implements PurgeClientInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface */
+    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
     private $purgeClient;
 
-    /** @var \EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix */
+    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
     private $prefixService;
 
     public function __construct(PurgeClientInterface $purgeClient, RepositoryTagPrefix $prefixService)

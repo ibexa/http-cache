@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\Section\AssignSectionEvent;
-use eZ\Publish\API\Repository\Events\Section\AssignSectionToSubtreeEvent;
-use eZ\Publish\API\Repository\Events\Section\DeleteSectionEvent;
-use eZ\Publish\API\Repository\Events\Section\UpdateSectionEvent;
+use Ibexa\Contracts\Core\Repository\Events\Section\AssignSectionEvent;
+use Ibexa\Contracts\Core\Repository\Events\Section\AssignSectionToSubtreeEvent;
+use Ibexa\Contracts\Core\Repository\Events\Section\DeleteSectionEvent;
+use Ibexa\Contracts\Core\Repository\Events\Section\UpdateSectionEvent;
 
 final class SectionEventsSubscriber extends AbstractSubscriber
 {

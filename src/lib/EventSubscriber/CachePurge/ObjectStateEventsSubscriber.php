@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\ObjectState\SetContentStateEvent;
+use Ibexa\Contracts\Core\Repository\Events\ObjectState\SetContentStateEvent;
 
 final class ObjectStateEventsSubscriber extends AbstractSubscriber
 {

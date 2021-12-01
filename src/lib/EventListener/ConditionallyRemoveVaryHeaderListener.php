@@ -44,7 +44,7 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
     /**
      * Remove Vary headers for matched routes.
      *
-     * @param ResponseEvent $event
+     * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
      */
     public function onKernelResponse(ResponseEvent $event)
     {

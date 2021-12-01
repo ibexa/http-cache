@@ -9,7 +9,7 @@ namespace Ibexa\Bundle\HttpCache\Controller;
 use FOS\HttpCache\ResponseTagger;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\HttpKernel\EventListener\SessionListener;
 
 class InvalidateTokenController
@@ -17,7 +17,7 @@ class InvalidateTokenController
     public const TOKEN_HEADER_NAME = 'X-Invalidate-Token';
 
     /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
+     * @var \Ibexa\Core\MVC\ConfigResolverInterface
      */
     private $configResolver;
 
@@ -27,16 +27,16 @@ class InvalidateTokenController
     private $ttl;
 
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\Handler\TagHandler
+     * @var \Ibexa\HttpCache\Handler\TagHandler
      */
     private $tagHandler;
 
     /**
      * TokenController constructor.
      *
-     * @param ConfigResolverInterface $configResolver
+     * @param \Ibexa\Core\MVC\ConfigResolverInterface $configResolver
      * @param int $ttl
-     * @param ResponseTagger $tagHandler
+     * @param \FOS\HttpCache\ResponseTagger $tagHandler
      *
      * @internal param string $invalidatetoken
      */
@@ -48,9 +48,9 @@ class InvalidateTokenController
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function tokenAction(Request $request)
     {

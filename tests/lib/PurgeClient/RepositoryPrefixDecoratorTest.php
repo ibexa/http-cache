@@ -14,17 +14,17 @@ use PHPUnit\Framework\TestCase;
 class RepositoryPrefixDecoratorTest extends TestCase
 {
     /**
-     * @var PurgeClientInterface
+     * @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface
      */
     private $purgeClientMock;
 
     /**
-     * @var RepositoryTagPrefix
+     * @var \Ibexa\HttpCache\RepositoryTagPrefix
      */
     private $tagPrefixMock;
 
     /**
-     * @var RepositoryPrefixDecorator
+     * @var \Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
      */
     private $prefixDecorator;
 

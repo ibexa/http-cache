@@ -14,7 +14,7 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 class DispatcherTagger implements ResponseTagger
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger
+     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
      */
     private $taggers = [];
 

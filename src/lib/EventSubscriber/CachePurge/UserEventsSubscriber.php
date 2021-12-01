@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\User\AssignUserToUserGroupEvent;
-use eZ\Publish\API\Repository\Events\User\CreateUserEvent;
-use eZ\Publish\API\Repository\Events\User\CreateUserGroupEvent;
-use eZ\Publish\API\Repository\Events\User\UnAssignUserFromUserGroupEvent;
-use eZ\Publish\API\Repository\Events\User\UpdateUserEvent;
-use eZ\Publish\API\Repository\Events\User\UpdateUserGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\AssignUserToUserGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\CreateUserEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\CreateUserGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\UnAssignUserFromUserGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\UpdateUserEvent;
+use Ibexa\Contracts\Core\Repository\Events\User\UpdateUserGroupEvent;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
 final class UserEventsSubscriber extends AbstractSubscriber

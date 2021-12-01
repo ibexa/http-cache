@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\URL\UpdateUrlEvent;
+use Ibexa\Contracts\Core\Repository\Events\URL\UpdateUrlEvent;
 
 final class UrlEventsSubscriber extends AbstractSubscriber
 {

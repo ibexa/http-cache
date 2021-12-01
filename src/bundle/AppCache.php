@@ -81,7 +81,7 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * Perform cleanup of reponse.
      *
-     * @param Response $response
+     * @param \Symfony\Component\HttpFoundation\Response $response
      */
     protected function cleanupHeadersForProd(Response $response)
     {

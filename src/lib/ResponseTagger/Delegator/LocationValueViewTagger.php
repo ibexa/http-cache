@@ -6,14 +6,14 @@
  */
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
+use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 
 class LocationValueViewTagger implements ResponseTagger
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger
+     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
      */
     private $locationTagger;
 

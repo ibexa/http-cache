@@ -6,8 +6,8 @@
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use FOS\HttpCache\ResponseTagger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -29,7 +29,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
     /** @var \FOS\HttpCache\ResponseTagger */
     private $responseTagger;
 
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
     public function __construct(ResponseTagger $responseTagger, Repository $repository)

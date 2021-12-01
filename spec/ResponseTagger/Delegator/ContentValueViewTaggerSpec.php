@@ -2,12 +2,12 @@
 
 namespace spec\Ibexa\HttpCache\ResponseTagger\Delegator;
 
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Core\MVC\Symfony\View\ContentValueView;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use PhpSpec\ObjectBehavior;
 
 class ContentValueViewTaggerSpec extends ObjectBehavior

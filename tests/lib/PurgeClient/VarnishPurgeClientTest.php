@@ -17,7 +17,7 @@ class VarnishPurgeClientTest extends TestCase
     /** @var \FOS\HttpCacheBundle\CacheManager */
     private $cacheManager;
 
-    /** @var \EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient */
+    /** @var \Ibexa\HttpCache\PurgeClient\VarnishPurgeClient */
     private $purgeClient;
 
     protected function setUp(): void

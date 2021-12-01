@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix */
+    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
     private $prefixService;
 
     /** @var \Psr\Log\LoggerInterface */

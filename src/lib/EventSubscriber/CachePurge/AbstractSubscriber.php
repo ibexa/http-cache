@@ -11,21 +11,21 @@ namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
-use eZ\Publish\SPI\Persistence\URL\Handler as UrlHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 
 /**
  * @internal
  */
 abstract class AbstractSubscriber implements EventSubscriberInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface */
+    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
     protected $purgeClient;
 
-    /** @var \eZ\Publish\SPI\Persistence\Content\Location\Handler */
+    /** @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler */
     private $locationHandler;
 
-    /** @var \eZ\Publish\SPI\Persistence\URL\Handler */
+    /** @var \Ibexa\Contracts\Core\Persistence\URL\Handler */
     private $urlHandler;
 
     public function __construct(

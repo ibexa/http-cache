@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ProxyClient;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController;
 use FOS\HttpCache\ProxyClient\Dispatcher;
 use FOS\HttpCache\ProxyClient\Invalidation\BanCapable;
@@ -20,7 +20,7 @@ use Http\Message\RequestFactory;
 
 final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, RefreshCapable, TagCapable
 {
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(

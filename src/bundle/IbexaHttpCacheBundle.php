@@ -57,8 +57,8 @@ class IbexaHttpCacheBundle extends Bundle
 
     public function registerConfigParser(ContainerBuilder $container)
     {
-        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $eZExtension */
-        $eZExtension = $container->getExtension('ezpublish');
+        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
+        $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(
             new HttpCacheConfigParser(
                 $container->getExtension('ibexa_http_cache')
