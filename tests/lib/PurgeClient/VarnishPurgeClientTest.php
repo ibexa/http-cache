@@ -55,8 +55,8 @@ class VarnishPurgeClientTest extends TestCase
     {
         $keys = array_map(
             static function ($id) {
-            return "l$id";
-        },
+                return "l$id";
+            },
             $locationIds
         );
 

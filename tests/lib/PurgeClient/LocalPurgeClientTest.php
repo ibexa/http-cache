@@ -25,8 +25,8 @@ class LocalPurgeClientTest extends TestCase
     {
         $keys = array_map(
             static function ($id) {
-            return "l$id";
-        },
+                return "l$id";
+            },
             [123, 456, 789]
         );
 
