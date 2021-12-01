@@ -25,7 +25,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
 
     public function getAlias()
     {
-        return 'ez_platform_http_cache';
+        return 'ibexa_http_cache';
     }
 
     public function load(array $configs, ContainerBuilder $container)

@@ -61,7 +61,7 @@ class IbexaHttpCacheBundle extends Bundle
         $eZExtension = $container->getExtension('ezpublish');
         $eZExtension->addConfigParser(
             new HttpCacheConfigParser(
-                $container->getExtension('ez_platform_http_cache')
+                $container->getExtension('ibexa_http_cache')
             )
         );
     }

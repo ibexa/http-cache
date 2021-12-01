@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        return new TreeBuilder('ez_platform_http_cache');
+        return new TreeBuilder('ibexa_http_cache');
     }
 }
 
