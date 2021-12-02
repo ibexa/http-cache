@@ -55,7 +55,7 @@
         }
     },
     "scripts": {
-        "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots",
+        "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php -v --show-progress=dots",
         "unit": "phpunit -c phpunit.xml",
         "spec": "phpspec run --format=pretty",
         "check-cs": "@fix-cs --dry-run",
