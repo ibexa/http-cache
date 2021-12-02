@@ -4,11 +4,11 @@
 
 {% block ezobjectrelationlist_field %}
     {% apply spaceless %}
-        {% if not ez_field_is_empty( content, field ) %}
+        {% if not ibexa_field_is_empty( content, field ) %}
             <ul {{ block( 'field_attributes' ) }}>
                 {% for contentId in field.value.destinationContentIds %}
                     {% if parameters.available[contentId] %}
-                        {{ ez_http_tag_relation_ids(contentId) }}
+                        {{ ibexa_http_cache_tag_relation_ids(contentId) }}
                         <li>
                             {{ render( controller( "ez_content:viewAction", {'contentId': contentId, 'viewType': 'embed', 'layout': false} ) ) }}
                         </li>
@@ -21,8 +21,8 @@
 
 {% block ezimageasset_field %}
     {% apply spaceless %}
-        {% if not ez_field_is_empty(content, field) and parameters.available %}
-            {{ ez_http_tag_relation_ids(field.value.destinationContentId) }}
+        {% if not ibexa_field_is_empty(content, field) and parameters.available %}
+            {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
             <div {{ block('field_attributes') }}>
                 {{ render(controller('ez_content:embedAction', {
                     contentId: field.value.destinationContentId,
@@ -39,8 +39,8 @@
 
 {% block ezobjectrelation_field %}
     {% apply spaceless %}
-        {% if not ez_field_is_empty( content, field ) and parameters.available %}
-            {{ ez_http_tag_relation_ids(field.value.destinationContentId) }}
+        {% if not ibexa_field_is_empty( content, field ) and parameters.available %}
+            {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
             <div {{ block( 'field_attributes' ) }}>
                 {{ render( controller( "ez_content:viewAction", {'contentId': field.value.destinationContentId, 'viewType': 'text_linked', 'layout': false} ) ) }}
             </div>
