@@ -20,7 +20,7 @@ class MyCustomBundle
 {
   public function build(ContainerBuilder $container)
   {
-    $cacheExtension = $container->getExtension('ez_platform_http_cache');
+    $cacheExtension = $container->getExtension('ibexa_http_cache');
     $cacheExtension->addExtraConfigParser(new CustomConfigParser());
   }
 }
