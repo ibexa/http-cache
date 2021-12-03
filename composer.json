@@ -41,10 +41,10 @@
     },
     "autoload": {
         "psr-4": {
-            "EzSystems\\PlatformHttpCacheBundle\\": "src",
             "Ibexa\\HttpCache\\": "src/lib/",
             "Ibexa\\Bundle\\HttpCache\\": "src/bundle/",
-            "Ibexa\\Contracts\\HttpCache\\": "src/contracts/"
+            "Ibexa\\Contracts\\HttpCache\\": "src/contracts/",
+            "EzSystems\\PlatformHttpCacheBundle\\": "src/bundle/"
         }
     },
     "autoload-dev": {
