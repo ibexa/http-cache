@@ -2,7 +2,7 @@
 
 namespace spec\Ibexa\HttpCache\ResponseConfigurator;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\HttpFoundation\Response;

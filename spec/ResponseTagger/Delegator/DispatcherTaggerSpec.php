@@ -2,7 +2,7 @@
 
 namespace spec\Ibexa\HttpCache\ResponseTagger\Delegator;
 
-use eZ\Publish\API\Repository\Values\ValueObject;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use PhpSpec\ObjectBehavior;

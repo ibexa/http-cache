@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use FOS\HttpCache\ResponseTagger;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -24,12 +24,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class XLocationIdResponseSubscriber implements EventSubscriberInterface
 {
-    const LOCATION_ID_HEADER = 'X-Location-Id';
+    public const LOCATION_ID_HEADER = 'X-Location-Id';
 
     /** @var \FOS\HttpCache\ResponseTagger */
     private $responseTagger;
 
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
     public function __construct(ResponseTagger $responseTagger, Repository $repository)

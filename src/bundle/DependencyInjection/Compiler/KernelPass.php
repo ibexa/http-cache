@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\Compiler;
@@ -38,7 +38,7 @@ class KernelPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
     protected function removeKernelRoleIdContextProvider(ContainerBuilder $container)
     {
@@ -52,7 +52,7 @@ class KernelPass implements CompilerPassInterface
 
         // Also remove from arguments already passed to FOSHttpCache via compiler pass there.
         $arguments = $container->getDefinition('fos_http_cache.user_context.hash_generator')->getArguments();
-        $arguments[0] = array_values(array_filter($arguments[0], function (Reference $argument) {
+        $arguments[0] = array_values(array_filter($arguments[0], static function (Reference $argument) {
             if ((string)$argument === 'ezpublish.user.identity_definer.role_id') {
                 return false;
             }

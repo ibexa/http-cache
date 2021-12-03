@@ -7,8 +7,8 @@ namespace spec\Ibexa\HttpCache\EventSubscriber;
 
 use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\CachableView;
-use eZ\Publish\Core\MVC\Symfony\View\View;
+use Ibexa\Core\MVC\Symfony\View\CachableView;
+use Ibexa\Core\MVC\Symfony\View\View;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;

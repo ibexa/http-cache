@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\CachableView;
+use Ibexa\Core\MVC\Symfony\View\CachableView;
+use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -19,12 +19,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class HttpCacheResponseSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger
+     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
      */
     private $dispatcherTagger;
 
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ResponseCacheConfigurator
+     * @var \Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator
      */
     private $responseConfigurator;
 

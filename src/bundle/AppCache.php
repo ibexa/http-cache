@@ -1,21 +1,21 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\HttpCache;
 
-use Ibexa\HttpCache\Proxy\UserContextListener;
 use FOS\HttpCache\SymfonyCache\CacheInvalidation;
 use FOS\HttpCache\SymfonyCache\EventDispatchingHttpCache;
 use FOS\HttpCache\SymfonyCache\PurgeListener;
 use FOS\HttpCache\SymfonyCache\PurgeTagsListener;
 use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
+use Ibexa\HttpCache\Proxy\UserContextListener;
 use Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Toflar\Psr6HttpCacheStore\Psr6Store;
 
@@ -81,7 +81,7 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * Perform cleanup of reponse.
      *
-     * @param Response $response
+     * @param \Symfony\Component\HttpFoundation\Response $response
      */
     protected function cleanupHeadersForProd(Response $response)
     {

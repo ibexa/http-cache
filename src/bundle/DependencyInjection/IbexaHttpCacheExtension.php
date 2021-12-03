@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\HttpCache\DependencyInjection;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface;
 use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Yaml\Yaml;
 
 class IbexaHttpCacheExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface[]
+     * @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
      */
     private $extraConfigParsers = [];
 
@@ -62,7 +62,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
 
         // Override Core views
         $coreExtensionConfigFile = realpath(__DIR__ . '/../Resources/config/prepend/ezpublish.yml');
-        $container->prependExtensionConfig('ezpublish', Yaml::parseFile($coreExtensionConfigFile));
+        $container->prependExtensionConfig('ibexa', Yaml::parseFile($coreExtensionConfigFile));
         $container->addResource(new FileResource($coreExtensionConfigFile));
     }
 

@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Tests\HttpCache\ContextProvider;
 
-use eZ\Publish\API\Repository\RoleService;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\User\Limitation\RoleLimitation;
-use eZ\Publish\API\Repository\Values\User\Role;
-use eZ\Publish\API\Repository\Values\User\User as APIUser;
-use eZ\Publish\API\Repository\Values\User\UserReference;
-use eZ\Publish\Core\Repository\Permission\PermissionResolver;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\User\UserRoleAssignment;
-use Ibexa\HttpCache\ContextProvider\RoleIdentify;
 use FOS\HttpCache\UserContext\UserContext;
+use Ibexa\Contracts\Core\Repository\RoleService;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
+use Ibexa\Contracts\Core\Repository\Values\User\Role;
+use Ibexa\Contracts\Core\Repository\Values\User\User as APIUser;
+use Ibexa\Contracts\Core\Repository\Values\User\UserReference;
+use Ibexa\Core\Repository\Permission\PermissionResolver;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\User\UserRoleAssignment;
+use Ibexa\HttpCache\ContextProvider\RoleIdentify;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,12 +25,12 @@ use PHPUnit\Framework\TestCase;
 class RoleIdentifyTest extends TestCase
 {
     /**
-     * @var \eZ\Publish\API\Repository\Repository|\PHPUnit_Framework_MockObject_MockObject
+     * @var \Ibexa\Contracts\Core\Repository\Repository|\PHPUnit_Framework_MockObject_MockObject
      */
     private $repositoryMock;
 
     /**
-     * @var \eZ\Publish\API\Repository\RoleService|\PHPUnit_Framework_MockObject_MockObject
+     * @var \Ibexa\Contracts\Core\Repository\RoleService|\PHPUnit_Framework_MockObject_MockObject
      */
     private $roleServiceMock;
 

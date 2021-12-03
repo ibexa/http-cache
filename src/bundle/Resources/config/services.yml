@@ -71,7 +71,7 @@ services:
         class: Ibexa\HttpCache\ContextProvider\RoleIdentify
         arguments:
             - '@ezpublish.api.repository'
-            - '@eZ\Publish\API\Repository\PermissionResolver'
+            - '@Ibexa\Contracts\Core\Repository\PermissionResolver'
             - '@ezpublish.api.service.user'
         tags:
             - { name: fos_http_cache.user_context_provider }

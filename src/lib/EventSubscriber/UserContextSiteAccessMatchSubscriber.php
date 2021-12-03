@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\Core\MVC\Symfony\EventListener\SiteAccessMatchListener;
+use Ibexa\Core\MVC\Symfony\EventListener\SiteAccessMatchListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
 {
-    /** @var \eZ\Publish\Core\MVC\Symfony\EventListener\SiteAccessMatchListener */
+    /** @var \Ibexa\Core\MVC\Symfony\EventListener\SiteAccessMatchListener */
     protected $innerSubscriber;
 
     /** @var \Symfony\Component\HttpFoundation\RequestMatcherInterface */

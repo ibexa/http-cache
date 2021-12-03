@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\Twig;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Twig\Extension\AbstractExtension;
@@ -18,10 +18,10 @@ use Twig\TwigFunction;
  */
 class ContentTaggingExtension extends AbstractExtension
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger */
+    /** @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger */
     protected $responseTagger;
 
-    /** @var \EzSystems\PlatformHttpCacheBundle\Handler\ContentTagInterface */
+    /** @var \Ibexa\Contracts\HttpCache\Handler\ContentTagInterface */
     protected $contentTagHandler;
 
     public function __construct(ResponseTagger $responseTagger, ContentTagInterface $contentTagHandler)
@@ -88,7 +88,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @internal Function is only for use within this class (and implicit by Twig).
      *
-     * @param Location $location
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
      */
     public function tagHttpCacheForLocation(Location $location)
     {

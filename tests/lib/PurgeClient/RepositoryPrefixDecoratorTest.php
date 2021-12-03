@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Tests\HttpCache\PurgeClient;
@@ -14,17 +14,17 @@ use PHPUnit\Framework\TestCase;
 class RepositoryPrefixDecoratorTest extends TestCase
 {
     /**
-     * @var PurgeClientInterface
+     * @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface
      */
     private $purgeClientMock;
 
     /**
-     * @var RepositoryTagPrefix
+     * @var \Ibexa\HttpCache\RepositoryTagPrefix
      */
     private $tagPrefixMock;
 
     /**
-     * @var RepositoryPrefixDecorator
+     * @var \Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
      */
     private $prefixDecorator;
 

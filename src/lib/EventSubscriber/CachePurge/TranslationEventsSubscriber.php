@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\Content\DeleteTranslationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Content\DeleteTranslationEvent;
 
 final class TranslationEventsSubscriber extends AbstractSubscriber
 {

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\Handler;
 
+use FOS\HttpCacheBundle\Http\SymfonyResponseTagger;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\HttpCache\RepositoryTagPrefix;
-use FOS\HttpCacheBundle\Http\SymfonyResponseTagger;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix */
+    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
     private $prefixService;
 
     /** @var \Psr\Log\LoggerInterface */

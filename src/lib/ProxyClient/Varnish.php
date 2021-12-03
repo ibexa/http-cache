@@ -1,15 +1,13 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ProxyClient;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController;
 use FOS\HttpCache\ProxyClient\Dispatcher;
 use FOS\HttpCache\ProxyClient\Invalidation\BanCapable;
 use FOS\HttpCache\ProxyClient\Invalidation\PurgeCapable;
@@ -17,10 +15,12 @@ use FOS\HttpCache\ProxyClient\Invalidation\RefreshCapable;
 use FOS\HttpCache\ProxyClient\Invalidation\TagCapable;
 use FOS\HttpCache\ProxyClient\Varnish as FosVarnish;
 use Http\Message\RequestFactory;
+use Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 
 final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, RefreshCapable, TagCapable
 {
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(

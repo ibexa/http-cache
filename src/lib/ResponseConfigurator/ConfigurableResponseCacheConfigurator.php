@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ResponseConfigurator;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ConfigurableResponseCacheConfigurator implements ResponseCacheConfigurator
 {
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)

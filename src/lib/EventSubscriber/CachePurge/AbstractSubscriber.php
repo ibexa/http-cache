@@ -1,31 +1,31 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use eZ\Publish\SPI\Persistence\Content\Location\Handler as LocationHandler;
-use eZ\Publish\SPI\Persistence\URL\Handler as UrlHandler;
 
 /**
  * @internal
  */
 abstract class AbstractSubscriber implements EventSubscriberInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface */
+    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
     protected $purgeClient;
 
-    /** @var \eZ\Publish\SPI\Persistence\Content\Location\Handler */
+    /** @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler */
     private $locationHandler;
 
-    /** @var \eZ\Publish\SPI\Persistence\URL\Handler */
+    /** @var \Ibexa\Contracts\Core\Persistence\URL\Handler */
     private $urlHandler;
 
     public function __construct(

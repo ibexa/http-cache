@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Bundle\HttpCache;
 
-use Ibexa\Bundle\HttpCache\DependencyInjection\ConfigResolver\HttpCacheConfigParser;
-use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\VarnishCachePass;
-use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\ResponseTaggersPass;
-use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\KernelPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\DriverPass;
+use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\KernelPass;
+use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\ResponseTaggersPass;
+use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\VarnishCachePass;
+use Ibexa\Bundle\HttpCache\DependencyInjection\ConfigResolver\HttpCacheConfigParser;
 use Ibexa\Bundle\HttpCache\DependencyInjection\IbexaHttpCacheExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -57,8 +57,8 @@ class IbexaHttpCacheBundle extends Bundle
 
     public function registerConfigParser(ContainerBuilder $container)
     {
-        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $eZExtension */
-        $eZExtension = $container->getExtension('ezpublish');
+        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
+        $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(
             new HttpCacheConfigParser(
                 $container->getExtension('ibexa_http_cache')

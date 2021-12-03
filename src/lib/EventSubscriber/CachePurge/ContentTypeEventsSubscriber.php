@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\ContentType\AssignContentTypeGroupEvent;
-use eZ\Publish\API\Repository\Events\ContentType\DeleteContentTypeEvent;
-use eZ\Publish\API\Repository\Events\ContentType\DeleteContentTypeGroupEvent;
-use eZ\Publish\API\Repository\Events\ContentType\PublishContentTypeDraftEvent;
-use eZ\Publish\API\Repository\Events\ContentType\UnassignContentTypeGroupEvent;
-use eZ\Publish\API\Repository\Events\ContentType\UpdateContentTypeGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\AssignContentTypeGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\DeleteContentTypeEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\DeleteContentTypeGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\PublishContentTypeDraftEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\UnassignContentTypeGroupEvent;
+use Ibexa\Contracts\Core\Repository\Events\ContentType\UpdateContentTypeGroupEvent;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
 final class ContentTypeEventsSubscriber extends AbstractSubscriber

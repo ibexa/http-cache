@@ -1,21 +1,21 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
-use eZ\Publish\API\Repository\Events\Location\CopySubtreeEvent;
-use eZ\Publish\API\Repository\Events\Location\CreateLocationEvent;
-use eZ\Publish\API\Repository\Events\Location\DeleteLocationEvent;
-use eZ\Publish\API\Repository\Events\Location\HideLocationEvent;
-use eZ\Publish\API\Repository\Events\Location\MoveSubtreeEvent;
-use eZ\Publish\API\Repository\Events\Location\SwapLocationEvent;
-use eZ\Publish\API\Repository\Events\Location\UnhideLocationEvent;
-use eZ\Publish\API\Repository\Events\Location\UpdateLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\CopySubtreeEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\CreateLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\DeleteLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\HideLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\MoveSubtreeEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\SwapLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\UnhideLocationEvent;
+use Ibexa\Contracts\Core\Repository\Events\Location\UpdateLocationEvent;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
 final class LocationEventsSubscriber extends AbstractSubscriber

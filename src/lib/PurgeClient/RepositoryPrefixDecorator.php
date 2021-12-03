@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\PurgeClient;
@@ -16,10 +16,10 @@ use Ibexa\HttpCache\RepositoryTagPrefix;
  */
 class RepositoryPrefixDecorator implements PurgeClientInterface
 {
-    /** @var \EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface */
+    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
     private $purgeClient;
 
-    /** @var \EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix */
+    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
     private $prefixService;
 
     public function __construct(PurgeClientInterface $purgeClient, RepositoryTagPrefix $prefixService)

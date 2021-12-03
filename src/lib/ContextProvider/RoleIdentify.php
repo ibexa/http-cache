@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\HttpCache\ContextProvider;
 
-use eZ\Publish\API\Repository\PermissionResolver;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\UserService;
 use FOS\HttpCache\UserContext\ContextProvider;
 use FOS\HttpCache\UserContext\UserContext;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\UserService;
 
 /**
  * Identity definer based on current user role ids and role limitations.
@@ -24,13 +24,13 @@ use FOS\HttpCache\UserContext\UserContext;
  */
 class RoleIdentify implements ContextProvider
 {
-    /** @var \eZ\Publish\Core\Repository\Repository */
+    /** @var \Ibexa\Core\Repository\Repository */
     protected $repository;
 
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
     public function __construct(
@@ -49,16 +49,16 @@ class RoleIdentify implements ContextProvider
             $this->permissionResolver->getCurrentUserReference()->getUserId()
         );
 
-        /** @var \eZ\Publish\API\Repository\Values\User\RoleAssignment[] $roleAssignments */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment[] $roleAssignments */
         $roleAssignments = $this->repository->sudo(
-            function (Repository $repository) use ($user) {
+            static function (Repository $repository) use ($user) {
                 return $repository->getRoleService()->getRoleAssignmentsForUser($user, true);
             }
         );
 
         $roleIds = [];
         $limitationValues = [];
-        /** @var \eZ\Publish\API\Repository\Values\User\UserRoleAssignment $roleAssignment */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserRoleAssignment $roleAssignment */
         foreach ($roleAssignments as $roleAssignment) {
             $roleId = $roleAssignment->getRole()->id;
             $roleIds[] = $roleId;
