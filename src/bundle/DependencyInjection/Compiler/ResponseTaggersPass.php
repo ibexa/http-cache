@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Processes services tagged as ezplatform.cache_response_tagger, and registers them with the dispatcher.
+ * Injects services tagged as "ibexa.cache.http.response.tagger" into the dispatcher.
  */
 class ResponseTaggersPass implements CompilerPassInterface
 {
@@ -23,7 +23,7 @@ class ResponseTaggersPass implements CompilerPassInterface
 
         $taggers = [];
 
-        $taggedServiceIds = $container->findTaggedServiceIds('ezplatform.cache_response_tagger');
+        $taggedServiceIds = $container->findTaggedServiceIds('ibexa.cache.http.response.tagger');
         foreach ($taggedServiceIds as $taggedServiceId => $tags) {
             $taggers[] = new Reference($taggedServiceId);
         }

@@ -23,10 +23,10 @@ services:
         class: EzSystems\PlatformMyHttpCacheBundle\PurgeClient\MyHttpCachePurgeClient
         arguments: ['@ezplatform.http_cache.cache_manager']
         tags:
-            - {name: ezplatform.http_cache.purge_client, purge_type: myhttpcache}
+            - {name: ibexa.cache.http.purge_client, purge_type: myhttpcache}
 ```
 
-Any service which implements the PurgeClientInterface must be tagged with `ezplatform.http_cache.purge_client` in
+Any service which implements the PurgeClientInterface must be tagged with `ibexa.cache.http.purge_client` in
 order to be registered as such.
 
 `purge_type` specifies what the value of the `ezpublish.http_cache.purge_type` setting in `app/config/ezplatform.yml`
