@@ -43,13 +43,13 @@ services:
         arguments:
             - '@fos_http_cache.cache_manager'
         tags:
-            - {name: ezplatform.http_cache.purge_client, purge_type: varnish}
+            - {name: ibexa.cache.http.purge_client, purge_type: varnish}
 
     ezplatform.http_cache.purge_client.local:
         class: Ibexa\HttpCache\PurgeClient\LocalPurgeClient
         arguments: ['@ezplatform.http_cache.tag_aware_store']
         tags:
-            - {name: ezplatform.http_cache.purge_client, purge_type: local}
+            - {name: ibexa.cache.http.purge_client, purge_type: local}
 
     ezplatform.http_cache.tag_aware_store:
         class: Toflar\Psr6HttpCacheStore\Psr6Store

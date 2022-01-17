@@ -67,13 +67,13 @@ services:
         class: Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger
         arguments: ['@ezplatform.view_cache.response_tagger.content_info']
         tags:
-            - {name: ezplatform.cache_response_tagger}
+            - {name: ibexa.cache.http.response.tagger}
 
     ezplatform.view_cache.response_tagger.location_value_view:
         class: Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger
         arguments: ['@ezplatform.view_cache.response_tagger.location']
         tags:
-            - {name: ezplatform.cache_response_tagger}
+            - {name: ibexa.cache.http.response.tagger}
 
     # ResponseTagger value handlers
     ezplatform.view_cache.response_tagger.abstract_value:
@@ -84,13 +84,13 @@ services:
         class: Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
         parent: ezplatform.view_cache.response_tagger.abstract_value
         tags:
-            - {name: ezplatform.cache_response_tagger}
+            - {name: ibexa.cache.http.response.tagger}
 
     ezplatform.view_cache.response_tagger.location:
         class: Ibexa\HttpCache\ResponseTagger\Value\LocationTagger
         parent: ezplatform.view_cache.response_tagger.abstract_value
         tags:
-            - {name: ezplatform.cache_response_tagger}
+            - {name: ibexa.cache.http.response.tagger}
 
     # Twig
     ezplatform.view_cache.twig_extension:
