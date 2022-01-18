@@ -4,16 +4,16 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\EventSubscriber;
+namespace spec\Ibexa\HttpCache\EventSubscriber;
 
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\ContentInfoTagger;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\LocationTagger;
+use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
+use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\MVC\Exception\HiddenLocationException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\MVC\Exception\HiddenLocationException;
 use Prophecy\Argument;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 

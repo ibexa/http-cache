@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value;
+namespace spec\Ibexa\HttpCache\ResponseTagger\Value;
 
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\LocationTagger;
-use eZ\Publish\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
+use Ibexa\Core\Repository\Values\Content\Location;
 use FOS\HttpCache\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

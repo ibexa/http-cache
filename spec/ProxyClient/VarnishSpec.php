@@ -3,9 +3,9 @@
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\ProxyClient;
+namespace spec\Ibexa\HttpCache\ProxyClient;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use FOS\HttpCache\ProxyClient\Dispatcher;
 use Http\Message\RequestFactory;
 use PhpSpec\ObjectBehavior;
