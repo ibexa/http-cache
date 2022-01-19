@@ -43,7 +43,7 @@ class KernelPassSpec extends ObjectBehavior
 //        $container->getDefinition('fos_http_cache.user_context.hash_generator')->willReturn($hashGenerator);
 //        $hashGenerator->getArguments()->willReturn([
 //            [
-//                $ref1 = new Reference('ezplatform.http_cache.user_context_provider.role_identify'),
+//                $ref1 = new Reference(\Ibexa\HttpCache\ContextProvider\RoleIdentify::class),
 //                $ref2 = new Reference('ezpublish.user.hash_generator'),
 //                new Reference('ezpublish.user.identity_definer.role_id'),
 //            ]

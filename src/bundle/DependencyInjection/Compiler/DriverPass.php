@@ -25,14 +25,14 @@ class DriverPass implements CompilerPassInterface
         if ($configuredPurgeClientServiceId === null) {
             throw new \InvalidArgumentException("No driver found being able to handle purge_type '$purgeType'.");
         }
-        $container->setAlias('ezplatform.http_cache.purge_client_internal', $configuredPurgeClientServiceId);
+        $container->setAlias('ibexa.http_cache.purge_client_internal', $configuredPurgeClientServiceId);
 
         // FOS TagHandler is making sure running "php app/console fos:httpcache:invalidate:tag <tag>" works
         $configuredFosTagHandlerServiceId = static::getTaggedService($container, 'ezplatform.http_cache.fos_tag_handler');
         if ($configuredFosTagHandlerServiceId === null) {
             // We default to xkey handler. This one should anyway work for most drivers as it just passes a purge request
             // on to the purge client
-            $configuredFosTagHandlerServiceId = 'ezplatform.http_cache.fos_tag_handler.xkey';
+            $configuredFosTagHandlerServiceId = \Ibexa\HttpCache\Handler\TagHandler::class;
         }
         $container->setAlias('fos_http_cache.http.symfony_response_tagger', $configuredFosTagHandlerServiceId);
 

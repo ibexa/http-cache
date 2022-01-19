@@ -7,6 +7,6 @@ services:
     Ibexa\HttpCache\EventSubscriber\CachePurge\:
         resource: '../../../lib/EventSubscriber/CachePurge/*'
         arguments:
-            $purgeClient: '@ezplatform.http_cache.purge_client'
-            $locationHandler: '@ezpublish.spi.persistence.cache.locationHandler'
-            $urlHandler: '@ezpublish.spi.persistence.cache.urlHandler'
+            $purgeClient: '@ibexa.http_cache.purge_client'
+            $locationHandler: '@Ibexa\Core\Persistence\Cache\LocationHandler'
+            $urlHandler: '@Ibexa\Core\Persistence\Cache\URLHandler'

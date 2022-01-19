@@ -17,7 +17,7 @@ class ResponseTaggersPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('ezplatform.view_cache.response_tagger.dispatcher')) {
+        if (!$container->hasDefinition(\Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger::class)) {
             return;
         }
 
@@ -28,7 +28,7 @@ class ResponseTaggersPass implements CompilerPassInterface
             $taggers[] = new Reference($taggedServiceId);
         }
 
-        $dispatcher = $container->getDefinition('ezplatform.view_cache.response_tagger.dispatcher');
+        $dispatcher = $container->getDefinition(\Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger::class);
         $dispatcher->replaceArgument(0, $taggers);
     }
 }
