@@ -1,4 +1,4 @@
-ezplatform.httpcache.invalidatetoken:
+ibexa.http_cache.invalidate_token:
     path: /_ez_http_invalidatetoken
     defaults:
       _controller: Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController:tokenAction
