@@ -6,6 +6,7 @@
  */
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\Compiler;
 
+use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -17,7 +18,7 @@ class ResponseTaggersPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('ezplatform.view_cache.response_tagger.dispatcher')) {
+        if (!$container->hasDefinition(DispatcherTagger::class)) {
             return;
         }
 
@@ -28,7 +29,7 @@ class ResponseTaggersPass implements CompilerPassInterface
             $taggers[] = new Reference($taggedServiceId);
         }
 
-        $dispatcher = $container->getDefinition('ezplatform.view_cache.response_tagger.dispatcher');
+        $dispatcher = $container->getDefinition(DispatcherTagger::class);
         $dispatcher->replaceArgument(0, $taggers);
     }
 }
