@@ -7,6 +7,7 @@
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\Compiler;
 
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
+use Ibexa\HttpCache\Handler\TagHandler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -32,7 +33,7 @@ class DriverPass implements CompilerPassInterface
         if ($configuredFosTagHandlerServiceId === null) {
             // We default to xkey handler. This one should anyway work for most drivers as it just passes a purge request
             // on to the purge client
-            $configuredFosTagHandlerServiceId = \Ibexa\HttpCache\Handler\TagHandler::class;
+            $configuredFosTagHandlerServiceId = TagHandler::class;
         }
         $container->setAlias('fos_http_cache.http.symfony_response_tagger', $configuredFosTagHandlerServiceId);
 
