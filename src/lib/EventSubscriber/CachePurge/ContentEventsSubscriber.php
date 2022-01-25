@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
+use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\Core\Repository\Events\Content\CopyContentEvent;
 use Ibexa\Contracts\Core\Repository\Events\Content\CreateContentDraftEvent;
 use Ibexa\Contracts\Core\Repository\Events\Content\DeleteContentEvent;
@@ -20,9 +23,6 @@ use Ibexa\Contracts\Core\Repository\Events\Content\UpdateContentMetadataEvent;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
-use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
-use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 

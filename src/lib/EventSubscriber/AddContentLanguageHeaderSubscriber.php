@@ -11,9 +11,9 @@ namespace Ibexa\HttpCache\EventSubscriber;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Core\MVC\Symfony\View\CachableView;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 final class AddContentLanguageHeaderSubscriber implements EventSubscriberInterface
 {
