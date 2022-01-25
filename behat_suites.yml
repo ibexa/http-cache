@@ -32,7 +32,7 @@ httpCache:
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         varnish-translation-aware:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/varnish'
+                - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
             filters:
                 tags: '@varnish&&~@translationNotAware' 
             contexts:
@@ -66,6 +66,6 @@ httpCache:
                 - EzSystems\Behat\Core\Context\FileContext
         setup-translation-aware:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/setup/translationAware.feature'
+                - '%paths.base%/vendor/ibexa/http-cache/features/setup/translationAware.feature'
             contexts:
                 - EzSystems\Behat\Core\Context\ConfigurationContext
