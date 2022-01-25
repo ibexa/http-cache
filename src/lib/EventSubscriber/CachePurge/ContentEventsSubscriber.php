@@ -24,7 +24,7 @@ use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface;
+use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 
 final class ContentEventsSubscriber extends AbstractSubscriber
 {
