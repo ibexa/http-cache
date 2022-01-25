@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle;
+namespace spec\Ibexa\HttpCache;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
+use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

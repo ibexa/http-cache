@@ -134,19 +134,19 @@ However for relations, which you typically used prior to a ESI include for some 
 ```twig
     {# As of v0.9.3 two twig functions for relation use cases was added, both handling single and array values #}
     {# First one is for relation(s) for Content, as shown by it's id #}
-    {{ ez_http_tag_relation_ids(relation_content.id) }}
+    {{ ibexa_http_cache_tag_relation_ids(relation_content.id) }}
 
     {# Second one for relation locations, here shown using array of location id's #}
-    {{ ez_http_tag_relation_location_ids(relation_location_ids) }}
+    {{ ibexa_http_cache_tag_relation_location_ids(relation_location_ids) }}
 ```
 
 
 Alternatively if you have a location(s) that you render _inline_ & want invalidated on any kind of change:
 ```twig
-    {{ ez_http_tag_location( location ) }}
+    {{ ibexa_http_cache_tag_location( location ) }}
 ```
 
-TIP: Don't use `ez_http_tag_location` when you are rendering a large amount of content/location items, it will cause tag
+TIP: Don't use `ibexa_http_cache_tag_location` when you are rendering a large amount of content/location items, it will cause tag
      header to become to large. Consider using less tags with for instance `ez_http_tag_relation_(location_)ids`, and account for
      possible stale cache by reducing cache ttl for the given response.
      Also strongly consider to upgrade to ezplatform-http-cache 1.0 or higher which reduces cache tag size.
