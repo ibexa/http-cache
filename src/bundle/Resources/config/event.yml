@@ -9,7 +9,7 @@ services:
             $purgeClient: '@ibexa.http_cache.purge_client'
             $locationHandler: '@Ibexa\Core\Persistence\Cache\LocationHandler'
             $urlHandler: '@Ibexa\Core\Persistence\Cache\URLHandler'
-            $contentHandler: 'Ibexa\Core\Persistence\Cache\ContentHandler'
+            $contentHandler: '@Ibexa\Core\Persistence\Cache\ContentHandler'
             $isTranslationAware: '%ibexa.http_cache.translation_aware.enabled%'
 
     Ibexa\HttpCache\EventSubscriber\CachePurge\:
