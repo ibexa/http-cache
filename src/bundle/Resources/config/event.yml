@@ -14,7 +14,7 @@ services:
 
     Ibexa\HttpCache\EventSubscriber\CachePurge\:
         resource: '../../../lib/EventSubscriber/CachePurge/*'
-        exclude: '../../EventSubscriber/CachePurge/ContentEventsSubscriber.php'
+        exclude: '../../../lib/EventSubscriber/CachePurge/ContentEventsSubscriber.php'
         arguments:
             $purgeClient: '@ibexa.http_cache.purge_client'
             $locationHandler: '@Ibexa\Core\Persistence\Cache\LocationHandler'
