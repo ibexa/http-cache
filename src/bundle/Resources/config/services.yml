@@ -1,7 +1,4 @@
 parameters:
-    ezplatform.http_cache.controller.invalidatetoken.class: Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController
-    ezplatform.http_cache.listener.vary_header.class: Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener
-    ezplatform.http_cache.proxy_client.http_dispatcher.class: FOS\HttpCache\ProxyClient\HttpDispatcher
     # Set in \Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\VarnishCachePass
     # equal to settings under fos_http_cache.proxy_client.varnish.http.servers|base_url
     ezplatform.http_cache.varnish.http.servers: []
@@ -17,10 +14,10 @@ services:
         arguments:
             - '@ibexa.config.resolver'
             - '@Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\DynamicSettingParser'
-            - '%ezplatform.http_cache.proxy_client.http_dispatcher.class%'
+            - FOS\HttpCache\ProxyClient\HttpDispatcher
 
     ibexa.http_cache.proxy_client.varnish.http_dispatcher:
-        class: '%ezplatform.http_cache.proxy_client.http_dispatcher.class%'
+        class: FOS\HttpCache\ProxyClient\HttpDispatcher
         decorates: fos_http_cache.proxy_client.varnish.http_dispatcher
         lazy: true
         factory: ['@Ibexa\HttpCache\ProxyClient\HttpDispatcherFactory', 'buildHttpDispatcher']
@@ -77,7 +74,6 @@ services:
             - { name: fos_http_cache.user_context_provider }
 
     Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController:
-        class: "%ezplatform.http_cache.controller.invalidatetoken.class%"
         arguments:
          - '@ibexa.config.resolver'
          - "%ezplatform.http_cache.invalidate_token.ttl%"
@@ -86,7 +82,6 @@ services:
             - controller.service_arguments
 
     Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener:
-        class: "%ezplatform.http_cache.listener.vary_header.class%"
         arguments:
          - "%ezplatform.http_cache.no_vary.routes%"
         tags:
