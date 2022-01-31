@@ -5,7 +5,7 @@
  */
 namespace spec\Ibexa\HttpCache\ProxyClient;
 
-use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use FOS\HttpCache\ProxyClient\Dispatcher;
 use Http\Message\RequestFactory;
 use PhpSpec\ObjectBehavior;

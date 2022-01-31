@@ -7,7 +7,7 @@
 namespace Ibexa\Bundle\HttpCache\Controller;
 
 use FOS\HttpCache\ResponseTagger;
-use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\EventListener\SessionListener;
@@ -17,7 +17,7 @@ class InvalidateTokenController
     public const TOKEN_HEADER_NAME = 'X-Invalidate-Token';
 
     /**
-     * @var \Ibexa\Core\MVC\ConfigResolverInterface
+     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
      */
     private $configResolver;
 
@@ -34,7 +34,7 @@ class InvalidateTokenController
     /**
      * TokenController constructor.
      *
-     * @param \Ibexa\Core\MVC\ConfigResolverInterface $configResolver
+     * @param \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface $configResolver
      * @param int $ttl
      * @param \FOS\HttpCache\ResponseTagger $tagHandler
      *

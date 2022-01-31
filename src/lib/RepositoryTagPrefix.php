@@ -6,7 +6,7 @@
  */
 namespace Ibexa\HttpCache;
 
-use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 
 /**
  * Service RepositoryPrefix.
@@ -16,7 +16,7 @@ use Ibexa\Core\MVC\ConfigResolverInterface;
 class RepositoryTagPrefix
 {
     /**
-     * @var \Ibexa\Core\MVC\ConfigResolverInterface
+     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
      */
     private $resolver;
 
