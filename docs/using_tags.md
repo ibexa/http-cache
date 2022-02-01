@@ -254,7 +254,7 @@ If that is not an option, you can opt-in to set a max length parameter (in bytes
 ```yaml
 parameters:
     # Warning, setting this means you risk losing tag information, risking stale cache. Here set below 8k:
-    ezplatform.http_cache.tags.header_max_length: 7900
+    ibexa.http_cache.tags.header_max_length: 7900
     # In order to reduce risk of stale cache issues, you should set a lower TTL here then globally (here set as 2h)
-    ezplatform.http_cache.tags.header_reduced_ttl: 7200
+    ibexa.http_cache.tags.header_reduced_ttl: 7200
 ```

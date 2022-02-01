@@ -29,12 +29,12 @@ class VarnishCachePass implements CompilerPassInterface
         $baseUrl = $fosConfig['proxy_client']['varnish']['http']['base_url'] ?? '';
 
         $container->setParameter(
-            'ezplatform.http_cache.varnish.http.servers',
+            'ibexa.http_cache.varnish.http.servers',
             $servers
         );
 
         $container->setParameter(
-            'ezplatform.http_cache.varnish.http.base_url',
+            'ibexa.http_cache.varnish.http.base_url',
             $baseUrl
         );
     }
