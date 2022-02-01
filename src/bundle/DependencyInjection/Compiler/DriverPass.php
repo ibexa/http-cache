@@ -21,7 +21,7 @@ class DriverPass implements CompilerPassInterface
     {
         $container->removeAlias('ezpublish.http_cache.purge_client');
 
-        $purgeType = $container->getParameter('ezpublish.http_cache.purge_type');
+        $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         $configuredPurgeClientServiceId = static::getTaggedService($container, 'ibexa.cache.http.purge_client');
         if ($configuredPurgeClientServiceId === null) {
             throw new \InvalidArgumentException("No driver found being able to handle purge_type '$purgeType'.");
@@ -43,7 +43,7 @@ class DriverPass implements CompilerPassInterface
 
     public static function getTaggedService(ContainerBuilder $container, $tag)
     {
-        $purgeType = $container->getParameter('ezpublish.http_cache.purge_type');
+        $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         $configuredTagHandlerServiceId = null;
 
         $tagHandlerServiceIds = $container->findTaggedServiceIds($tag);

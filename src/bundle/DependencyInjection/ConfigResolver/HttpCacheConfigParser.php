@@ -30,7 +30,7 @@ class HttpCacheConfigParser implements ParserInterface
                 ->info('Settings related to Http cache')
                 ->children()
                     ->arrayNode('purge_servers')
-                        ->info('Servers to use for Http PURGE (will NOT be used if ezpublish.http_cache.purge_type is "local").')
+                        ->info('Servers to use for Http PURGE (will NOT be used if ibexa.http_cache.purge_type is "local").')
                         ->example(['http://localhost/', 'http://another.server/'])
                         ->requiresAtLeastOneElement()
                         ->prototype('scalar')->end()

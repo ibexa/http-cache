@@ -34,7 +34,7 @@ class KernelPass implements CompilerPassInterface
         $this->removeKernelRoleIdContextProvider($container);
 
         // Let's re-export purge_type setting so that driver's don't have to depend on kernel in order to acquire it
-        $container->setParameter('ezplatform.http_cache.purge_type', $container->getParameter('ezpublish.http_cache.purge_type'));
+        $container->setParameter('ibexa.http_cache.purge_type', $container->getParameter('ibexa.http_cache.purge_type'));
     }
 
     /**
