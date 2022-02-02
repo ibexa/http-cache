@@ -96,7 +96,7 @@ corresponding tags as listed above. These can be found in `src/ResponseTagger`.
 
 ### For responses with X-Location-Id
 
-For custom or eZ controllers _(like REST at the time of writing)_ still using `X-Location-Id`, a dedicated response
+For custom or Ibexa controllers _(like REST at the time of writing)_ still using `X-Location-Id`, a dedicated response
 listener `XLocationIdResponseSubscriber` handles translating this to tags so the cache can be properly invalidated by
 this bundle. It supports comma separated location id values which was only partially supported in earlier versions:
 
@@ -108,13 +108,13 @@ this bundle. It supports comma separated location id values which was only parti
     $response->headers->set('X-Location-Id', '123,212,42');
 ```
 
-*NOTE: This is currently marked as Deprecated, and for rendering eZ content it is thus adviced to refactor to use Content
+*NOTE: This is currently marked as Deprecated, and for rendering Ibexa content it is thus adviced to refactor to use Content
 View. For other needs there is an FOS tag handler for Twig and PHP that can be used, see below for further info.*
 
 
 ### For custom needs using FOSHttpCache (tagging relations and more)
 
-For custom needs, including template logic for eZ content relations which is here used for examples, there are two ways
+For custom needs, including template logic for Ibexa content relations which is here used for examples, there are two ways
 to tag your responses.
 
 #### Twig use
