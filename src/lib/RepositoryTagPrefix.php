@@ -11,7 +11,7 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 /**
  * Service RepositoryPrefix.
  *
- * @internal For use in EzSystems\PlatformHttpCacheBundle package.
+ * @internal For use in Ibexa\Bundle\HttpCache package.
  */
 class RepositoryTagPrefix
 {
