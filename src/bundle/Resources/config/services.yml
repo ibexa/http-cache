@@ -60,7 +60,7 @@ services:
          - '@logger'
          - header_formatter: '@fos_http_cache.tag_handler.header_formatter'
            strict: '%fos_http_cache.tag_handler.strict%'
-           # Custom eZ options (todo: Port to FOS)
+           # Custom Ibexa options (todo: Port to FOS)
            tag_max_length: '%ibexa.http_cache.tags.header_max_length%'
            tag_max_length_ttl: '%ibexa.http_cache.tags.header_reduced_ttl%'
 
