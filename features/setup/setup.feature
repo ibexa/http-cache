@@ -24,7 +24,7 @@ Feature: Set system to desired state before tests
     And I create "embeddingContentType_esi" Content items in root in "eng-GB"
       | name             | relation         |
       | EmbeddingItemEsi | /EmbeddedItemEsi |
-    And I set configuration to "ezplatform.system.default.content_view"
+    And I set configuration to "ibexa.system.default.content_view"
     """
       full:
         embeddingContentType_no_esi:
