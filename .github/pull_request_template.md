@@ -1,6 +1,6 @@
 | Question           | Answer
 | ------------------ | ------------------
-| **JIRA issue**     | [EZP-XXXXX](https://issues.ibexa.co/browse/EZP-XXXXX)
+| **JIRA issue**     | [IBX-XXXXX](https://issues.ibexa.co/browse/IBX-XXXXX)
 | **Type**           | Bug/Improvement/Feature/Misc
 | **Target version** | latest stable `0.8` for bug fixes, `master` for new features
 | **BC breaks**      | yes/no
