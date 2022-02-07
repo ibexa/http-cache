@@ -38,7 +38,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         $loader->load('event.yml');
         $loader->load('view_cache.yml');
 
-        $purgeType = $container->getParameter('ezpublish.http_cache.purge_type');
+        $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         if ('local' === $purgeType) {
             $container->setParameter(
                 'fos_http_cache.tag_handler.response_header',

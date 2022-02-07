@@ -60,7 +60,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
         foreach (explode(',', $response->headers->get(static::LOCATION_ID_HEADER)) as $id) {
             $id = trim($id);
             try {
-                /** @var $location \eZ\Publish\API\Repository\Values\Content\Location */
+                /** @var $location \Ibexa\Contracts\Core\Repository\Values\Content\Location */
                 $location = $this->repository->sudo(static function (Repository $repository) use ($id) {
                     return $repository->getLocationService()->loadLocation($id);
                 });

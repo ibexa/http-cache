@@ -2,7 +2,7 @@
 
 namespace spec\Ibexa\HttpCache;
 
-use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\HttpCache\RepositoryTagPrefix;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

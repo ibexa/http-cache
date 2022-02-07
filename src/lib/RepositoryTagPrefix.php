@@ -6,17 +6,17 @@
  */
 namespace Ibexa\HttpCache;
 
-use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 
 /**
  * Service RepositoryPrefix.
  *
- * @internal For use in EzSystems\PlatformHttpCacheBundle package.
+ * @internal For use in Ibexa\Bundle\HttpCache package.
  */
 class RepositoryTagPrefix
 {
     /**
-     * @var \Ibexa\Core\MVC\ConfigResolverInterface
+     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
      */
     private $resolver;
 
