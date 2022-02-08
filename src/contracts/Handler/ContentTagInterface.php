@@ -12,6 +12,7 @@ namespace Ibexa\Contracts\HttpCache\Handler;
 interface ContentTagInterface
 {
     public const CONTENT_PREFIX = 'c';
+    public const CONTENT_ALL_TRANSLATIONS_PREFIX = 'ca';
     public const LOCATION_PREFIX = 'l';
     public const PARENT_LOCATION_PREFIX = 'pl';
     public const PATH_PREFIX = 'p';
