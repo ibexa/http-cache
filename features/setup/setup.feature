@@ -39,19 +39,19 @@ Feature: Set system to desired state before tests
     """
       full:
         embeddingContentType_no_esi:
-            controller: EzSystems\BehatBundle\Controller\RenderController::embedAction
-            template: "@eZBehat/tests/cache/embed_no_esi.html.twig"
+            controller: Ibexa\Bundle\Behat\Controller\RenderController::embedAction
+            template: "@IbexaBehat/tests/cache/embed_no_esi.html.twig"
             match:
                 Identifier\ContentType: [embeddingContentType_no_esi]
         embeddingContentType_esi:
-            controller: EzSystems\BehatBundle\Controller\RenderController::embedAction
-            template: "@eZBehat/tests/cache/embed_esi.html.twig"
+            controller: Ibexa\Bundle\Behat\Controller\RenderController::embedAction
+            template: "@IbexaBehat/tests/cache/embed_esi.html.twig"
             match:
                 Identifier\ContentType: [embeddingContentType_esi]
       line:
         embedded:
-            controller: EzSystems\BehatBundle\Controller\RenderController::longAction
-            template: "@eZBehat/tests/cache/embedded.html.twig"
+            controller: Ibexa\Bundle\Behat\Controller\RenderController::longAction
+            template: "@IbexaBehat/tests/cache/embedded.html.twig"
             match:
                 Identifier\ContentType: [embeddedContentType]
     """
