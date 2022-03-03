@@ -6,11 +6,11 @@ httpCache:
             filters:
                 tags: '@symfonycache'
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\API\Context\ContentContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\API\Context\ContentContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
@@ -21,11 +21,11 @@ httpCache:
             filters:
                 tags: '@varnish&&~@translationAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
@@ -36,11 +36,11 @@ httpCache:
             filters:
                 tags: '@varnish&&~@translationNotAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
@@ -49,23 +49,23 @@ httpCache:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/setup.feature'
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
-                - EzSystems\Behat\API\Context\LanguageContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\LanguageContext
         setup-token:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/invalidateToken.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
         setup-symfony-cache:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/symfonyCache.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\FileContext
+                - Ibexa\Behat\Core\Context\FileContext
         setup-translation-aware:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/translationAware.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
