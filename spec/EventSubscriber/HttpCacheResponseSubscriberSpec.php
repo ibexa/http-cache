@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\EventSubscriber;
+namespace spec\Ibexa\HttpCache\EventSubscriber;
 
-use EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ResponseCacheConfigurator;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
-use eZ\Publish\Core\MVC\Symfony\View\CachableView;
-use eZ\Publish\Core\MVC\Symfony\View\View;
+use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
+use Ibexa\Core\MVC\Symfony\View\CachableView;
+use Ibexa\Core\MVC\Symfony\View\View;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
