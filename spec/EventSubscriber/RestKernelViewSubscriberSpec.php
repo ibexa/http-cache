@@ -1,20 +1,20 @@
 <?php
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\EventSubscriber;
+namespace spec\Ibexa\HttpCache\EventSubscriber;
 
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\API\Repository\Values\Content\Section;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
-use \eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use EzSystems\EzPlatformRest\Server\Values\CachedValue;
-use EzSystems\EzPlatformRest\Server\Values\ContentTypeGroupList;
-use EzSystems\EzPlatformRest\Server\Values\ContentTypeGroupRefList;
-use EzSystems\EzPlatformRest\Server\Values\RestContentType;
-use EzSystems\EzPlatformRest\Server\Values\VersionList;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Rest\Server\Values\CachedValue;
+use Ibexa\Rest\Server\Values\ContentTypeGroupList;
+use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
+use Ibexa\Rest\Server\Values\RestContentType;
+use Ibexa\Rest\Server\Values\VersionList;
 use FOS\HttpCache\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument\Token\AnyValueToken;

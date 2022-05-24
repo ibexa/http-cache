@@ -1,0 +1,21 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\HttpCache\EventSubscriber\CachePurge\ContentEventsSubscriber:
+        arguments:
+            $purgeClient: '@ibexa.http_cache.purge_client'
+            $locationHandler: '@Ibexa\Core\Persistence\Cache\LocationHandler'
+            $urlHandler: '@Ibexa\Core\Persistence\Cache\URLHandler'
+            $contentHandler: '@Ibexa\Core\Persistence\Cache\ContentHandler'
+            $isTranslationAware: '%ibexa.http_cache.translation_aware.enabled%'
+
+    Ibexa\HttpCache\EventSubscriber\CachePurge\:
+        resource: '../../../lib/EventSubscriber/CachePurge/*'
+        exclude: '../../../lib/EventSubscriber/CachePurge/ContentEventsSubscriber.php'
+        arguments:
+            $purgeClient: '@ibexa.http_cache.purge_client'
+            $locationHandler: '@Ibexa\Core\Persistence\Cache\LocationHandler'
+            $urlHandler: '@Ibexa\Core\Persistence\Cache\URLHandler'

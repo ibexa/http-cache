@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\ResponseConfigurator;
+namespace spec\Ibexa\HttpCache\ResponseConfigurator;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ConfigurableResponseCacheConfigurator;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
