@@ -96,7 +96,7 @@ corresponding tags as listed above. These can be found in `src/ResponseTagger`.
 
 ### For responses with X-Location-Id
 
-For custom or eZ controllers _(like REST at the time of writing)_ still using `X-Location-Id`, a dedicated response
+For custom or Ibexa controllers _(like REST at the time of writing)_ still using `X-Location-Id`, a dedicated response
 listener `XLocationIdResponseSubscriber` handles translating this to tags so the cache can be properly invalidated by
 this bundle. It supports comma separated location id values which was only partially supported in earlier versions:
 
@@ -108,13 +108,13 @@ this bundle. It supports comma separated location id values which was only parti
     $response->headers->set('X-Location-Id', '123,212,42');
 ```
 
-*NOTE: This is currently marked as Deprecated, and for rendering eZ content it is thus adviced to refactor to use Content
+*NOTE: This is currently marked as Deprecated, and for rendering Ibexa content it is thus adviced to refactor to use Content
 View. For other needs there is an FOS tag handler for Twig and PHP that can be used, see below for further info.*
 
 
 ### For custom needs using FOSHttpCache (tagging relations and more)
 
-For custom needs, including template logic for eZ content relations which is here used for examples, there are two ways
+For custom needs, including template logic for Ibexa content relations which is here used for examples, there are two ways
 to tag your responses.
 
 #### Twig use
@@ -134,19 +134,19 @@ However for relations, which you typically used prior to a ESI include for some 
 ```twig
     {# As of v0.9.3 two twig functions for relation use cases was added, both handling single and array values #}
     {# First one is for relation(s) for Content, as shown by it's id #}
-    {{ ez_http_tag_relation_ids(relation_content.id) }}
+    {{ ibexa_http_cache_tag_relation_ids(relation_content.id) }}
 
     {# Second one for relation locations, here shown using array of location id's #}
-    {{ ez_http_tag_relation_location_ids(relation_location_ids) }}
+    {{ ibexa_http_cache_tag_relation_location_ids(relation_location_ids) }}
 ```
 
 
 Alternatively if you have a location(s) that you render _inline_ & want invalidated on any kind of change:
 ```twig
-    {{ ez_http_tag_location( location ) }}
+    {{ ibexa_http_cache_tag_location( location ) }}
 ```
 
-TIP: Don't use `ez_http_tag_location` when you are rendering a large amount of content/location items, it will cause tag
+TIP: Don't use `ibexa_http_cache_tag_location` when you are rendering a large amount of content/location items, it will cause tag
      header to become to large. Consider using less tags with for instance `ez_http_tag_relation_(location_)ids`, and account for
      possible stale cache by reducing cache ttl for the given response.
      Also strongly consider to upgrade to ezplatform-http-cache 1.0 or higher which reduces cache tag size.
@@ -254,7 +254,7 @@ If that is not an option, you can opt-in to set a max length parameter (in bytes
 ```yaml
 parameters:
     # Warning, setting this means you risk losing tag information, risking stale cache. Here set below 8k:
-    ezplatform.http_cache.tags.header_max_length: 7900
+    ibexa.http_cache.tags.header_max_length: 7900
     # In order to reduce risk of stale cache issues, you should set a lower TTL here then globally (here set as 2h)
-    ezplatform.http_cache.tags.header_reduced_ttl: 7200
+    ibexa.http_cache.tags.header_reduced_ttl: 7200
 ```

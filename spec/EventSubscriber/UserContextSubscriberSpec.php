@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\EzSystems\PlatformHttpCacheBundle\EventSubscriber;
+namespace spec\Ibexa\HttpCache\EventSubscriber;
 
-use EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSubscriber;
-use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
+use Ibexa\HttpCache\EventSubscriber\UserContextSubscriber;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Argument\Token\AnyValueToken;

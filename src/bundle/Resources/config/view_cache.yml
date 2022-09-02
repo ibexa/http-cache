@@ -1,0 +1,102 @@
+services:
+    # EventSubscriber
+    Ibexa\HttpCache\EventSubscriber\HttpCacheResponseSubscriber:
+        class: Ibexa\HttpCache\EventSubscriber\HttpCacheResponseSubscriber
+        arguments:
+            - '@Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator'
+            - '@Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\XLocationIdResponseSubscriber:
+        class: Ibexa\HttpCache\EventSubscriber\XLocationIdResponseSubscriber
+        arguments: ['@fos_http_cache.http.symfony_response_tagger', '@ibexa.api.repository']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber:
+        class: Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber
+        arguments: ['@fos_http_cache.http.symfony_response_tagger']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\UserContextSubscriber:
+        class: Ibexa\HttpCache\EventSubscriber\UserContextSubscriber
+        arguments: ['@Ibexa\HttpCache\RepositoryTagPrefix', '%fos_http_cache.tag_handler.response_header%']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\HiddenLocationExceptionSubscriber:
+        class: Ibexa\HttpCache\EventSubscriber\HiddenLocationExceptionSubscriber
+        arguments: ['@Ibexa\HttpCache\ResponseTagger\Value\LocationTagger', '@Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\UserContextSiteAccessMatchSubscriber:
+        decorates: ibexa.siteaccess_match_listener
+        arguments:
+            - '@Ibexa\HttpCache\EventSubscriber\UserContextSiteAccessMatchSubscriber.inner'
+            - '@fos_http_cache.user_context.request_matcher'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\EventSubscriber\RequestEventSubscriber:
+        arguments:
+            - "@=container.getParameter('fos_http_cache.event_listener.user_context.options')['user_hash_header']"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    # ResponseConfigurator
+    Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator:
+        class: Ibexa\HttpCache\ResponseConfigurator\ConfigurableResponseCacheConfigurator
+        arguments:
+            - '@ibexa.config.resolver'
+
+    # ResponseTagger dispatcher
+    Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger:
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger
+        # Taggers are added by a compiler pass
+        arguments:
+            - []
+
+    # Alias for ResponseTagger interface => DispatcherTagger
+    Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger: '@Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger'
+
+    # ResponseTagger proxy/extract
+    Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger:
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger
+        arguments: ['@Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger']
+        tags:
+            - {name: ibexa.cache.http.response.tagger}
+
+    Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger:
+        class: Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger
+        arguments: ['@Ibexa\HttpCache\ResponseTagger\Value\LocationTagger']
+        tags:
+            - {name: ibexa.cache.http.response.tagger}
+
+    # ResponseTagger value handlers
+    ibexa.http_cache.view_cache.response_tagger.abstract_value:
+        abstract: true
+        arguments: ['@fos_http_cache.http.symfony_response_tagger']
+
+    Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger:
+        class: Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
+        parent: ibexa.http_cache.view_cache.response_tagger.abstract_value
+        tags:
+            - {name: ibexa.cache.http.response.tagger}
+
+    Ibexa\HttpCache\ResponseTagger\Value\LocationTagger:
+        class: Ibexa\HttpCache\ResponseTagger\Value\LocationTagger
+        parent: ibexa.http_cache.view_cache.response_tagger.abstract_value
+        tags:
+            - {name: ibexa.cache.http.response.tagger}
+
+    # Twig
+    Ibexa\HttpCache\Twig\ContentTaggingExtension:
+        class: Ibexa\HttpCache\Twig\ContentTaggingExtension
+        arguments:
+            - '@Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger'
+            - '@fos_http_cache.http.symfony_response_tagger'
+        tags:
+            - {name: twig.extension}
