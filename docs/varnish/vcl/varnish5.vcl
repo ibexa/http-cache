@@ -123,7 +123,7 @@ sub vcl_backend_response {
     if (beresp.http.Content-Type ~ "application/javascript"
         || beresp.http.Content-Type ~ "application/json"
         || beresp.http.Content-Type ~ "application/vnd.ms-fontobject"
-        || beresp.http.Content-Type ~ "application/vnd.ez.api"
+        || beresp.http.Content-Type ~ "application/vnd.ibexa.api"
         || beresp.http.Content-Type ~ "application/x-font-ttf"
         || beresp.http.Content-Type ~ "image/svg+xml"
         || beresp.http.Content-Type ~ "text/css"
@@ -253,7 +253,7 @@ sub ez_invalidate_token {
         set req.http.x-fos-token-url = req.url;
         set req.http.x-fos-token-method = req.method;
 
-        set req.url = "/_ez_http_invalidatetoken";
+        set req.url = "/_ibexa_http_invalidatetoken";
 
         // Force the lookup
         return (hash);

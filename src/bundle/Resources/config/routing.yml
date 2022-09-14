@@ -1,0 +1,4 @@
+ibexa.http_cache.invalidate_token:
+    path: /_ibexa_http_invalidatetoken
+    defaults:
+      _controller: Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController:tokenAction

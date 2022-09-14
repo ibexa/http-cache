@@ -1,11 +1,11 @@
 <?php
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-namespace spec\EzSystems\PlatformHttpCacheBundle\Handler;
+namespace spec\Ibexa\HttpCache\Handler;
 
-use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use FOS\HttpCache\TagHeaderFormatter\CommaSeparatedTagHeaderFormatter;
 use FOS\HttpCacheBundle\CacheManager;
 use PhpSpec\ObjectBehavior;
