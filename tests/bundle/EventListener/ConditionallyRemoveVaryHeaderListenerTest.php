@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 namespace Ibexa\Tests\Bundle\HttpCache\EventListener;
 
-use EzSystems\PlatformHttpCacheBundle\EventListener\ConditionallyRemoveVaryHeaderListener;
+use Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
 {
-    /** @var EzSystems\PlatformHttpCacheBundle\EventListener\ConditionallyRemoveVaryHeaderListener */
+    /** @var \Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener */
     public $conditionallyRemoveVaryHeaderListener;
 
     protected function setUp(): void
