@@ -12,6 +12,10 @@
             "email": "dev-team@ibexa.co"
         }
     ],
+    "repositories": {
+        "type": "vcs",
+        "url": "https://github.com:micszo/docker.git"
+    },
     "require": {
         "php": "^7.4 || ^8.0",
         "ibexa/core": "~4.3.x-dev",
