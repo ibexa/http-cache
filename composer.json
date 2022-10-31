@@ -12,10 +12,12 @@
             "email": "dev-team@ibexa.co"
         }
     ],
-    "repositories": {
-        "type": "vcs",
-        "url": "https://github.com:micszo/docker.git"
-    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:micszo/docker.git"
+        }
+    ],
     "require": {
         "php": "^7.4 || ^8.0",
         "ibexa/core": "~4.3.x-dev",
@@ -35,7 +37,7 @@
     },
     "require-dev": {
         "ibexa/ci-scripts": "^0.2@dev",
-        "micszo/docker": "dev-varnish65 as 4.3.x-dev",
+        "ibexa/docker": "dev-varnish65 as 4.3.x-dev",
         "ibexa/doctrine-schema": "~4.3.0@dev",
         "phpunit/phpunit": "^8.5",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
