@@ -1,0 +1,11 @@
+{
+    "recipesEndpoint": "",
+    "packages": [
+        {
+            "requirement": "dev-varnish65 as 4.3.x-dev",
+            "repositoryUrl": "https://github.com/ibexa/docker",
+            "package": "ibexa/docker",
+            "shouldBeAddedAsVCS": false
+        }
+    ]
+}
