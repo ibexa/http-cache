@@ -38,7 +38,7 @@ class InvalidateTokenController
      * @param int $ttl
      * @param \FOS\HttpCache\ResponseTagger $tagHandler
      *
-     * @internal param string $invalidatetoken
+     * {@internal param string $invalidatetoken}
      */
     public function __construct(ConfigResolverInterface $configResolver, $ttl, ResponseTagger $tagHandler)
     {
