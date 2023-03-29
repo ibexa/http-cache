@@ -37,8 +37,6 @@ class InvalidateTokenController
      * @param \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface $configResolver
      * @param int $ttl
      * @param \FOS\HttpCache\ResponseTagger $tagHandler
-     *
-     * @internal param string $invalidatetoken
      */
     public function __construct(ConfigResolverInterface $configResolver, $ttl, ResponseTagger $tagHandler)
     {
