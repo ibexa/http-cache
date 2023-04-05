@@ -7,7 +7,7 @@
 namespace Ibexa\Contracts\HttpCache\Handler;
 
 /**
- * @since v0.9.3
+ * @since 1.13 eZ Platform 1.13 (ezplatform-http-cache 0.9.3)
  */
 interface ContentTagInterface
 {
