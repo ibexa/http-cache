@@ -33,7 +33,7 @@ final class RequestEventSubscriber implements EventSubscriberInterface
 
     public function onKernelRequestForward(RequestEvent $event): void
     {
-        if ($event->isMasterRequest()) {
+        if ($event->isMainRequest()) {
             $request = $event->getRequest();
 
             if (
