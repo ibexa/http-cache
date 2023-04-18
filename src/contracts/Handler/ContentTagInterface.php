@@ -6,9 +6,6 @@
  */
 namespace Ibexa\Contracts\HttpCache\Handler;
 
-/**
- * @since 1.13 eZ Platform 1.13 (ezplatform-http-cache 0.9.3)
- */
 interface ContentTagInterface
 {
     public const CONTENT_PREFIX = 'c';
