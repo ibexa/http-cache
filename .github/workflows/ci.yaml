@@ -73,4 +73,4 @@ jobs:
 
   integration-tests:
       name: "REST integration tests"
-      uses: ibexa/rest/.github/workflows/integration-tests-callable.yaml@main
+      uses: ibexa/rest/.github/workflows/integration-tests-callable.yaml@4.5
