@@ -6,9 +6,6 @@
  */
 namespace Ibexa\Contracts\HttpCache\Handler;
 
-/**
- * @since v0.9.3
- */
 interface ContentTagInterface
 {
     public const CONTENT_PREFIX = 'c';
