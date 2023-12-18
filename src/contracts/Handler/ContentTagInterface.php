@@ -22,7 +22,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add content tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $contentIds
      */
@@ -31,7 +31,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add location tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $locationIds
      */
@@ -40,7 +40,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add parent location tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $parentLocationIds
      */
@@ -49,7 +49,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add location path tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $locationIds
      */
@@ -58,7 +58,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add relation tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $contentIds
      */
@@ -67,7 +67,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add relation location tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $locationIds
      */
@@ -76,7 +76,7 @@ interface ContentTagInterface
     /**
      * Low level tag method to add relation location tag.
      *
-     * @see "docs/using_tags.md"
+     * @see https://github.com/ibexa/http-cache/blob/main/docs/using_tags.md
      *
      * @param array $contentTypeIds
      */
