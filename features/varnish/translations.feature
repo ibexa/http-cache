@@ -8,7 +8,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
         And I am viewing the pages on siteaccess "site" as "<user>" "<password>"
         And I visit "<itemName>" on siteaccess "site"
         And I reload the page
-        And I see correct preview data for "Folder" Content Type
+        And I see correct preview data for "Folder" content type
             | field | value      |
             | title | <itemName> |
         And response headers contain
@@ -23,7 +23,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
         # Second reload is needed because of soft purging
         And I reload the page
         And I reload the page
-        Then I see correct preview data for "Folder" Content Type
+        Then I see correct preview data for "Folder" content type
             | field | value               |
             | title | <itemNameAfterEdit> |
         And response headers contain

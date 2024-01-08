@@ -3,13 +3,13 @@ Feature: Caching of embedded items
 
   @admin
   Scenario Outline: Editing an embedded item refreshes the embedding item as well
-    Given I create a "embeddedContentType" Content Type in "Content" with "embeddedContentType" identifier
+    Given I create a "embeddedContentType" content type in "Content" with "embeddedContentType" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	   | yes      | yes	       | yes          |
     And I create "embeddedContentType" Content items in root in "eng-GB"
       | name               |
       | <embeddedItemName> |
-    And I create a "embeddingContentType" Content Type in "Content" with "embeddingContentType" identifier
+    And I create a "embeddingContentType" content type in "Content" with "embeddingContentType" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	   | yes      | yes	       | yes          |
       | Content relation (single) | Relation  | relation   | yes      | no	       | yes          |
