@@ -14,21 +14,21 @@ Feature: Set system to desired state before tests
 
   @APIUser:admin
   Scenario: Set up the system to test caching of subrequests
-    Given I create a "embeddedContentType" Content Type in "Content" with "embeddedContentType" identifier
+    Given I create a "embeddedContentType" content type in "Content" with "embeddedContentType" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	   | yes      | yes	       | yes          |
     And I create "embeddedContentType" Content items in root in "eng-GB"
       | name              |
       | EmbeddedItemNoEsi |
       | EmbeddedItemEsi   |
-    And I create a "embeddingContentType_no_esi" Content Type in "Content" with "embeddingContentType_no_esi" identifier
+    And I create a "embeddingContentType_no_esi" content type in "Content" with "embeddingContentType_no_esi" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	   | yes      | yes	       | yes          |
       | Content relation (single) | Relation  | relation   | yes      | no	       | yes          |
     And I create "embeddingContentType_no_esi" Content items in root in "eng-GB"
       | name               | relation           |
       | EmbeddingItemNoEsi | /EmbeddedItemNoEsi |
-    And I create a "embeddingContentType_esi" Content Type in "Content" with "embeddingContentType_esi" identifier
+    And I create a "embeddingContentType_esi" content type in "Content" with "embeddingContentType_esi" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	   | yes      | yes	       | yes          |
       | Content relation (single) | Relation  | relation   | yes      | no	       | yes          |
