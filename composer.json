@@ -48,13 +48,6 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "EzSystems\\PlatformHttpCacheBundle\\Tests\\": "tests",
-            "Ibexa\\Tests\\HttpCache\\": "tests/lib/",
-            "Ibexa\\Tests\\Bundle\\HttpCache\\": "tests/bundle/"
-        }
-    },
-    "autoload-dev": {
         "autoload-dev": {
             "Ibexa\\Tests\\Bundle\\HttpCache\\": "tests/bundle/"
         }
