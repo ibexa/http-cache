@@ -1,5 +1,5 @@
 // Varnish VCL for:
-// - Varnish 6.0LTS or 7.1 (6.0LTS recommended, and is what we mainly test against)
+// - Varnish 6.0LTS
 //   - Varnish xkey vmod (via varnish-modules package 0.10.2 or higher, or via Varnish Plus)
 // - eZ Platform 3.x or higher with ezplatform-http-cache (this) bundle
 //
