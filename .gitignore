@@ -2,3 +2,7 @@
 composer.lock
 .php_cs.cache
 .php-cs-fixer.cache
+**/.DS_Store
+__pycache__/*
+/site/
+**/.idea/
