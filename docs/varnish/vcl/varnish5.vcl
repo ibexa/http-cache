@@ -1,3 +1,5 @@
+// IMPORTANT: this is a copy of varnish6.vcl file kept for BC reasons and it will be removed in 5.0
+//            make sure to apply changes both to this file and varnish6.vcl
 // Varnish VCL for:
 // - Varnish 6.0LTS
 //   - Varnish xkey vmod (via varnish-modules package 0.10.2 or higher, or via Varnish Plus)
