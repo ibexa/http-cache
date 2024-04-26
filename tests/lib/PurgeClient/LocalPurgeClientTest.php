@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use Ibexa\HttpCache\PurgeClient\LocalPurgeClient;
@@ -31,7 +32,7 @@ class LocalPurgeClientTest extends TestCase
         );
 
         $this->store
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('invalidateTags')
             ->with($keys);
 

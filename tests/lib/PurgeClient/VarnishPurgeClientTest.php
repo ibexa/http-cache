@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use FOS\HttpCache\ProxyClient\ProxyClient;
@@ -42,7 +43,7 @@ class VarnishPurgeClientTest extends TestCase
     public function testPurgeNoLocationIds()
     {
         $this->cacheManager
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('invalidate');
 
         $this->purgeClient->purge([]);
@@ -61,7 +62,7 @@ class VarnishPurgeClientTest extends TestCase
         );
 
         $this->cacheManager
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('invalidateTags')
             ->with($keys);
 
@@ -80,7 +81,7 @@ class VarnishPurgeClientTest extends TestCase
     public function testPurgeAll()
     {
         $this->cacheManager
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('invalidateTags')
             ->with(['ez-all']);
 
