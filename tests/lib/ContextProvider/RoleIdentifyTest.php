@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\ContextProvider;
 
 use FOS\HttpCache\UserContext\UserContext;
@@ -46,7 +47,7 @@ class RoleIdentifyTest extends TestCase
         $this->roleServiceMock = $this->createMock(RoleService::class);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getRoleService')
             ->willReturn($this->roleServiceMock);
     }
@@ -63,7 +64,7 @@ class RoleIdentifyTest extends TestCase
             ->willReturn($userReference);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getPermissionResolver')
             ->willReturn($permissionResolver);
 
@@ -118,12 +119,12 @@ class RoleIdentifyTest extends TestCase
         ];
 
         $this->roleServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getRoleAssignmentsForUser')
             ->with($user, true)
             ->willReturn($returnedRoleAssignments);
 
-        $this->assertSame([], $userContext->getParameters());
+        self::assertSame([], $userContext->getParameters());
         $contextProvider = new RoleIdentify(
             $this->repositoryMock,
             $permissionResolver,
@@ -131,12 +132,12 @@ class RoleIdentifyTest extends TestCase
         );
         $contextProvider->updateUserContext($userContext);
         $userContextParams = $userContext->getParameters();
-        $this->assertArrayHasKey('roleIdList', $userContextParams);
-        $this->assertSame([$roleId1, $roleId2, $roleId3], $userContextParams['roleIdList']);
-        $this->assertArrayHasKey('roleLimitationList', $userContextParams);
+        self::assertArrayHasKey('roleIdList', $userContextParams);
+        self::assertSame([$roleId1, $roleId2, $roleId3], $userContextParams['roleIdList']);
+        self::assertArrayHasKey('roleLimitationList', $userContextParams);
         $limitationIdentifierForRole2 = \get_class($limitationForRole2);
         $limitationIdentifierForRole3 = \get_class($limitationForRole3);
-        $this->assertSame(
+        self::assertSame(
             [
                 "$roleId2-$limitationIdentifierForRole2" => ['/1/2', '/1/2/43'],
                 "$roleId3-$limitationIdentifierForRole3" => ['foo', 'bar'],
@@ -168,7 +169,7 @@ class RoleIdentifyTest extends TestCase
             ->setConstructorArgs([$properties])
             ->getMockForAbstractClass();
         $limitationMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getIdentifier')
             ->willReturn(\get_class($limitationMock));
 

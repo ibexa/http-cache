@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
@@ -47,12 +48,12 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurge()
     {
         $this->purgeClientMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('purge')
-            ->with($this->equalTo(['l123', 'c44', 'ez-all']));
+            ->with(self::equalTo(['l123', 'c44', 'ez-all']));
 
         $this->tagPrefixMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getRepositoryPrefix')
             ->willReturn('');
 
@@ -62,12 +63,12 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurgeWithPrefix()
     {
         $this->purgeClientMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('purge')
-            ->with($this->equalTo(['0l123', '0c44', '0ez-all']));
+            ->with(self::equalTo(['0l123', '0c44', '0ez-all']));
 
         $this->tagPrefixMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getRepositoryPrefix')
             ->willReturn('0');
 
@@ -77,11 +78,11 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurgeAll()
     {
         $this->purgeClientMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('purgeAll');
 
         $this->tagPrefixMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getRepositoryPrefix');
 
         $this->prefixDecorator->purgeAll();
