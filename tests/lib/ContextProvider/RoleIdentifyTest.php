@@ -192,5 +192,3 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 }
-
-class_alias(RoleIdentifyTest::class, 'EzSystems\PlatformHttpCacheBundle\Tests\ContextProvider\RoleIdentifyTest');

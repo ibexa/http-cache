@@ -40,5 +40,3 @@ class LocalPurgeClientTest extends TestCase
         $purgeClient->purge($keys);
     }
 }
-
-class_alias(LocalPurgeClientTest::class, 'EzSystems\PlatformHttpCacheBundle\Tests\PurgeClient\LocalPurgeClientTest');

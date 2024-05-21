@@ -88,5 +88,3 @@ class VarnishPurgeClientTest extends TestCase
         $this->purgeClient->purgeAll();
     }
 }
-
-class_alias(VarnishPurgeClientTest::class, 'EzSystems\PlatformHttpCacheBundle\Tests\PurgeClient\VarnishPurgeClientTest');
