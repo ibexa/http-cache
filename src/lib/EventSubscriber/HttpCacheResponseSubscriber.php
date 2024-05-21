@@ -55,5 +55,3 @@ class HttpCacheResponseSubscriber implements EventSubscriberInterface
         // NB!: FOSHTTPCacheBundle is taking care about writing the tags in own tag handler happening with priority 0
     }
 }
-
-class_alias(HttpCacheResponseSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\HttpCacheResponseSubscriber');

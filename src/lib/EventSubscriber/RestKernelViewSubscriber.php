@@ -109,5 +109,3 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
         return $tags;
     }
 }
-
-class_alias(RestKernelViewSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\RestKernelViewSubscriber');

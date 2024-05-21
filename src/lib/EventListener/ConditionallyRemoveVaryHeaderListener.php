@@ -79,5 +79,3 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
         ];
     }
 }
-
-class_alias(ConditionallyRemoveVaryHeaderListener::class, 'EzSystems\PlatformHttpCacheBundle\EventListener\ConditionallyRemoveVaryHeaderListener');

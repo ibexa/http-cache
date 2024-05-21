@@ -67,5 +67,3 @@ class IbexaHttpCacheBundle extends Bundle
         );
     }
 }
-
-class_alias(IbexaHttpCacheBundle::class, 'EzSystems\PlatformHttpCacheBundle\EzSystemsPlatformHttpCacheBundle');

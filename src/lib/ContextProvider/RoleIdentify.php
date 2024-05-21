@@ -78,5 +78,3 @@ class RoleIdentify implements ContextProvider
         $context->addParameter('roleLimitationList', $limitationValues);
     }
 }
-
-class_alias(RoleIdentify::class, 'EzSystems\PlatformHttpCacheBundle\ContextProvider\RoleIdentify');

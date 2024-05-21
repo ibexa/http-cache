@@ -48,5 +48,3 @@ final class RequestEventSubscriber implements EventSubscriberInterface
         }
     }
 }
-
-class_alias(RequestEventSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\RequestEventSubscriber');

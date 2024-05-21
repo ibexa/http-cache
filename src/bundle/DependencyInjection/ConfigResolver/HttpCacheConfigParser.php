@@ -97,5 +97,3 @@ class HttpCacheConfigParser implements ParserInterface
         return $this->httpCacheExtension->getExtraConfigParsers();
     }
 }
-
-class_alias(HttpCacheConfigParser::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\ConfigResolver\HttpCacheConfigParser');

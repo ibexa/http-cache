@@ -32,5 +32,3 @@ class LocationValueViewTagger implements ResponseTagger
         $this->locationTagger->tag($location);
     }
 }
-
-class_alias(LocationValueViewTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\LocationValueViewTagger');

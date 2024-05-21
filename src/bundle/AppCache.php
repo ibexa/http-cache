@@ -116,5 +116,3 @@ class AppCache extends HttpCache implements CacheInvalidation
         }
     }
 }
-
-class_alias(AppCache::class, 'EzSystems\PlatformHttpCacheBundle\AppCache');

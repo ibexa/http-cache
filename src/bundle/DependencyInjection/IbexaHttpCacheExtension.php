@@ -77,5 +77,3 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         return $this->extraConfigParsers;
     }
 }
-
-class_alias(IbexaHttpCacheExtension::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\EzPlatformHttpCacheExtension');

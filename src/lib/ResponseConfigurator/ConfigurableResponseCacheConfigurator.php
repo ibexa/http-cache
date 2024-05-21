@@ -57,5 +57,3 @@ class ConfigurableResponseCacheConfigurator implements ResponseCacheConfigurator
         return (int)$this->configResolver->getParameter('content.default_ttl');
     }
 }
-
-class_alias(ConfigurableResponseCacheConfigurator::class, 'EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ConfigurableResponseCacheConfigurator');

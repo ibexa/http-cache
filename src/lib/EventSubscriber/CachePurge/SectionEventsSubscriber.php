@@ -73,5 +73,3 @@ final class SectionEventsSubscriber extends AbstractSubscriber
         $this->purgeClient->purge($tags);
     }
 }
-
-class_alias(SectionEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\SectionEventsSubscriber');

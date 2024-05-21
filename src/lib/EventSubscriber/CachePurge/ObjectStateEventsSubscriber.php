@@ -31,5 +31,3 @@ final class ObjectStateEventsSubscriber extends AbstractSubscriber
         $this->purgeClient->purge($tags);
     }
 }
-
-class_alias(ObjectStateEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\ObjectStateEventsSubscriber');

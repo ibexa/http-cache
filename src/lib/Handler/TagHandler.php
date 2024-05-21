@@ -191,5 +191,3 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
         }, $contentTypeIds));
     }
 }
-
-class_alias(TagHandler::class, 'EzSystems\PlatformHttpCacheBundle\Handler\TagHandler');

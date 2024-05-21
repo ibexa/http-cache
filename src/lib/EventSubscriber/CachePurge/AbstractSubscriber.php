@@ -93,5 +93,3 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         return $tags;
     }
 }
-
-class_alias(AbstractSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\AbstractSubscriber');

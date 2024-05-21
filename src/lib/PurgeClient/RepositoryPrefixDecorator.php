@@ -53,5 +53,3 @@ class RepositoryPrefixDecorator implements PurgeClientInterface
         $this->purgeClient->purgeAll();
     }
 }
-
-class_alias(RepositoryPrefixDecorator::class, 'EzSystems\PlatformHttpCacheBundle\PurgeClient\RepositoryPrefixDecorator');

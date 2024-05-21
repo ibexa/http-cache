@@ -121,5 +121,3 @@ class ContentTaggingExtension extends AbstractExtension
         $this->contentTagHandler->addRelationLocationTags((array)$locationIds);
     }
 }
-
-class_alias(ContentTaggingExtension::class, 'EzSystems\PlatformHttpCacheBundle\Twig\ContentTaggingExtension');

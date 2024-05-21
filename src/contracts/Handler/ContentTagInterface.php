@@ -83,5 +83,3 @@ interface ContentTagInterface
      */
     public function addContentTypeTags(array $contentTypeIds);
 }
-
-class_alias(ContentTagInterface::class, 'EzSystems\PlatformHttpCacheBundle\Handler\ContentTagInterface');

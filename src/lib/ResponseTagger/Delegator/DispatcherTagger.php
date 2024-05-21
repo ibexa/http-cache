@@ -31,5 +31,3 @@ class DispatcherTagger implements ResponseTagger
         }
     }
 }
-
-class_alias(DispatcherTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\DispatcherTagger');

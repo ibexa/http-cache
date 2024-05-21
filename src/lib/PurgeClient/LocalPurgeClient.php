@@ -34,5 +34,3 @@ class LocalPurgeClient implements PurgeClientInterface
         $this->cacheStore->invalidateTags(['ez-all']);
     }
 }
-
-class_alias(LocalPurgeClient::class, 'EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient');
