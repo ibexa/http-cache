@@ -35,5 +35,3 @@ final class RoleEventsSubscriber extends AbstractSubscriber
         ]);
     }
 }
-
-class_alias(RoleEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\RoleEventsSubscriber');

@@ -50,5 +50,3 @@ class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
         $this->innerSubscriber->onKernelRequest($event);
     }
 }
-
-class_alias(UserContextSiteAccessMatchSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSiteAccessMatchSubscriber');

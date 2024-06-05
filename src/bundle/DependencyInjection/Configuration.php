@@ -25,5 +25,3 @@ class Configuration implements ConfigurationInterface
         return new TreeBuilder('ibexa_http_cache');
     }
 }
-
-class_alias(Configuration::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\Configuration');

@@ -31,5 +31,3 @@ final class TranslationEventsSubscriber extends AbstractSubscriber
         $this->purgeClient->purge($tags);
     }
 }
-
-class_alias(TranslationEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\TranslationEventsSubscriber');

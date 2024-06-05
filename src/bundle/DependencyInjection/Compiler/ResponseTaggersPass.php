@@ -34,5 +34,3 @@ class ResponseTaggersPass implements CompilerPassInterface
         $dispatcher->replaceArgument(0, $taggers);
     }
 }
-
-class_alias(ResponseTaggersPass::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\Compiler\ResponseTaggersPass');

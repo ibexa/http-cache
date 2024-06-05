@@ -93,5 +93,3 @@ class KernelPass implements CompilerPassInterface
         return strpos($id, 'ezpublish.http_cache.purger.') === 0;
     }
 }
-
-class_alias(KernelPass::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\Compiler\KernelPass');

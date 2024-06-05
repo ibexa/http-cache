@@ -57,5 +57,3 @@ final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, Refr
         parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), $body);
     }
 }
-
-class_alias(Varnish::class, 'EzSystems\PlatformHttpCacheBundle\ProxyClient\Varnish');

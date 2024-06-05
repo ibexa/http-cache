@@ -49,5 +49,3 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
         $this->contentInfoTagger->tag($location->getContentInfo());
     }
 }
-
-class_alias(HiddenLocationExceptionSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\HiddenLocationExceptionSubscriber');

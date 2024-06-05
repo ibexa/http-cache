@@ -54,5 +54,3 @@ class RepositoryTagPrefix
         return (string) (empty($repositoryIdentifier) ? '' : $this->repositoryMap[$repositoryIdentifier]);
     }
 }
-
-class_alias(RepositoryTagPrefix::class, 'EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix');

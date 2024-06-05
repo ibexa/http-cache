@@ -62,5 +62,3 @@ class HttpDispatcherFactory
         return new $this->httpDispatcherClass($allServers, $baseUrl);
     }
 }
-
-class_alias(HttpDispatcherFactory::class, 'EzSystems\PlatformHttpCacheBundle\ProxyClient\HttpDispatcherFactory');

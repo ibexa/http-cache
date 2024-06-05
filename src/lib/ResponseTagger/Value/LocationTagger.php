@@ -33,5 +33,3 @@ class LocationTagger extends AbstractValueTagger
         );
     }
 }
-
-class_alias(LocationTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\LocationTagger');

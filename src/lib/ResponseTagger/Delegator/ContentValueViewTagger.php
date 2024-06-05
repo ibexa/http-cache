@@ -33,5 +33,3 @@ class ContentValueViewTagger implements ResponseTagger
         $this->contentInfoTagger->tag($contentInfo);
     }
 }
-
-class_alias(ContentValueViewTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Delegator\ContentValueViewTagger');

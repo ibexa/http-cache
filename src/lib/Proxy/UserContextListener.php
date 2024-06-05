@@ -24,5 +24,3 @@ class UserContextListener extends BaseUserContextListener
         $hashLookupRequest->attributes->set('_ez_original_request', $originalRequest);
     }
 }
-
-class_alias(UserContextListener::class, 'EzSystems\PlatformHttpCacheBundle\Proxy\UserContextListener');

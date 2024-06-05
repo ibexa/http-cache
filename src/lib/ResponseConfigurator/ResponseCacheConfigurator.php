@@ -32,5 +32,3 @@ interface ResponseCacheConfigurator
      */
     public function setSharedMaxAge(Response $response);
 }
-
-class_alias(ResponseCacheConfigurator::class, 'EzSystems\PlatformHttpCacheBundle\ResponseConfigurator\ResponseCacheConfigurator');

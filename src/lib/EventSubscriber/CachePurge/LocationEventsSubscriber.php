@@ -167,5 +167,3 @@ final class LocationEventsSubscriber extends AbstractSubscriber
         $this->purgeClient->purge($tags);
     }
 }
-
-class_alias(LocationEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\LocationEventsSubscriber');

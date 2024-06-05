@@ -19,5 +19,3 @@ interface ResponseTagger
      */
     public function tag($value);
 }
-
-class_alias(ResponseTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger');

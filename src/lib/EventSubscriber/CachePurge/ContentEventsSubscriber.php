@@ -194,5 +194,3 @@ final class ContentEventsSubscriber extends AbstractSubscriber
         });
     }
 }
-
-class_alias(ContentEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\ContentEventsSubscriber');

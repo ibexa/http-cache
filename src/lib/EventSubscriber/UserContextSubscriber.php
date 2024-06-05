@@ -68,5 +68,3 @@ class UserContextSubscriber implements EventSubscriberInterface
         $response->headers->set($this->tagHeader, $this->prefixService->getRepositoryPrefix() . 'ez-user-context-hash');
     }
 }
-
-class_alias(UserContextSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\UserContextSubscriber');

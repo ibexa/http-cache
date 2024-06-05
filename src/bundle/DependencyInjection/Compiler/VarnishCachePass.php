@@ -40,5 +40,3 @@ class VarnishCachePass implements CompilerPassInterface
         );
     }
 }
-
-class_alias(VarnishCachePass::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\Compiler\VarnishCachePass');

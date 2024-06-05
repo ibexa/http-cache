@@ -88,5 +88,3 @@ class RepositoryPrefixDecoratorTest extends TestCase
         $this->prefixDecorator->purgeAll();
     }
 }
-
-class_alias(RepositoryPrefixDecoratorTest::class, 'EzSystems\PlatformHttpCacheBundle\Tests\PurgeClient\RepositoryPrefixDecoratorTest');

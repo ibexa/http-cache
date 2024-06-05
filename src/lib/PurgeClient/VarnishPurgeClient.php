@@ -34,5 +34,3 @@ class VarnishPurgeClient implements PurgeClientInterface
         $this->cacheManager->invalidateTags(['ez-all']);
     }
 }
-
-class_alias(VarnishPurgeClient::class, 'EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient');

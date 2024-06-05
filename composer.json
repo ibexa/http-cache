@@ -42,15 +42,13 @@
         "psr-4": {
             "Ibexa\\HttpCache\\": "src/lib/",
             "Ibexa\\Bundle\\HttpCache\\": "src/bundle/",
-            "Ibexa\\Contracts\\HttpCache\\": "src/contracts/",
-            "EzSystems\\PlatformHttpCacheBundle\\": "src/bundle/"
+            "Ibexa\\Contracts\\HttpCache\\": "src/contracts/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Ibexa\\Tests\\HttpCache\\": "tests/lib/",
-            "Ibexa\\Tests\\Bundle\\HttpCache\\": "tests/bundle/",
-            "EzSystems\\PlatformHttpCacheBundle\\Tests\\": "tests"
+            "Ibexa\\Tests\\Bundle\\HttpCache\\": "tests/bundle/"
         }
     },
     "scripts": {

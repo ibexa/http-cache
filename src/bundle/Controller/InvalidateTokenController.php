@@ -80,5 +80,3 @@ class InvalidateTokenController
         return $response;
     }
 }
-
-class_alias(InvalidateTokenController::class, 'EzSystems\PlatformHttpCacheBundle\Controller\InvalidateTokenController');

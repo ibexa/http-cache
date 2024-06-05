@@ -28,5 +28,3 @@ class ContentInfoTagger extends AbstractValueTagger
         }
     }
 }
-
-class_alias(ContentInfoTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\ContentInfoTagger');

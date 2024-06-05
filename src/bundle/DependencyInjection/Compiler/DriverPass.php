@@ -70,5 +70,3 @@ class DriverPass implements CompilerPassInterface
         return $configuredTagHandlerServiceId;
     }
 }
-
-class_alias(DriverPass::class, 'EzSystems\PlatformHttpCacheBundle\DependencyInjection\Compiler\DriverPass');

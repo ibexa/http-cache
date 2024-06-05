@@ -90,5 +90,3 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
         $response->headers->remove(static::LOCATION_ID_HEADER);
     }
 }
-
-class_alias(XLocationIdResponseSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\XLocationIdResponseSubscriber');

@@ -20,5 +20,3 @@ abstract class AbstractValueTagger implements ResponseTagger
         $this->responseTagger = $responseTagger;
     }
 }
-
-class_alias(AbstractValueTagger::class, 'EzSystems\PlatformHttpCacheBundle\ResponseTagger\Value\AbstractValueTagger');

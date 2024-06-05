@@ -30,5 +30,3 @@ final class UrlEventsSubscriber extends AbstractSubscriber
         }
     }
 }
-
-class_alias(UrlEventsSubscriber::class, 'EzSystems\PlatformHttpCacheBundle\EventSubscriber\CachePurge\UrlEventsSubscriber');

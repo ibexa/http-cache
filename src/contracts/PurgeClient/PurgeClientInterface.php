@@ -28,5 +28,3 @@ interface PurgeClientInterface
      */
     public function purgeAll(): void;
 }
-
-class_alias(PurgeClientInterface::class, 'EzSystems\PlatformHttpCacheBundle\PurgeClient\PurgeClientInterface');
