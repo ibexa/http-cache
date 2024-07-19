@@ -24,7 +24,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
      */
     private $extraConfigParsers = [];
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'ibexa_http_cache';
     }

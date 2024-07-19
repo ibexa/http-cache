@@ -29,7 +29,7 @@ final class AddContentLanguageHeaderSubscriber implements EventSubscriberInterfa
 
     public function onKernelResponse(ResponseEvent $event)
     {
-        if (!$this->isTranslationAware || HttpKernelInterface::MASTER_REQUEST != $event->getRequestType()) {
+        if (!$this->isTranslationAware || HttpKernelInterface::MAIN_REQUEST != $event->getRequestType()) {
             return;
         }
 
@@ -48,7 +48,7 @@ final class AddContentLanguageHeaderSubscriber implements EventSubscriberInterfa
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::RESPONSE => 'onKernelResponse',

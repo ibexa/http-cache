@@ -56,14 +56,14 @@ class InvalidateTokenController
         $response = new Response();
 
         if (!$request->isFromTrustedProxy()) {
-            $response->setStatusCode('401', 'Unauthorized');
+            $response->setStatusCode(Response::HTTP_UNAUTHORIZED, 'Unauthorized');
 
             return $response;
         }
 
         // Important to keep this condition, as .vcl rely on this to prevent everyone from being able to fetch the token.
         if ($request->headers->get('accept') !== 'application/vnd.ezplatform.invalidate-token') {
-            $response->setStatusCode('400', 'Bad request');
+            $response->setStatusCode(Response::HTTP_BAD_REQUEST, 'Bad request');
 
             return $response;
         }

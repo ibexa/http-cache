@@ -36,7 +36,7 @@ class IbexaHttpCacheBundle extends Bundle
         return IbexaHttpCacheExtension::class;
     }
 
-    public function getContainerExtension()
+    public function getContainerExtension(): ?ExtensionInterface
     {
         if (null === $this->extension) {
             $extension = $this->createContainerExtension();

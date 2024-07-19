@@ -30,7 +30,7 @@ class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
         $this->userContextRequestMatcher = $userContextRequestMatcher;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             // Should take place just after FragmentListener (priority 48) in order to get rebuilt request attributes in case of subrequest

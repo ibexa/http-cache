@@ -36,7 +36,7 @@ class UserContextSubscriber implements EventSubscriberInterface
         $this->tagHeader = $tagHeader;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [KernelEvents::RESPONSE => ['tagUserContext', 10]];
     }
