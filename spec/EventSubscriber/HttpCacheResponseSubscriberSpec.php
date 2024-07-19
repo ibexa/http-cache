@@ -1,20 +1,21 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
-use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\MVC\Symfony\View\CachableView;
 use Ibexa\Core\MVC\Symfony\View\View;
+use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
@@ -44,7 +45,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -67,7 +68,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -91,7 +92,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
