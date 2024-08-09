@@ -1,28 +1,27 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
+use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
-use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
 use Ibexa\Rest\Server\Values\RestContentType;
 use Ibexa\Rest\Server\Values\VersionList;
-use FOS\HttpCache\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument\Token\AnyValueToken;
-use Prophecy\Argument\Token\TypeToken;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
@@ -50,7 +49,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -69,7 +68,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -77,7 +76,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * Section
+     * Section.
      */
     public function it_writes_tags_on_section(
         HttpKernelInterface $kernel,
@@ -96,7 +95,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -104,7 +103,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * ContentType
+     * ContentType.
      */
     public function it_does_nothing_on_content_type_draft(
         HttpKernelInterface $kernel,
@@ -124,7 +123,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -148,7 +147,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -156,7 +155,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * RestContentType
+     * RestContentType.
      */
     public function it_does_nothing_on_rest_content_type_draft(
         HttpKernelInterface $kernel,
@@ -177,7 +176,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -186,7 +185,8 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
 
     public function it_writes_tags_on_rest_content_type_defined(
         HttpKernelInterface $kernel,
-        Request $request,        ParameterBag $attributes,
+        Request $request,
+        ParameterBag $attributes,
         RestContentType $restValue,
         ContentType $contentType,
         ResponseTagger $tagHandler
@@ -202,7 +202,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -210,7 +210,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * ContentTypeGroupRefList
+     * ContentTypeGroupRefList.
      */
     public function it_does_nothing_on_rest_content_type_group_ref_draft(
         HttpKernelInterface $kernel,
@@ -233,7 +233,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -263,7 +263,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -271,7 +271,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * ContentTypeGroupList
+     * ContentTypeGroupList.
      */
     public function it_writes_tags_on_rest_content_type_group_list(
         HttpKernelInterface $kernel,
@@ -292,7 +292,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 
@@ -300,7 +300,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * VersionList
+     * VersionList.
      */
     public function it_writes_tags_on_rest_version_list(
         HttpKernelInterface $kernel,
@@ -323,7 +323,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $restValue->getWrappedObject()
         );
 

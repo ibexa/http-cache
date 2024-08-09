@@ -58,7 +58,7 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * {@inheritdoc}
      */
-    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
+    public function handle(Request $request, $type = HttpKernelInterface::MAIN_REQUEST, $catch = true)
     {
         $response = $this->baseHandle($request, $type, $catch);
 

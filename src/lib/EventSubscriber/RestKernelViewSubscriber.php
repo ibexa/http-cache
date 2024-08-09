@@ -38,7 +38,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
         $this->tagHandler = $tagHandler;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [KernelEvents::VIEW => ['tagUIRestResult', 10]];
     }

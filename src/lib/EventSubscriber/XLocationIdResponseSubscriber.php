@@ -39,7 +39,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
         $this->repository = $repository;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [KernelEvents::RESPONSE => ['rewriteCacheHeader', 10]];
     }

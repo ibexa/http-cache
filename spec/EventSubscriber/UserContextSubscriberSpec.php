@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
+
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
 use Ibexa\HttpCache\EventSubscriber\UserContextSubscriber;
@@ -11,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
-use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class UserContextSubscriberSpec extends ObjectBehavior
@@ -26,7 +30,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $this->beConstructedWith($prefixService, 'xkey');
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(UserContextSubscriber::class);
     }
@@ -46,7 +50,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -68,7 +72,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -90,7 +94,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -114,7 +118,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -138,7 +142,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 

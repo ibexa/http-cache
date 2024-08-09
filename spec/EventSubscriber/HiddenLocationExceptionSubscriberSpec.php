@@ -4,17 +4,18 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\MVC\Exception\HiddenLocationException;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Ibexa\Contracts\Core\Repository\Values\Content\Location;
-use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
-use Ibexa\Core\MVC\Exception\HiddenLocationException;
-use Prophecy\Argument;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
@@ -43,7 +44,7 @@ class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
         $event = new ExceptionEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $exception->getWrappedObject()
         );
 
@@ -64,7 +65,7 @@ class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
         $event = new ExceptionEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $exception->getWrappedObject()
         );
 

@@ -1,15 +1,17 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
+use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Repository;
 use Ibexa\Core\Repository\Values\Content\Location;
-use FOS\HttpCache\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument\Token\AnyValueToken;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,7 +45,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -66,7 +68,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
                 'id' => 123,
                 'parentLocationId' => 2,
                 'pathString' => '/1/2/123/',
-                'contentInfo' => new ContentInfo(['id' => 101, 'contentTypeId' => 3, 'mainLocationId' => 120])
+                'contentInfo' => new ContentInfo(['id' => 101, 'contentTypeId' => 3, 'mainLocationId' => 120]),
             ])
         );
 
@@ -85,7 +87,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -113,7 +115,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 
@@ -141,7 +143,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),
-            HttpKernelInterface::MASTER_REQUEST,
+            HttpKernelInterface::MAIN_REQUEST,
             $response->getWrappedObject()
         );
 

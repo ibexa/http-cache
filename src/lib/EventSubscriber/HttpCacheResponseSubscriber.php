@@ -35,7 +35,7 @@ class HttpCacheResponseSubscriber implements EventSubscriberInterface
         $this->dispatcherTagger = $dispatcherTagger;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [KernelEvents::RESPONSE => ['configureCache', 10]];
     }
