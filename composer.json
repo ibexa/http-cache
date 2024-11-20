@@ -27,7 +27,7 @@
         "symfony/http-kernel": "^6.4",
         "symfony/routing": "^6.4",
         "symfony/yaml": "^6.4",
-        "toflar/psr6-symfony-http-cache-store": "^2.2 || ^3.0"
+        "toflar/psr6-symfony-http-cache-store": "^4.2"
     },
     "require-dev": {
         "ibexa/code-style": "~2.0.0",
