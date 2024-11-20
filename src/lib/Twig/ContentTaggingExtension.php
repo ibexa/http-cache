@@ -19,11 +19,9 @@ use Twig\TwigFunction;
  */
 class ContentTaggingExtension extends AbstractExtension
 {
-    /** @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger */
-    protected $responseTagger;
+    protected ResponseTagger $responseTagger;
 
-    /** @var \Ibexa\Contracts\HttpCache\Handler\ContentTagInterface */
-    protected $contentTagHandler;
+    protected ContentTagInterface $contentTagHandler;
 
     public function __construct(ResponseTagger $responseTagger, ContentTagInterface $contentTagHandler)
     {
@@ -59,7 +57,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
      */
-    public function tagHttpCacheForLocation(Location $location)
+    public function tagHttpCacheForLocation(Location $location): void
     {
         $this->responseTagger->tag($location);
         $this->responseTagger->tag($location->getContentInfo());
@@ -72,7 +70,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @param int|int[] $contentIds
      */
-    public function tagHttpCacheForRelationIds($contentIds)
+    public function tagHttpCacheForRelationIds(array|int $contentIds): void
     {
         $this->contentTagHandler->addRelationTags((array)$contentIds);
     }
@@ -84,7 +82,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @param int|int[] $locationIds
      */
-    public function tagHttpCacheForRelationLocationIds($locationIds)
+    public function tagHttpCacheForRelationLocationIds(array|int $locationIds): void
     {
         $this->contentTagHandler->addRelationLocationTags((array)$locationIds);
     }

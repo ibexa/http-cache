@@ -38,10 +38,7 @@ class KernelPass implements CompilerPassInterface
         $container->setParameter('ibexa.http_cache.purge_type', $container->getParameter('ibexa.http_cache.purge_type'));
     }
 
-    /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     */
-    protected function removeKernelRoleIdContextProvider(ContainerBuilder $container)
+    protected function removeKernelRoleIdContextProvider(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('ezpublish.user.identity_definer.role_id')) {
             return;
@@ -63,33 +60,18 @@ class KernelPass implements CompilerPassInterface
         $container->getDefinition('fos_http_cache.user_context.hash_generator')->setArguments($arguments);
     }
 
-    /**
-     * @param string $id
-     *
-     * @return bool
-     */
-    protected function isSmartCacheListener($id)
+    protected function isSmartCacheListener(string $id): bool
     {
         return preg_match('/^ezpublish\.cache_clear\.content.[a-z_]+_listener/', $id);
     }
 
-    /**
-     * @param string $id
-     *
-     * @return bool
-     */
-    protected function isResponseCacheListener($id)
+    protected function isResponseCacheListener(string $id): bool
     {
         return $id === 'ezpublish.view.cache_response_listener';
     }
 
-    /**
-     * @param string $id
-     *
-     * @return bool
-     */
-    protected function isCachePurger($id)
+    protected function isCachePurger(string $id): bool
     {
-        return strpos($id, 'ezpublish.http_cache.purger.') === 0;
+        return str_starts_with($id, 'ezpublish.http_cache.purger.');
     }
 }

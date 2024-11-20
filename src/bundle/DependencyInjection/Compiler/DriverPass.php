@@ -42,7 +42,7 @@ class DriverPass implements CompilerPassInterface
         $container->setAlias(ContentTagInterface::class, 'fos_http_cache.http.symfony_response_tagger');
     }
 
-    public static function getTaggedService(ContainerBuilder $container, $tag)
+    public static function getTaggedService(ContainerBuilder $container, $tag): string|null
     {
         $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         $configuredTagHandlerServiceId = null;
@@ -50,16 +50,13 @@ class DriverPass implements CompilerPassInterface
         $tagHandlerServiceIds = $container->findTaggedServiceIds($tag);
         foreach ($tagHandlerServiceIds as $tagHandlerServiceId => $attributes) {
             $currentPurgeTypeId = null;
-            $currentTagHandlerServiceId = null;
             foreach ($attributes as $attribute) {
                 if (\array_key_exists('purge_type', $attribute)) {
                     $currentPurgeTypeId = $attribute['purge_type'];
                 }
-                if ($currentPurgeTypeId !== null) {
-                    if ($purgeType === $attribute['purge_type']) {
-                        $configuredTagHandlerServiceId = $tagHandlerServiceId;
-                        break 2;
-                    }
+                if (($currentPurgeTypeId !== null) && $purgeType === $attribute['purge_type']) {
+                    $configuredTagHandlerServiceId = $tagHandlerServiceId;
+                    break 2;
                 }
             }
             if ($currentPurgeTypeId === null) {
