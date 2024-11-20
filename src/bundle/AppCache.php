@@ -16,6 +16,7 @@ use Ibexa\HttpCache\Proxy\UserContextListener;
 use Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Toflar\Psr6HttpCacheStore\Psr6Store;
@@ -39,15 +40,12 @@ class AppCache extends HttpCache implements CacheInvalidation
         $this->addSubscriber(new PurgeListener(['client_ips' => $this->getInternalAllowedIPs()]));
     }
 
-    public function fetch(Request $request, $catch = false)
+    public function fetch(Request $request, $catch = false): Response
     {
         return parent::fetch($request, $catch);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function createStore()
+    protected function createStore(): StoreInterface
     {
         return new Psr6Store([
             'cache_tags_header' => TagHeaderFormatter::DEFAULT_HEADER_NAME,
@@ -55,10 +53,7 @@ class AppCache extends HttpCache implements CacheInvalidation
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle(Request $request, $type = HttpKernelInterface::MAIN_REQUEST, $catch = true)
+    public function handle(Request $request, $type = HttpKernelInterface::MAIN_REQUEST, $catch = true): Response
     {
         $response = $this->baseHandle($request, $type, $catch);
 
@@ -72,19 +67,14 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * Returns an array of allowed IPs for Http PURGE requests.
      *
-     * @return array
+     * @return string[]
      */
-    protected function getInternalAllowedIPs()
+    protected function getInternalAllowedIPs(): array
     {
         return ['127.0.0.1', '::1'];
     }
 
-    /**
-     * Perform cleanup of reponse.
-     *
-     * @param \Symfony\Component\HttpFoundation\Response $response
-     */
-    protected function cleanupHeadersForProd(Response $response)
+    protected function cleanupHeadersForProd(Response $response): void
     {
         // remove headers that identify the content or internal digest info
         $response->headers->remove(TagHeaderFormatter::DEFAULT_HEADER_NAME);
