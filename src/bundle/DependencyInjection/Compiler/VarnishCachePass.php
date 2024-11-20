@@ -18,7 +18,7 @@ class VarnishCachePass implements CompilerPassInterface
         $this->processVarnishProxyClientSettings($container);
     }
 
-    private function processVarnishProxyClientSettings(ContainerBuilder $container)
+    private function processVarnishProxyClientSettings(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('fos_http_cache.proxy_client.varnish')) {
             throw new InvalidArgumentException('Varnish proxy client must be enabled in FOSHttpCacheBundle');

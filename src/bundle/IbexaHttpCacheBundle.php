@@ -56,7 +56,7 @@ class IbexaHttpCacheBundle extends Bundle
         }
     }
 
-    public function registerConfigParser(ContainerBuilder $container)
+    public function registerConfigParser(ContainerBuilder $container): void
     {
         /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
         $eZExtension = $container->getExtension('ibexa');
