@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class DriverPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $container->removeAlias('ezpublish.http_cache.purge_client');
 

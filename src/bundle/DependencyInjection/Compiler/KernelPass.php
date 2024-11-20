@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class KernelPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $id => $definition) {
             if ($this->isSmartCacheListener($id) ||
