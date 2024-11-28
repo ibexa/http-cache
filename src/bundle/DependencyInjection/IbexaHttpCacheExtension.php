@@ -56,13 +56,13 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         $loader->load('default_settings.yml');
 
         // Override default settings for FOSHttpCacheBundle
-        $configFile = __DIR__ . '/../Resources/config/fos_http_cache.yml';
+        $configFile = __DIR__ . '/../Resources/config/prepend/fos_http_cache.yml';
         $config = Yaml::parse(file_get_contents($configFile));
         $container->prependExtensionConfig('fos_http_cache', $config);
         $container->addResource(new FileResource($configFile));
 
         // Override Core views
-        $coreExtensionConfigFile = realpath(__DIR__ . '/../Resources/config/prepend/ezpublish.yml');
+        $coreExtensionConfigFile = dirname(__DIR__) . '/Resources/config/prepend/ibexa.yml';
         $container->prependExtensionConfig('ibexa', Yaml::parseFile($coreExtensionConfigFile));
         $container->addResource(new FileResource($coreExtensionConfigFile));
     }

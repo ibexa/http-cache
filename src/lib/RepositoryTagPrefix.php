@@ -16,15 +16,10 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
  */
 class RepositoryTagPrefix
 {
-    /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
-     */
-    private $resolver;
+    private ConfigResolverInterface $resolver;
 
-    /**
-     * @var int[<string>]
-     */
-    private $repositoryMap = [];
+    /** @var array<string, int|string> */
+    private array $repositoryMap = [];
 
     public function __construct(ConfigResolverInterface $resolver, array $repositories)
     {
@@ -44,10 +39,8 @@ class RepositoryTagPrefix
      * Example: Default repository (first one), will return value ""
      *
      * WARNING: Must be called on-demand and not in constructors to avoid any issues with SiteAccess scope changes.
-     *
-     * @return string
      */
-    public function getRepositoryPrefix()
+    public function getRepositoryPrefix(): string
     {
         $repositoryIdentifier = $this->resolver->getParameter('repository');
 
