@@ -1,7 +1,7 @@
 // Varnish VCL for:
 // - Varnish 7.1 or higher
 //   - Varnish xkey vmod (via varnish-modules package 0.10.2 or higher, or via Varnish Plus)
-// - eZ Platform 3.x or higher with ezplatform-http-cache (this) bundle
+//
 //
 // Make sure to at least adjust default parameters.vcl, defaults there reflect our testing needs with docker.
 
@@ -50,6 +50,7 @@ sub vcl_recv {
         set req.http.cookie = ";" + req.http.cookie;
         set req.http.cookie = regsuball(req.http.cookie, "; +", ";");
         set req.http.cookie = regsuball(req.http.cookie, ";(eZSESSID[^=]*)=", "; \1=");
+        set req.http.cookie = regsuball(req.http.cookie, ";(ibexa-[^=]*)=", "; \1=");
         set req.http.cookie = regsuball(req.http.cookie, ";[^ ][^;]*", "");
         set req.http.cookie = regsuball(req.http.cookie, "^[; ]+|[; ]+$", "");
 
@@ -228,7 +229,7 @@ sub ez_invalidate_token {
         set req.http.x-fos-token-url = req.url;
         set req.http.x-fos-token-method = req.method;
 
-        set req.url = "/_ez_http_invalidatetoken";
+        set req.url = "/_ibexa_http_invalidatetoken";
 
         // Force the lookup
         return (hash);

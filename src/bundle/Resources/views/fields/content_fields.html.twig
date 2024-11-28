@@ -1,0 +1,49 @@
+{% trans_default_domain 'ibexa_fields_groups' %}
+
+{% extends "@IbexaCore/content_fields.html.twig" %}
+
+{% block ezobjectrelationlist_field %}
+    {% apply spaceless %}
+        {% if not ibexa_field_is_empty( content, field ) %}
+            <ul {{ block( 'field_attributes' ) }}>
+                {% for contentId in field.value.destinationContentIds %}
+                    {% if parameters.available[contentId] %}
+                        {{ ibexa_http_cache_tag_relation_ids(contentId) }}
+                        <li>
+                            {{ render( controller( "ibexa_content:viewAction", {'contentId': contentId, 'viewType': 'embed', 'layout': false} ) ) }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endapply %}
+{% endblock %}
+
+{% block ezimageasset_field %}
+    {% apply spaceless %}
+        {% if not ibexa_field_is_empty(content, field) and parameters.available %}
+            {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
+            <div {{ block('field_attributes') }}>
+                {{ render(controller('ibexa_content:embedAction', {
+                    contentId: field.value.destinationContentId,
+                    viewType: 'asset_image',
+                    no_layout: true,
+                    params: {
+                        parameters: parameters|default({'alias': 'original'})|merge({'alternativeText': field.value.alternativeText })
+                    }
+                }))}}
+            </div>
+        {% endif %}
+    {% endapply %}
+{% endblock %}
+
+{% block ezobjectrelation_field %}
+    {% apply spaceless %}
+        {% if not ibexa_field_is_empty( content, field ) and parameters.available %}
+            {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
+            <div {{ block( 'field_attributes' ) }}>
+                {{ render( controller( "ibexa_content:viewAction", {'contentId': field.value.destinationContentId, 'viewType': 'text_linked', 'layout': false} ) ) }}
+            </div>
+        {% endif %}
+    {% endapply %}
+{% endblock %}

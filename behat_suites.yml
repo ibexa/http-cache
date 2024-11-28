@@ -2,98 +2,98 @@ httpCache:
     suites:
         symfonycache:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/symfony'
+                - '%paths.base%/vendor/ibexa/http-cache/features/symfony'
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\API\Context\ContentContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\API\Context\ContentContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         varnish6:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/varnish'
+                - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
             filters:
                 tags: '@varnish6&&~@translationAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         varnish6-translation-aware:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/varnish'
+                - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
             filters:
                 tags: '@varnish6&&~@translationNotAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         varnish7:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/varnish'
+                - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
             filters:
                 tags: '@varnish7&&~@translationAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         varnish7-translation-aware:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/varnish'
+                - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
             filters:
                 tags: '@varnish7&&~@translationNotAware' 
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\TimeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\TimeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\Browser\Context\BrowserContext
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
         setup:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/setup/setup.feature'
+                - '%paths.base%/vendor/ibexa/http-cache/features/setup/setup.feature'
             contexts:
-                - EzSystems\Behat\API\Context\TestContext
-                - EzSystems\Behat\API\Context\ContentTypeContext
-                - EzSystems\Behat\Core\Context\ConfigurationContext
-                - EzSystems\Behat\API\Context\ContentContext
-                - EzSystems\Behat\API\Context\LanguageContext
+                - Ibexa\Behat\API\Context\TestContext
+                - Ibexa\Behat\API\Context\ContentTypeContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\API\Context\ContentContext
+                - Ibexa\Behat\API\Context\LanguageContext
         setup-token:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/setup/invalidateToken.feature'
+                - '%paths.base%/vendor/ibexa/http-cache/features/setup/invalidateToken.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext
         setup-symfony-cache:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/setup/symfonyCache.feature'
+                - '%paths.base%/vendor/ibexa/http-cache/features/setup/symfonyCache.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\FileContext
+                - Ibexa\Behat\Core\Context\FileContext
         setup-translation-aware:
             paths:
-                - '%paths.base%/vendor/ezsystems/ezplatform-http-cache/features/setup/translationAware.feature'
+                - '%paths.base%/vendor/ibexa/http-cache/features/setup/translationAware.feature'
             contexts:
-                - EzSystems\Behat\Core\Context\ConfigurationContext
+                - Ibexa\Behat\Core\Context\ConfigurationContext

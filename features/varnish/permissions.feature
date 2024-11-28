@@ -16,7 +16,7 @@ Feature: Cached response is different for users with different permissions
 
   @admin
   Scenario: Embedded Content Items are cached based on users permissions
-    Given I create a "testContentType" Content Type in "Content" with "testContentType" identifier
+    Given I create a "testContentType" content type in "Content" with "testContentType" identifier
       | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
       | Text line                 | Name      | name	     | yes      | yes	       | yes          |
       | Content relation (single) | Relation  | relation   | yes      | no	       | yes          |
