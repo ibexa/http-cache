@@ -147,7 +147,7 @@ class TagHandlerSpec extends ObjectBehavior
             $length += $tagLength;
         }
         $responseHeaderBag->getCacheControlDirective('s-maxage')->shouldBeCalled()->willReturn(500);
-        $response->setSharedMaxAge(300)->shouldBeCalled();
+        $response->setSharedMaxAge(300)->shouldBeCalled()->willReturn($response);
         $responseHeaderBag->set('xkey', Argument::exact($underLimitTags))->shouldBeCalled();
 
         $this->addTags(explode(' ', $underLimitTags));

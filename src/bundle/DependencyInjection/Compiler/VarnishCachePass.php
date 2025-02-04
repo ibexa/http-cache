@@ -13,12 +13,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class VarnishCachePass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $this->processVarnishProxyClientSettings($container);
     }
 
-    private function processVarnishProxyClientSettings(ContainerBuilder $container)
+    private function processVarnishProxyClientSettings(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('fos_http_cache.proxy_client.varnish')) {
             throw new InvalidArgumentException('Varnish proxy client must be enabled in FOSHttpCacheBundle');

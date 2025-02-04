@@ -13,7 +13,7 @@ use Ibexa\Core\MVC\Symfony\View\View;
 use Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;

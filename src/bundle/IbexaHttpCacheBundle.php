@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class IbexaHttpCacheBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
@@ -31,7 +31,7 @@ class IbexaHttpCacheBundle extends Bundle
         $this->registerConfigParser($container);
     }
 
-    public function getContainerExtensionClass()
+    public function getContainerExtensionClass(): string
     {
         return IbexaHttpCacheExtension::class;
     }
@@ -56,7 +56,7 @@ class IbexaHttpCacheBundle extends Bundle
         }
     }
 
-    public function registerConfigParser(ContainerBuilder $container)
+    public function registerConfigParser(ContainerBuilder $container): void
     {
         /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
         $eZExtension = $container->getExtension('ibexa');
