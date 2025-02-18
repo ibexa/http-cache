@@ -37,15 +37,15 @@ class ContentTaggingExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'ibexa_http_cache_tag_location',
-                [$this, 'tagHttpCacheForLocation']
+                $this->tagHttpCacheForLocation(...)
             ),
             new TwigFunction(
                 'ibexa_http_cache_tag_relation_ids',
-                [$this, 'tagHttpCacheForRelationIds']
+                $this->tagHttpCacheForRelationIds(...)
             ),
             new TwigFunction(
                 'ibexa_http_cache_tag_relation_location_ids',
-                [$this, 'tagHttpCacheForRelationLocationIds']
+                $this->tagHttpCacheForRelationLocationIds(...)
             ),
         ];
     }
