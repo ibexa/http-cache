@@ -14,8 +14,8 @@
     ],
     "require": {
         "php": " >=8.3",
-        "friendsofsymfony/http-cache": "^2.9",
-        "friendsofsymfony/http-cache-bundle": "^2.8",
+        "friendsofsymfony/http-cache": "^3.1",
+        "friendsofsymfony/http-cache-bundle": "^3.0",
         "ibexa/core": "~5.0.x-dev",
         "ibexa/rest": "~5.0.x-dev",
         "php-http/curl-client": "^2.1",
@@ -33,7 +33,7 @@
         "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "~5.0.x-dev",
         "ibexa/rector": "~5.0.x-dev",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "matthiasnoback/symfony-dependency-injection-test": "^5.0",
         "phpspec/phpspec": "^7.1",
         "phpunit/phpunit": "^9.6",
         "symfony/phpunit-bridge": "^7.2"
