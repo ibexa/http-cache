@@ -14,8 +14,8 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
       | title | <itemName> |
     And response headers contain
       | Header          | Value                  |
-      | Cache-Control   | public, s-maxage=86400 |
-      | X-Symfony-Cache | <headerValue>          |
+      | cache-control   | public, s-maxage=86400 |
+      | x-symfony-cache | <headerValue>          |
 
 
     Examples:
@@ -43,8 +43,8 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
       | title | <itemNameAfterEdit> |
     And response headers contain
       | Header          | Value                  |
-      | Cache-Control   | public, s-maxage=86400 |
-      | X-Symfony-Cache | <headerValue>          |
+      | cache-control   | public, s-maxage=86400 |
+      | x-symfony-cache | <headerValue>          |
 
     Examples:
       | user      | password | itemName        | itemNameAfterEdit | headerValue                      |

@@ -23,8 +23,8 @@ Feature: Caching of embedded items
     And I should see "<embeddedItemName>"
     And response headers contain
       | Header          | Value                  |
-      | Cache-Control   | public, s-maxage=86400 |
-      | X-Symfony-Cache | <headerValue>          |
+      | cache-control   | public, s-maxage=86400 |
+      | x-symfony-cache | <headerValue>          |
     When I edit "<embeddedItemName>" Content item in "eng-GB"
       | name                     |
       | <editedEmbeddedItemName> | 
@@ -52,10 +52,10 @@ Feature: Caching of embedded items
     And I should see "<embeddedItemName>"
     And response headers contain
       | Header          | Value                  |
-      | Cache-Control   | public, s-maxage=86400 |
+      | cache-control   | public, s-maxage=86400 |
     And response headers match pattern
       | Header          | Pattern            |
-      | X-Symfony-Cache | <expectedPattern>  |
+      | x-symfony-cache | <expectedPattern>  |
 
     Examples:
       | embeddingItemName  | embeddedItemName  | expectedPattern |

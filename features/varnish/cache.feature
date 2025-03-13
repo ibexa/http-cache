@@ -10,14 +10,14 @@ Feature: As an site administrator I want my pages to be cached using Varnish
         When I visit <itemName> on siteaccess "site"
         And response headers contain
             | Header  | Value |
-            | X-Cache | MISS  |
+            | x-cache | MISS  |
         And I reload the page
         Then I see correct preview data for "Folder" content type
             | field | value      |
             | title | <itemName> |
         And response headers contain
             | Header  | Value |
-            | X-Cache | HIT   |
+            | x-cache | HIT   |
 
         Examples:
             | user      | password | itemName                     |
@@ -37,7 +37,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
             | title | <itemName> |
         And response headers contain
             | Header  | Value |
-            | X-Cache | HIT   |
+            | x-cache | HIT   |
         When I edit "<itemName>" Content item in "eng-GB"
             | short_name          |
             | <itemNameAfterEdit> |
@@ -52,7 +52,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
             | title | <itemNameAfterEdit> |
         And response headers contain
             | Header  | Value |
-            | X-Cache | HIT   |
+            | x-cache | HIT   |
 
         Examples:
             | user      | password | itemName        | itemNameAfterEdit |
