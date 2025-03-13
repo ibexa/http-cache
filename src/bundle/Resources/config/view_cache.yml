@@ -14,12 +14,6 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber:
-        class: Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber
-        arguments: ['@fos_http_cache.http.symfony_response_tagger']
-        tags:
-            - { name: kernel.event_subscriber }
-
     Ibexa\HttpCache\EventSubscriber\UserContextSubscriber:
         class: Ibexa\HttpCache\EventSubscriber\UserContextSubscriber
         arguments: ['@Ibexa\HttpCache\RepositoryTagPrefix', '%fos_http_cache.tag_handler.response_header%']
