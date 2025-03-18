@@ -19,12 +19,9 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
     /**
      * @var \Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
      */
-    private $locationTagger;
+    private LocationTagger $locationTagger;
 
-    /**
-     * @var \Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
-     */
-    private $contentInfoTagger;
+    private ContentInfoTagger $contentInfoTagger;
 
     public function __construct(LocationTagger $locationTagger, ContentInfoTagger $contentInfoTagger)
     {
@@ -37,7 +34,7 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
         return [KernelEvents::EXCEPTION => ['tagHiddenLocationExceptionResponse', 10]];
     }
 
-    public function tagHiddenLocationExceptionResponse(ExceptionEvent $event)
+    public function tagHiddenLocationExceptionResponse(ExceptionEvent $event): void
     {
         if (!$event->getThrowable() instanceof HiddenLocationException) {
             return;

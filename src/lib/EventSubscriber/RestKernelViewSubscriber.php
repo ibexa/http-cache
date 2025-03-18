@@ -30,8 +30,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class RestKernelViewSubscriber implements EventSubscriberInterface
 {
-    /** @var \FOS\HttpCache\ResponseTagger */
-    private $tagHandler;
+    private ResponseTagger $tagHandler;
 
     public function __construct(ResponseTagger $tagHandler)
     {
@@ -43,7 +42,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
         return [KernelEvents::VIEW => ['tagUIRestResult', 10]];
     }
 
-    public function tagUIRestResult(ViewEvent $event)
+    public function tagUIRestResult(ViewEvent $event): void
     {
         $request = $event->getRequest();
         if (!$request->isMethodCacheable() || !$request->attributes->get('is_rest_request')) {
@@ -67,7 +66,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
      *
      * @return array
      */
-    protected function getTags($value)
+    protected function getTags($value): array
     {
         $tags = [];
         switch ($value) {

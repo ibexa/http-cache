@@ -17,10 +17,7 @@ class InvalidateTokenController
 {
     public const TOKEN_HEADER_NAME = 'X-Invalidate-Token';
 
-    /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     /**
      * @var int
@@ -30,7 +27,7 @@ class InvalidateTokenController
     /**
      * @var \Ibexa\HttpCache\Handler\TagHandler
      */
-    private $tagHandler;
+    private ResponseTagger $tagHandler;
 
     /**
      * TokenController constructor.

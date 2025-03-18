@@ -10,16 +10,17 @@ namespace Ibexa\Tests\HttpCache\PurgeClient;
 use FOS\HttpCache\ProxyClient\ProxyClient;
 use FOS\HttpCacheBundle\CacheManager;
 use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VarnishPurgeClientTest extends TestCase
 {
     /** @var \FOS\HttpCacheBundle\CacheManager */
-    private $cacheManager;
+    private MockObject $cacheManager;
 
     /** @var \Ibexa\HttpCache\PurgeClient\VarnishPurgeClient */
-    private $purgeClient;
+    private VarnishPurgeClient $purgeClient;
 
     protected function setUp(): void
     {
@@ -40,7 +41,7 @@ class VarnishPurgeClientTest extends TestCase
         );
     }
 
-    public function testPurgeNoLocationIds()
+    public function testPurgeNoLocationIds(): void
     {
         $this->cacheManager
             ->expects(self::never())
@@ -52,10 +53,10 @@ class VarnishPurgeClientTest extends TestCase
     /**
      * @dataProvider purgeTestProvider
      */
-    public function testPurge(array $locationIds)
+    public function testPurge(array $locationIds): void
     {
         $keys = array_map(
-            static function ($id) {
+            static function ($id): string {
                 return "l$id";
             },
             $locationIds
@@ -69,7 +70,7 @@ class VarnishPurgeClientTest extends TestCase
         $this->purgeClient->purge($keys);
     }
 
-    public function purgeTestProvider()
+    public function purgeTestProvider(): array
     {
         return [
             [[123]],
@@ -78,7 +79,7 @@ class VarnishPurgeClientTest extends TestCase
         ];
     }
 
-    public function testPurgeAll()
+    public function testPurgeAll(): void
     {
         $this->cacheManager
             ->expects(self::once())

@@ -13,14 +13,11 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 
 class HttpDispatcherFactory
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
-    /** @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\DynamicSettingParserInterface */
-    private $dynamicSettingParser;
+    private DynamicSettingParserInterface $dynamicSettingParser;
 
-    /** @var string */
-    private $httpDispatcherClass;
+    private string $httpDispatcherClass;
 
     public function __construct(
         ConfigResolverInterface $configResolver,

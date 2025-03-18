@@ -23,12 +23,12 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
     /**
      * @var string[]
      */
-    private $routes;
+    private array $routes;
 
     /**
      * @var string[]
      */
-    private $userIdentifierHeaders;
+    private array $userIdentifierHeaders;
 
     /**
      * ConditionallyRemoveVaryHeaderListener constructor.
@@ -47,7 +47,7 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
      *
      * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
      */
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         if (HttpKernelInterface::MAIN_REQUEST !== $event->getRequestType()) {
             return;

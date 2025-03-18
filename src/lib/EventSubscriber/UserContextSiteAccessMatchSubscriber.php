@@ -16,11 +16,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Core\MVC\Symfony\EventListener\SiteAccessMatchListener */
-    protected $innerSubscriber;
+    protected SiteAccessMatchListener $innerSubscriber;
 
-    /** @var \Symfony\Component\HttpFoundation\RequestMatcherInterface */
-    private $userContextRequestMatcher;
+    private RequestMatcherInterface $userContextRequestMatcher;
 
     public function __construct(
         SiteAccessMatchListener $innerSubscriber,
@@ -38,7 +36,7 @@ class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function checkIfRequestForUserContextHash(RequestEvent $event)
+    public function checkIfRequestForUserContextHash(RequestEvent $event): void
     {
         $request = $event->getRequest();
 

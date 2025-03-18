@@ -14,8 +14,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class RequestEventSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    private $userHashHeaderName;
+    private string $userHashHeaderName;
 
     public function __construct(string $userHashHeaderName)
     {

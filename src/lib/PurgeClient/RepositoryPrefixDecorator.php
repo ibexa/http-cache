@@ -17,11 +17,9 @@ use Ibexa\HttpCache\RepositoryTagPrefix;
  */
 class RepositoryPrefixDecorator implements PurgeClientInterface
 {
-    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
-    private $purgeClient;
+    private PurgeClientInterface $purgeClient;
 
-    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
-    private $prefixService;
+    private RepositoryTagPrefix $prefixService;
 
     public function __construct(PurgeClientInterface $purgeClient, RepositoryTagPrefix $prefixService)
     {
@@ -37,7 +35,7 @@ class RepositoryPrefixDecorator implements PurgeClientInterface
 
         $repoPrefix = $this->prefixService->getRepositoryPrefix();
         $tags = array_map(
-            static function ($tag) use ($repoPrefix) {
+            static function (string $tag) use ($repoPrefix): string {
                 // Prefix tags with repository prefix
                 return $repoPrefix . $tag;
             },

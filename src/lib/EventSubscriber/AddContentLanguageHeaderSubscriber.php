@@ -19,15 +19,14 @@ final class AddContentLanguageHeaderSubscriber implements EventSubscriberInterfa
 {
     public const CONTENT_LANGUAGE_HEADER = 'x-lang';
 
-    /** @var bool */
-    private $isTranslationAware;
+    private bool $isTranslationAware;
 
     public function __construct(bool $isTranslationAware)
     {
         $this->isTranslationAware = $isTranslationAware;
     }
 
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         if (!$this->isTranslationAware || HttpKernelInterface::MAIN_REQUEST != $event->getRequestType()) {
             return;
