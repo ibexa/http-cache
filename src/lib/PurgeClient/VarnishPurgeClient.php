@@ -15,8 +15,7 @@ use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
  */
 class VarnishPurgeClient implements PurgeClientInterface
 {
-    /** @var \FOS\HttpCacheBundle\CacheManager */
-    private $cacheManager;
+    private CacheManager $cacheManager;
 
     public function __construct(
         CacheManager $cacheManager

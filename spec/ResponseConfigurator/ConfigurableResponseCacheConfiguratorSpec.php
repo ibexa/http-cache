@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
+
 namespace spec\Ibexa\HttpCache\ResponseConfigurator;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
@@ -14,12 +19,12 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
         Response $response,
         ResponseHeaderBag $headers,
         ConfigResolverInterface $configResolver
-    ) {
+    ): void {
         $response->headers = $headers;
         $this->beConstructedWith($configResolver);
     }
 
-    public function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(ConfigurableResponseCacheConfigurator::class);
     }
@@ -27,7 +32,7 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
     public function it_sets_cache_control_to_public_if_viewcache_is_enabled(
         ConfigResolverInterface $configResolver,
         Response $response
-    ) {
+    ): void {
         $configResolver->getParameter('content.view_cache')->willReturn(true);
         $configResolver->getParameter('content.ttl_cache')->willReturn(false);
         $configResolver->getParameter('content.default_ttl')->willReturn(0);
@@ -43,7 +48,7 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
     public function it_does_not_set_cache_control_if_viewcache_is_disabled(
         ConfigResolverInterface $configResolver,
         Response $response
-    ) {
+    ): void {
         $configResolver->getParameter('content.view_cache')->willReturn(false);
         $configResolver->getParameter('content.ttl_cache')->willReturn(false);
         $configResolver->getParameter('content.default_ttl')->willReturn(0);
@@ -57,7 +62,7 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
     public function it_does_not_set_shared_maxage_if_ttl_cache_is_disabled(
         ConfigResolverInterface $configResolver,
         Response $response
-    ) {
+    ): void {
         $configResolver->getParameter('content.view_cache')->willReturn(true);
         $configResolver->getParameter('content.ttl_cache')->willReturn(false);
         $configResolver->getParameter('content.default_ttl')->willReturn(30);
@@ -72,7 +77,7 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
         ConfigResolverInterface $configResolver,
         Response $response,
         ResponseHeaderBag $headers
-    ) {
+    ): void {
         $configResolver->getParameter('content.view_cache')->willReturn(true);
         $configResolver->getParameter('content.ttl_cache')->willReturn(true);
         $configResolver->getParameter('content.default_ttl')->willReturn(30);
@@ -89,7 +94,7 @@ class ConfigurableResponseCacheConfiguratorSpec extends ObjectBehavior
         ConfigResolverInterface $configResolver,
         Response $response,
         ResponseHeaderBag $headers
-    ) {
+    ): void {
         $configResolver->getParameter('content.view_cache')->willReturn(true);
         $configResolver->getParameter('content.ttl_cache')->willReturn(true);
         $configResolver->getParameter('content.default_ttl')->willReturn(30);

@@ -25,7 +25,7 @@ class LocationTagger extends AbstractValueTagger
         $this->responseTagger->addTags([ContentTagInterface::PARENT_LOCATION_PREFIX . $value->parentLocationId]);
         $this->responseTagger->addTags(
             array_map(
-                static function ($pathItem) {
+                static function (string $pathItem): string {
                     return ContentTagInterface::PATH_PREFIX . $pathItem;
                 },
                 $value->path

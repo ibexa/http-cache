@@ -27,7 +27,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         ResponseTagger $tagHandler,
         Repository $repository,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $response->headers = $responseHeaders;
 
         $this->beConstructedWith($tagHandler, $repository);
@@ -38,7 +38,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $responseHeaders->has('X-Location-Id')->willReturn(false);
         $responseHeaders->set()->shouldNotBecalled();
 
@@ -59,7 +59,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         ResponseTagger $tagHandler,
         Repository $repository,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $responseHeaders->has('X-Location-Id')->willReturn(true);
         $responseHeaders->get('X-Location-Id')->willReturn('123');
 
@@ -103,7 +103,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         ResponseTagger $tagHandler,
         Repository $repository,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $responseHeaders->has('X-Location-Id')->willReturn(true);
         $responseHeaders->get('X-Location-Id')->willReturn('123');
 
@@ -131,7 +131,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
         ResponseTagger $tagHandler,
         Repository $repository,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $responseHeaders->has('X-Location-Id')->willReturn(true);
         $responseHeaders->get('X-Location-Id')->willReturn('123,34');
 

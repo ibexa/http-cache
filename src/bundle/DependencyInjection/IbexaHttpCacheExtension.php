@@ -22,14 +22,14 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
     /**
      * @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
      */
-    private $extraConfigParsers = [];
+    private array $extraConfigParsers = [];
 
     public function getAlias(): string
     {
         return 'ibexa_http_cache';
     }
 
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -49,7 +49,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         }
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         // Load params early as we use them in below
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -67,7 +67,7 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         $container->addResource(new FileResource($coreExtensionConfigFile));
     }
 
-    public function addExtraConfigParser(ParserInterface $configParser)
+    public function addExtraConfigParser(ParserInterface $configParser): void
     {
         $this->extraConfigParsers[] = $configParser;
     }

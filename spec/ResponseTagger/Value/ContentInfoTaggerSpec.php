@@ -1,32 +1,37 @@
 <?php
 
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
+
 namespace spec\Ibexa\HttpCache\ResponseTagger\Value;
 
+use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
-use FOS\HttpCache\ResponseTagger;
 use PhpSpec\ObjectBehavior;
 
 class ContentInfoTaggerSpec extends ObjectBehavior
 {
-    public function let(ResponseTagger $tagHandler)
+    public function let(ResponseTagger $tagHandler): void
     {
         $this->beConstructedWith($tagHandler);
     }
 
-    public function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(ContentInfoTagger::class);
     }
 
-    public function it_ignores_non_content_info(ResponseTagger $tagHandler)
+    public function it_ignores_non_content_info(ResponseTagger $tagHandler): void
     {
         $this->tag(null);
 
         $tagHandler->addTags()->shouldNotHaveBeenCalled();
     }
 
-    public function it_tags_with_content_and_content_type_id(ResponseTagger $tagHandler)
+    public function it_tags_with_content_and_content_type_id(ResponseTagger $tagHandler): void
     {
         $value = new ContentInfo(['id' => 123, 'contentTypeId' => 987]);
 
@@ -35,7 +40,7 @@ class ContentInfoTaggerSpec extends ObjectBehavior
         $tagHandler->addTags(['c123', 'ct987'])->shouldHaveBeenCalled();
     }
 
-    public function it_tags_with_location_id_if_one_is_set(ResponseTagger $tagHandler)
+    public function it_tags_with_location_id_if_one_is_set(ResponseTagger $tagHandler): void
     {
         $value = new ContentInfo(['mainLocationId' => 456]);
 

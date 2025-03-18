@@ -1,22 +1,24 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\ProxyClient;
 
-use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use FOS\HttpCache\ProxyClient\Dispatcher;
 use Http\Message\RequestFactory;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
 class VarnishSpec extends ObjectBehavior
 {
-    private const URI = "/";
+    private const URI = '/';
     private const REQUEST_HEADERS = [
-        "X-Some-Header" => "__SOME_HEADER_VALUE__"
+        'X-Some-Header' => '__SOME_HEADER_VALUE__',
     ];
 
     public function let(
@@ -24,8 +26,7 @@ class VarnishSpec extends ObjectBehavior
         Dispatcher $httpDispatcher,
         RequestFactory $messageFactory,
         RequestInterface $request
-
-    ) {
+    ): void {
         $messageFactory->createRequest(
             Argument::any(),
             Argument::any(),
@@ -39,14 +40,14 @@ class VarnishSpec extends ObjectBehavior
     public function it_should_purge_with_additional_token_header_when_configuration_key_with_token_is_not_null(
         ConfigResolverInterface $configResolver,
         RequestFactory $messageFactory
-    ) {
+    ): void {
         $configResolver->hasParameter('http_cache.varnish_invalidate_token')->willReturn(true);
         $configResolver->getParameter('http_cache.varnish_invalidate_token')->willReturn('__TOKEN__');
 
         $this->purge(self::URI, self::REQUEST_HEADERS);
 
         $this->requestShouldHaveBeenCreatedWithHeaders(
-            array_merge(self::REQUEST_HEADERS, ["X-Invalidate-Token" => "__TOKEN__"]),
+            array_merge(self::REQUEST_HEADERS, ['X-Invalidate-Token' => '__TOKEN__']),
             $messageFactory
         );
     }
@@ -54,7 +55,7 @@ class VarnishSpec extends ObjectBehavior
     public function it_should_purge_without_additional_token_header_when_configuration_key_with_token_do_not_exist_in_configuration(
         ConfigResolverInterface $configResolver,
         RequestFactory $messageFactory
-    ) {
+    ): void {
         $configResolver->hasParameter('http_cache.varnish_invalidate_token')->willReturn(false);
 
         $this->purge(self::URI, self::REQUEST_HEADERS);
@@ -68,7 +69,7 @@ class VarnishSpec extends ObjectBehavior
     public function it_should_purge_without_additional_token_header_when_configuration_key_with_token_exists_but_is_null(
         ConfigResolverInterface $configResolver,
         RequestFactory $messageFactory
-    ) {
+    ): void {
         $configResolver->hasParameter('http_cache.varnish_invalidate_token')->willReturn(true);
         $configResolver->getParameter('http_cache.varnish_invalidate_token')->willReturn(null);
 
@@ -80,7 +81,7 @@ class VarnishSpec extends ObjectBehavior
         );
     }
 
-    private function requestShouldHaveBeenCreatedWithHeaders($headers, RequestFactory $messageFactory)
+    private function requestShouldHaveBeenCreatedWithHeaders(array $headers, RequestFactory $messageFactory): void
     {
         $messageFactory->createRequest(
             'PURGE',

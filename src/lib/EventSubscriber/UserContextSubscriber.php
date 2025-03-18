@@ -18,15 +18,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class UserContextSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var \Ibexa\HttpCache\RepositoryTagPrefix
-     */
-    private $prefixService;
+    private RepositoryTagPrefix $prefixService;
 
-    /**
-     * @var string
-     */
-    private $tagHeader;
+    private string $tagHeader;
 
     public function __construct(
         RepositoryTagPrefix $prefixService,
@@ -46,7 +40,7 @@ class UserContextSubscriber implements EventSubscriberInterface
      *
      * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
      */
-    public function tagUserContext(ResponseEvent $event)
+    public function tagUserContext(ResponseEvent $event): void
     {
         $response = $event->getResponse();
         if (!$response->isCacheable()) {

@@ -27,11 +27,9 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
 {
     public const LOCATION_ID_HEADER = 'X-Location-Id';
 
-    /** @var \FOS\HttpCache\ResponseTagger */
-    private $responseTagger;
+    private ResponseTagger $responseTagger;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(ResponseTagger $responseTagger, Repository $repository)
     {
@@ -44,7 +42,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
         return [KernelEvents::RESPONSE => ['rewriteCacheHeader', 10]];
     }
 
-    public function rewriteCacheHeader(ResponseEvent $event)
+    public function rewriteCacheHeader(ResponseEvent $event): void
     {
         $response = $event->getResponse();
         if (!$response->headers->has(static::LOCATION_ID_HEADER)) {
@@ -62,7 +60,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
             $id = trim($id);
             try {
                 /** @var $location \Ibexa\Contracts\Core\Repository\Values\Content\Location */
-                $location = $this->repository->sudo(static function (Repository $repository) use ($id) {
+                $location = $this->repository->sudo(static function (Repository $repository) use ($id): \Ibexa\Contracts\Core\Repository\Values\Content\Location {
                     return $repository->getLocationService()->loadLocation($id);
                 });
 

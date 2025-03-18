@@ -26,7 +26,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         ParameterBag $requestAttributes,
         ResponseCacheConfigurator $configurator,
         ResponseTagger $dispatcherTagger
-    ) {
+    ): void {
         $request->attributes = $requestAttributes;
 
         $this->beConstructedWith($configurator, $dispatcherTagger);
@@ -39,7 +39,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         ResponseCacheConfigurator $configurator,
         ParameterBag $requestAttributes,
         View $nonCachableView
-    ) {
+    ): void {
         $requestAttributes->get('view')->willReturn($nonCachableView);
 
         $event = new ResponseEvent(
@@ -61,7 +61,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         ResponseCacheConfigurator $configurator,
         CachableView $view,
         ParameterBag $requestAttributes
-    ) {
+    ): void {
         $requestAttributes->get('view')->willReturn($view);
         $view->isCacheEnabled()->willReturn(false);
 
@@ -85,7 +85,7 @@ class HttpCacheResponseSubscriberSpec extends ObjectBehavior
         CachableView $view,
         ParameterBag $requestAttributes,
         ResponseTagger $dispatcherTagger
-    ) {
+    ): void {
         $requestAttributes->get('view')->willReturn($view);
         $view->isCacheEnabled()->willReturn(true);
 

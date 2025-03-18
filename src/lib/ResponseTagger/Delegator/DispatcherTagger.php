@@ -17,14 +17,14 @@ class DispatcherTagger implements ResponseTagger
     /**
      * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
      */
-    private $taggers = [];
+    private array $taggers;
 
     public function __construct(array $taggers = [])
     {
         $this->taggers = $taggers;
     }
 
-    public function tag($value)
+    public function tag($value): void
     {
         foreach ($this->taggers as $tagger) {
             $tagger->tag($value);

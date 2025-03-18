@@ -13,10 +13,7 @@ use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 
 class LocationValueViewTagger implements ResponseTagger
 {
-    /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
-     */
-    private $locationTagger;
+    private ResponseTagger $locationTagger;
 
     public function __construct(ResponseTagger $locationTagger)
     {

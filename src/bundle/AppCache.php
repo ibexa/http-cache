@@ -32,7 +32,7 @@ class AppCache extends HttpCache implements CacheInvalidation
         handle as protected baseHandle;
     }
 
-    public function __construct(KernelInterface $kernel, $cacheDir = null)
+    public function __construct(KernelInterface $kernel, string|StoreInterface|null $cacheDir = null)
     {
         parent::__construct($kernel, $cacheDir);
         $this->addSubscriber(new UserContextListener(['session_name_prefix' => 'IBX_SESSION_ID']));
@@ -40,7 +40,7 @@ class AppCache extends HttpCache implements CacheInvalidation
         $this->addSubscriber(new PurgeListener(['client_ips' => $this->getInternalAllowedIPs()]));
     }
 
-    public function fetch(Request $request, $catch = false): Response
+    public function fetch(Request $request, bool $catch = false): Response
     {
         return parent::fetch($request, $catch);
     }

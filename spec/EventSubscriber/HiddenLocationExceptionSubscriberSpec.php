@@ -23,7 +23,7 @@ class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
     public function let(
         LocationTagger $locationTagger,
         ContentInfoTagger $contentInfoTagger
-    ) {
+    ): void {
         $this->beConstructedWith($locationTagger, $contentInfoTagger);
     }
 
@@ -35,7 +35,7 @@ class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
         Location $location,
         ContentInfo $contentInfo,
         HiddenLocationException $exception
-    ) {
+    ): void {
         $exception->getLocation()->willReturn($location);
         $location->getContentInfo()->willReturn($contentInfo);
         $locationTagger->tag($location)->willReturn($locationTagger);
@@ -61,7 +61,7 @@ class HiddenLocationExceptionSubscriberSpec extends ObjectBehavior
         LocationTagger $locationTagger,
         ContentInfoTagger $contentInfoTagger,
         \Exception $exception
-    ) {
+    ): void {
         $event = new ExceptionEvent(
             $kernel->getWrappedObject(),
             $request->getWrappedObject(),

@@ -26,13 +26,11 @@ use Ibexa\Contracts\Core\Repository\UserService;
 class RoleIdentify implements ContextProvider
 {
     /** @var \Ibexa\Core\Repository\Repository */
-    protected $repository;
+    protected Repository $repository;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
-    private $permissionResolver;
+    private PermissionResolver $permissionResolver;
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
     public function __construct(
         Repository $repository,
@@ -44,7 +42,7 @@ class RoleIdentify implements ContextProvider
         $this->userService = $userService;
     }
 
-    public function updateUserContext(UserContext $context)
+    public function updateUserContext(UserContext $context): void
     {
         $user = $this->userService->loadUser(
             $this->permissionResolver->getCurrentUserReference()->getUserId()
@@ -52,7 +50,7 @@ class RoleIdentify implements ContextProvider
 
         /** @var \Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment[] $roleAssignments */
         $roleAssignments = $this->repository->sudo(
-            static function (Repository $repository) use ($user) {
+            static function (Repository $repository) use ($user): iterable {
                 return $repository->getRoleService()->getRoleAssignmentsForUser($user, true);
             }
         );

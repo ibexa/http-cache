@@ -14,17 +14,14 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 class HttpCacheConfigParser implements ParserInterface
 {
-    /**
-     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    private $httpCacheExtension;
+    private ExtensionInterface $httpCacheExtension;
 
     public function __construct(ExtensionInterface $httpCacheExtension)
     {
         $this->httpCacheExtension = $httpCacheExtension;
     }
 
-    public function addSemanticConfig(NodeBuilder $nodeBuilder)
+    public function addSemanticConfig(NodeBuilder $nodeBuilder): void
     {
         $subBuilder = $nodeBuilder
             ->arrayNode('http_cache')
@@ -48,7 +45,7 @@ class HttpCacheConfigParser implements ParserInterface
         $nodeBuilder->end()->end();
     }
 
-    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer)
+    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
     {
         if (!isset($scopeSettings['http_cache'])) {
             return;
@@ -67,7 +64,7 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function preMap(array $config, ContextualizerInterface $contextualizer)
+    public function preMap(array $config, ContextualizerInterface $contextualizer): void
     {
         if (!isset($config['http_cache'])) {
             return;
@@ -78,7 +75,7 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function postMap(array $config, ContextualizerInterface $contextualizer)
+    public function postMap(array $config, ContextualizerInterface $contextualizer): void
     {
         if (!isset($config['http_cache'])) {
             return;

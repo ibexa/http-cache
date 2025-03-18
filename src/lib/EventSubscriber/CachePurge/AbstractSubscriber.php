@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
+use Ibexa\Contracts\Core\Persistence\URL\Handler;
 use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
@@ -19,14 +20,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 abstract class AbstractSubscriber implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
-    protected $purgeClient;
+    protected PurgeClientInterface $purgeClient;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler */
-    private $locationHandler;
+    private LocationHandler $locationHandler;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\URL\Handler */
-    private $urlHandler;
+    private Handler $urlHandler;
 
     public function __construct(
         PurgeClientInterface $purgeClient,
