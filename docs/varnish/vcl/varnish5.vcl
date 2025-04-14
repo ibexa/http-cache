@@ -18,7 +18,7 @@ include "parameters.vcl";
 sub vcl_recv {
 
     // Set the backend
-    set req.backend_hint = ezplatform;
+    set req.backend_hint = ibexa;
 
     // Add a Surrogate-Capability header to announce ESI support.
     set req.http.Surrogate-Capability = "abc=ESI/1.0";
