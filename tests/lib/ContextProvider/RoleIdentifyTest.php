@@ -26,15 +26,9 @@ use PHPUnit\Framework\TestCase;
  */
 class RoleIdentifyTest extends TestCase
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Repository|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private MockObject $repositoryMock;
+    private Repository & MockObject $repositoryMock;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\RoleService|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private MockObject $roleServiceMock;
+    private RoleService & MockObject $roleServiceMock;
 
     protected function setUp(): void
     {
@@ -147,7 +141,7 @@ class RoleIdentifyTest extends TestCase
         );
     }
 
-    private function generateRoleAssignmentMock(array $properties = []): MockObject
+    private function generateRoleAssignmentMock(array $properties = []): UserRoleAssignment & MockObject
     {
         return $this
             ->getMockBuilder(UserRoleAssignment::class)
@@ -155,7 +149,7 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateRoleMock(array $properties = []): MockObject
+    private function generateRoleMock(array $properties = []): Role & MockObject
     {
         return $this
             ->getMockBuilder(Role::class)
@@ -163,7 +157,7 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateLimitationMock(array $properties = []): MockObject
+    private function generateLimitationMock(array $properties = []): RoleLimitation & MockObject
     {
         $limitationMock = $this
             ->getMockBuilder(RoleLimitation::class)
@@ -177,7 +171,7 @@ class RoleIdentifyTest extends TestCase
         return $limitationMock;
     }
 
-    protected function getPermissionResolverMock(): MockObject
+    protected function getPermissionResolverMock(): PermissionResolver & MockObject
     {
         return $this
             ->getMockBuilder(PermissionResolver::class)
@@ -186,7 +180,7 @@ class RoleIdentifyTest extends TestCase
             ->getMock();
     }
 
-    protected function getUserServiceMock(): MockObject
+    protected function getUserServiceMock(): UserService & MockObject
     {
         return $this
             ->getMockBuilder(UserService::class)

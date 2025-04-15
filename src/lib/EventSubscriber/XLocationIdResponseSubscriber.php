@@ -10,6 +10,7 @@ namespace Ibexa\HttpCache\EventSubscriber;
 use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -60,7 +61,7 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
             $id = trim($id);
             try {
                 /** @var $location \Ibexa\Contracts\Core\Repository\Values\Content\Location */
-                $location = $this->repository->sudo(static function (Repository $repository) use ($id): \Ibexa\Contracts\Core\Repository\Values\Content\Location {
+                $location = $this->repository->sudo(static function (Repository $repository) use ($id): Location {
                     return $repository->getLocationService()->loadLocation($id);
                 });
 

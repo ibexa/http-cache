@@ -15,19 +15,10 @@ use PHPUnit\Framework\TestCase;
 
 class RepositoryPrefixDecoratorTest extends TestCase
 {
-    /**
-     * @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface
-     */
-    private MockObject $purgeClientMock;
+    private PurgeClientInterface & MockObject $purgeClientMock;
 
-    /**
-     * @var \Ibexa\HttpCache\RepositoryTagPrefix
-     */
-    private MockObject $tagPrefixMock;
+    private RepositoryTagPrefix & MockObject $tagPrefixMock;
 
-    /**
-     * @var \Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
-     */
     private RepositoryPrefixDecorator $prefixDecorator;
 
     protected function setUp(): void

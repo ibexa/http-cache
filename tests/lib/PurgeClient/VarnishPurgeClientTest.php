@@ -16,10 +16,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VarnishPurgeClientTest extends TestCase
 {
-    /** @var \FOS\HttpCacheBundle\CacheManager */
-    private MockObject $cacheManager;
+    private CacheManager & MockObject $cacheManager;
 
-    /** @var \Ibexa\HttpCache\PurgeClient\VarnishPurgeClient */
     private VarnishPurgeClient $purgeClient;
 
     protected function setUp(): void
