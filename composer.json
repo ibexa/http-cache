@@ -33,6 +33,8 @@
         "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "dev-ibx-8471-symfony-7 as 5.0.x-dev",
         "ibexa/rector": "dev-ibx-8471-symfony-7 as 5.0.x-dev",
+        "ibexa/templated-uri-bundle": "dev-ibx-8471-symfony-7 as 4.0.x-dev",
+        "ibexa/templated-uri-router": "dev-ibx-8471-symfony-7 as 4.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^5.0",
         "phpspec/phpspec": "^7.1",
         "phpunit/phpunit": "^9.6",
