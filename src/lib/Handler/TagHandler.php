@@ -55,7 +55,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
         $this->addTags(['ez-all']);
     }
 
-    public function tagSymfonyResponse(Response $response, $replace = false)
+    public function tagSymfonyResponse(Response $response, bool $replace = false): static
     {
         $tags = [];
         if (!$replace && $response->headers->has($this->getTagsHeaderName())) {
