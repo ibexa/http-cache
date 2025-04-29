@@ -16,8 +16,7 @@ use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
  */
 class LocalPurgeClient implements PurgeClientInterface
 {
-    /** @var \Toflar\Psr6HttpCacheStore\Psr6StoreInterface */
-    protected $cacheStore;
+    protected Psr6StoreInterface $cacheStore;
 
     public function __construct(Psr6StoreInterface $cacheStore)
     {

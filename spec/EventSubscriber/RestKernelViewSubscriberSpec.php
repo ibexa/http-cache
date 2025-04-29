@@ -31,7 +31,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         Request $request,
         ParameterBag $attributes,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $request->attributes = $attributes;
 
         $this->beConstructedWith($tagHandler);
@@ -42,7 +42,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ParameterBag $attributes
-    ) {
+    ): void {
         $request->isMethodCacheable()->willReturn(false);
         $attributes->get(new AnyValueToken())->shouldNotBeCalled();
 
@@ -61,7 +61,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ParameterBag $attributes
-    ) {
+    ): void {
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(false);
 
@@ -84,7 +84,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ParameterBag $attributes,
         Section $restValue,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $restValue->beConstructedWith([['id' => 5]]);
 
         $request->isMethodCacheable()->willReturn(true);
@@ -112,7 +112,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ParameterBag $attributes,
         ContentType $restValue,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $restValue->beConstructedWith([['status' => ContentType::STATUS_DRAFT]]);
 
         $request->isMethodCacheable()->willReturn(true);
@@ -136,7 +136,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ParameterBag $attributes,
         ContentType $restValue,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $restValue->beConstructedWith([['id' => 4, 'status' => ContentType::STATUS_DEFINED]]);
 
         $request->isMethodCacheable()->willReturn(true);
@@ -164,7 +164,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         RestContentType $restValue,
         ContentType $contentType,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentType->beConstructedWith([['status' => ContentType::STATUS_DRAFT]]);
         $restValue->contentType = $contentType;
 
@@ -190,7 +190,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         RestContentType $restValue,
         ContentType $contentType,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentType->beConstructedWith([['id' => 4, 'status' => ContentType::STATUS_DEFINED]]);
         $restValue->contentType = $contentType;
 
@@ -220,7 +220,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ContentType $contentType,
         ContentTypeGroup $contentTypeGroup,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentType->beConstructedWith([['status' => ContentType::STATUS_DRAFT]]);
         $restValue->contentType = $contentType;
         $restValue->contentTypeGroups = [$contentTypeGroup];
@@ -248,7 +248,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ContentType $contentType,
         ContentTypeGroup $contentTypeGroup,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentType->beConstructedWith([['id' => 4, 'status' => ContentType::STATUS_DEFINED]]);
         $restValue->contentType = $contentType;
 
@@ -280,7 +280,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         ContentTypeGroupList $restValue,
         ContentTypeGroup $contentTypeGroup,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentTypeGroup->beConstructedWith([['id' => 2]]);
         $restValue->contentTypeGroups = [$contentTypeGroup];
 
@@ -310,7 +310,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         VersionInfo $versionInfo,
         ContentInfo $contentInfo,
         ResponseTagger $tagHandler
-    ) {
+    ): void {
         $contentInfo->beConstructedWith([['id' => 33]]);
         $versionInfo->beConstructedWith([['contentInfo' => $contentInfo]]);
         $restValue->versions = [$versionInfo];

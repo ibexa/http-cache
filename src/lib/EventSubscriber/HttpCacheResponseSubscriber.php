@@ -19,15 +19,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class HttpCacheResponseSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
-     */
-    private $dispatcherTagger;
+    private ResponseTagger $dispatcherTagger;
 
-    /**
-     * @var \Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator
-     */
-    private $responseConfigurator;
+    private ResponseCacheConfigurator $responseConfigurator;
 
     public function __construct(ResponseCacheConfigurator $responseConfigurator, ResponseTagger $dispatcherTagger)
     {
@@ -40,7 +34,7 @@ class HttpCacheResponseSubscriber implements EventSubscriberInterface
         return [KernelEvents::RESPONSE => ['configureCache', 10]];
     }
 
-    public function configureCache(ResponseEvent $event)
+    public function configureCache(ResponseEvent $event): void
     {
         $view = $event->getRequest()->attributes->get('view');
         if (!$view instanceof CachableView || !$view->isCacheEnabled()) {

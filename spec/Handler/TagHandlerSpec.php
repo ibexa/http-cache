@@ -1,13 +1,15 @@
 <?php
+
 /**
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace spec\Ibexa\HttpCache\Handler;
 
-use Ibexa\HttpCache\RepositoryTagPrefix;
 use FOS\HttpCache\TagHeaderFormatter\CommaSeparatedTagHeaderFormatter;
 use FOS\HttpCacheBundle\CacheManager;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
@@ -22,7 +24,7 @@ class TagHandlerSpec extends ObjectBehavior
         ResponseHeaderBag $responseHeaderBag,
         RepositoryTagPrefix $tagPrefix,
         LoggerInterface $logger
-    ) {
+    ): void {
         $response->headers = $responseHeaderBag;
         $cacheManager->supports(CacheManager::INVALIDATE)->willReturn(true);
 
@@ -36,7 +38,7 @@ class TagHandlerSpec extends ObjectBehavior
         $tagPrefix->getRepositoryPrefix()->willReturn('');
     }
 
-    public function it_only_tags_ez_all_when_no_tags(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_only_tags_ez_all_when_no_tags(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->has('xkey')->willReturn(false);
         $responseHeaderBag->set('xkey', Argument::exact('ez-all'))->shouldBeCalled();
@@ -44,7 +46,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, false);
     }
 
-    public function it_only_tags_ez_all_when_no_tags_also_on_replace(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_only_tags_ez_all_when_no_tags_also_on_replace(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->has('xkey')->shouldNotBeCalled();
         $responseHeaderBag->set('xkey', Argument::exact('ez-all'))->shouldBeCalled();
@@ -52,7 +54,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, true);
     }
 
-    public function it_tags_with_existing_header_string(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_tags_with_existing_header_string(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->has('xkey')->willReturn(true);
         $responseHeaderBag->all('xkey')->willReturn(['tag1,tag2 tag3']);
@@ -61,7 +63,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response);
     }
 
-    public function it_tags_with_existing_header_array(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_tags_with_existing_header_array(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->has('xkey')->willReturn(true);
         $responseHeaderBag->all('xkey')->willReturn(['tag1', 'tag2', 'tag3']);
@@ -70,7 +72,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response);
     }
 
-    public function it_tags_with_existing_header_mixed(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_tags_with_existing_header_mixed(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->has('xkey')->willReturn(true);
         $responseHeaderBag->all('xkey')->willReturn(['tag1', 'tag2,tag3']);
@@ -79,7 +81,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response);
     }
 
-    public function it_tags_all_tags_we_add(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_tags_all_tags_we_add(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $responseHeaderBag->set('xkey', Argument::exact('ez-all l4 c4 p2'))->shouldBeCalled();
 
@@ -88,7 +90,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, true);
     }
 
-    public function it_tags_all_tags_we_add_and_prefix_with_repo_id(Response $response, ResponseHeaderBag $responseHeaderBag, RepositoryTagPrefix $tagPrefix)
+    public function it_tags_all_tags_we_add_and_prefix_with_repo_id(Response $response, ResponseHeaderBag $responseHeaderBag, RepositoryTagPrefix $tagPrefix): void
     {
         $tagPrefix->getRepositoryPrefix()->willReturn('0');
         $responseHeaderBag->set('xkey', Argument::exact('ez-all 0ez-all 0l4 0c4 0p2'))->shouldBeCalled();
@@ -98,7 +100,7 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, true);
     }
 
-    public function it_tags_all_tags_we_add_and_prefix_with_repo_id_also_with_existing_header(Response $response, ResponseHeaderBag $responseHeaderBag, RepositoryTagPrefix $tagPrefix)
+    public function it_tags_all_tags_we_add_and_prefix_with_repo_id_also_with_existing_header(Response $response, ResponseHeaderBag $responseHeaderBag, RepositoryTagPrefix $tagPrefix): void
     {
         $tagPrefix->getRepositoryPrefix()->willReturn('2');
         $responseHeaderBag->has('xkey')->willReturn(true);
@@ -110,14 +112,14 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, false);
     }
 
-    public function it_ignores_too_long_tag_header(Response $response, ResponseHeaderBag $responseHeaderBag, LoggerInterface $logger)
+    public function it_ignores_too_long_tag_header(Response $response, ResponseHeaderBag $responseHeaderBag, LoggerInterface $logger): void
     {
         $underLimitTags = 'ez-all';
         $length = 6;
         while(true) {
             $tag = ' c' . $length;
             $tagLength = strlen($tag);
-            if ($length + $tagLength  > 1000) {
+            if ($length + $tagLength > 1000) {
                 break; // too long if we add more
             }
             $underLimitTags .= $tag;
@@ -133,14 +135,14 @@ class TagHandlerSpec extends ObjectBehavior
         $this->tagSymfonyResponse($response, true);
     }
 
-    public function it_ignores_too_long_tag_header_and_reduces_ttl(Response $response, ResponseHeaderBag $responseHeaderBag)
+    public function it_ignores_too_long_tag_header_and_reduces_ttl(Response $response, ResponseHeaderBag $responseHeaderBag): void
     {
         $underLimitTags = 'ez-all';
         $length = 6;
         while(true) {
             $tag = ' c' . $length;
             $tagLength = strlen($tag);
-            if ($length + $tagLength  > 1000) {
+            if ($length + $tagLength > 1000) {
                 break; // too long if we add more
             }
             $underLimitTags .= $tag;

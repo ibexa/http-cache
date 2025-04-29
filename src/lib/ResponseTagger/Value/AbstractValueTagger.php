@@ -12,8 +12,7 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
 abstract class AbstractValueTagger implements ResponseTagger
 {
-    /** @var \FOS\HttpCache\ResponseTagger */
-    protected $responseTagger;
+    protected FosResponseTagger $responseTagger;
 
     public function __construct(FosResponseTagger $responseTagger)
     {

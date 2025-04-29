@@ -16,15 +16,14 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ConfigurableResponseCacheConfigurator implements ResponseCacheConfigurator
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
     {
         $this->configResolver = $configResolver;
     }
 
-    public function enableCache(Response $response)
+    public function enableCache(Response $response): static
     {
         if ($this->isViewCachedEnabled()) {
             $response->setPublic();
@@ -33,7 +32,7 @@ class ConfigurableResponseCacheConfigurator implements ResponseCacheConfigurator
         return $this;
     }
 
-    public function setSharedMaxAge(Response $response)
+    public function setSharedMaxAge(Response $response): static
     {
         if ($this->isViewCachedEnabled() && $this->isTTLCacheEnabled() && !$response->headers->hasCacheControlDirective('s-maxage')) {
             $response->setSharedMaxAge($this->getDefaultTTL());

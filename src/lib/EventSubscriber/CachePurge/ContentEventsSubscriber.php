@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
+use Ibexa\Contracts\Core\Persistence\Content\Handler;
 use Ibexa\Contracts\Core\Persistence\Content\Handler as ContentHandler;
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
 use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
@@ -28,11 +29,9 @@ use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 
 final class ContentEventsSubscriber extends AbstractSubscriber
 {
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler */
-    private $contentHandler;
+    private Handler $contentHandler;
 
-    /** @var bool */
-    private $isTranslationAware;
+    private bool $isTranslationAware;
 
     public function __construct(
         PurgeClientInterface $purgeClient,

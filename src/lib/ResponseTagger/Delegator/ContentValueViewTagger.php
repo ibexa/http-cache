@@ -13,10 +13,7 @@ use Ibexa\Core\MVC\Symfony\View\ContentValueView;
 
 class ContentValueViewTagger implements ResponseTagger
 {
-    /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
-     */
-    private $contentInfoTagger;
+    private ResponseTagger $contentInfoTagger;
 
     public function __construct(ResponseTagger $contentInfoTagger)
     {

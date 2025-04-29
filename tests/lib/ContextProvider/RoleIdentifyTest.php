@@ -18,6 +18,7 @@ use Ibexa\Core\Repository\Permission\PermissionResolver;
 use Ibexa\Core\Repository\Repository;
 use Ibexa\Core\Repository\Values\User\UserRoleAssignment;
 use Ibexa\HttpCache\ContextProvider\RoleIdentify;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,15 +26,9 @@ use PHPUnit\Framework\TestCase;
  */
 class RoleIdentifyTest extends TestCase
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Repository|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $repositoryMock;
+    private Repository & MockObject $repositoryMock;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\RoleService|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private $roleServiceMock;
+    private RoleService & MockObject $roleServiceMock;
 
     protected function setUp(): void
     {
@@ -52,7 +47,7 @@ class RoleIdentifyTest extends TestCase
             ->willReturn($this->roleServiceMock);
     }
 
-    public function testSetIdentity()
+    public function testSetIdentity(): void
     {
         $user = $this->createMock(APIUser::class);
         $userReference = $this->createMock(UserReference::class);
@@ -146,7 +141,7 @@ class RoleIdentifyTest extends TestCase
         );
     }
 
-    private function generateRoleAssignmentMock(array $properties = [])
+    private function generateRoleAssignmentMock(array $properties = []): UserRoleAssignment & MockObject
     {
         return $this
             ->getMockBuilder(UserRoleAssignment::class)
@@ -154,7 +149,7 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateRoleMock(array $properties = [])
+    private function generateRoleMock(array $properties = []): Role & MockObject
     {
         return $this
             ->getMockBuilder(Role::class)
@@ -162,7 +157,7 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateLimitationMock(array $properties = [])
+    private function generateLimitationMock(array $properties = []): RoleLimitation & MockObject
     {
         $limitationMock = $this
             ->getMockBuilder(RoleLimitation::class)
@@ -176,7 +171,7 @@ class RoleIdentifyTest extends TestCase
         return $limitationMock;
     }
 
-    protected function getPermissionResolverMock()
+    protected function getPermissionResolverMock(): PermissionResolver & MockObject
     {
         return $this
             ->getMockBuilder(PermissionResolver::class)
@@ -185,7 +180,7 @@ class RoleIdentifyTest extends TestCase
             ->getMock();
     }
 
-    protected function getUserServiceMock()
+    protected function getUserServiceMock(): UserService & MockObject
     {
         return $this
             ->getMockBuilder(UserService::class)

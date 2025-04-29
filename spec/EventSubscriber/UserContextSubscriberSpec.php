@@ -24,13 +24,13 @@ class UserContextSubscriberSpec extends ObjectBehavior
         RepositoryTagPrefix $prefixService,
         Response $response,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $response->headers = $responseHeaders;
 
         $this->beConstructedWith($prefixService, 'xkey');
     }
 
-    public function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(UserContextSubscriber::class);
     }
@@ -40,7 +40,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $response->getTtl()->shouldNotBecalled();
         $response->isCacheable()->willReturn(false);
 
@@ -62,7 +62,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $response->isCacheable()->willReturn(true);
         $responseHeaders->get(Argument::exact('Content-Type'))->willReturn('text/html');
 
@@ -84,7 +84,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         Request $request,
         Response $response,
         ResponseHeaderBag $responseHeaders
-    ) {
+    ): void {
         $response->isCacheable()->willReturn(true);
         $responseHeaders->get(Argument::exact('Content-Type'))->willReturn('application/vnd.fos.user-context-hash');
         $response->getTtl()->willReturn(0);
@@ -107,7 +107,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         Response $response,
         ResponseHeaderBag $responseHeaders,
         RepositoryTagPrefix $prefixService
-    ) {
+    ): void {
         $response->isCacheable()->willReturn(true);
         $responseHeaders->get(Argument::exact('Content-Type'))->willReturn('application/vnd.fos.user-context-hash');
         $response->getTtl()->willReturn(100);
@@ -131,7 +131,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         Response $response,
         ResponseHeaderBag $responseHeaders,
         RepositoryTagPrefix $prefixService
-    ) {
+    ): void {
         $response->isCacheable()->willReturn(true);
         $responseHeaders->get(Argument::exact('Content-Type'))->willReturn('application/vnd.fos.user-context-hash');
         $response->getTtl()->willReturn(100);

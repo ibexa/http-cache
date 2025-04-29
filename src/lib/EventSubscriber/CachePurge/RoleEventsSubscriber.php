@@ -28,7 +28,7 @@ final class RoleEventsSubscriber extends AbstractSubscriber
         ];
     }
 
-    public function clearUserContextHashCache(Event $event)
+    public function clearUserContextHashCache(Event $event): void
     {
         $this->purgeClient->purge([
             'ez-user-context-hash',

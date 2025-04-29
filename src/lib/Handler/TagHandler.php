@@ -23,11 +23,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
 {
-    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
-    private $prefixService;
+    private RepositoryTagPrefix $prefixService;
 
-    /** @var \Psr\Log\LoggerInterface */
-    private $logger;
+    private LoggerInterface $logger;
 
     /** @var int|null */
     private $tagsHeaderMaxLength;
@@ -76,7 +74,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
             $repoPrefix = $this->prefixService->getRepositoryPrefix();
             if ($repoPrefix !== '') {
                 $tags = array_map(
-                    static function ($tag) use ($repoPrefix) {
+                    static function (string $tag) use ($repoPrefix): string {
                         return $repoPrefix . $tag;
                     },
                     $tags
@@ -124,9 +122,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addContentTags(array $contentIds)
+    public function addContentTags(array $contentIds): void
     {
-        $this->addTags(array_map(static function ($contentId) {
+        $this->addTags(array_map(static function (string $contentId): string {
             return ContentTagInterface::CONTENT_PREFIX . $contentId;
         }, $contentIds));
     }
@@ -134,9 +132,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addLocationTags(array $locationIds)
+    public function addLocationTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function ($locationId) {
+        $this->addTags(array_map(static function (string $locationId): string {
             return ContentTagInterface::LOCATION_PREFIX . $locationId;
         }, $locationIds));
     }
@@ -144,9 +142,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addParentLocationTags(array $parentLocationIds)
+    public function addParentLocationTags(array $parentLocationIds): void
     {
-        $this->addTags(array_map(static function ($parentLocationId) {
+        $this->addTags(array_map(static function (string $parentLocationId): string {
             return ContentTagInterface::PARENT_LOCATION_PREFIX . $parentLocationId;
         }, $parentLocationIds));
     }
@@ -154,9 +152,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addPathTags(array $locationIds)
+    public function addPathTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function ($locationId) {
+        $this->addTags(array_map(static function (string $locationId): string {
             return ContentTagInterface::PATH_PREFIX . $locationId;
         }, $locationIds));
     }
@@ -164,9 +162,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addRelationTags(array $contentIds)
+    public function addRelationTags(array $contentIds): void
     {
-        $this->addTags(array_map(static function ($contentId) {
+        $this->addTags(array_map(static function (string $contentId): string {
             return ContentTagInterface::RELATION_PREFIX . $contentId;
         }, $contentIds));
     }
@@ -174,9 +172,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addRelationLocationTags(array $locationIds)
+    public function addRelationLocationTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function ($locationId) {
+        $this->addTags(array_map(static function (string $locationId): string {
             return ContentTagInterface::RELATION_LOCATION_PREFIX . $locationId;
         }, $locationIds));
     }
@@ -184,9 +182,9 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
     /**
      * {@inheritdoc}
      */
-    public function addContentTypeTags(array $contentTypeIds)
+    public function addContentTypeTags(array $contentTypeIds): void
     {
-        $this->addTags(array_map(static function ($contentTypeId) {
+        $this->addTags(array_map(static function (string $contentTypeId): string {
             return ContentTagInterface::CONTENT_TYPE_PREFIX . $contentTypeId;
         }, $contentTypeIds));
     }

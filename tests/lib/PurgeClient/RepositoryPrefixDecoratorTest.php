@@ -10,24 +10,16 @@ namespace Ibexa\Tests\HttpCache\PurgeClient;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 use Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator;
 use Ibexa\HttpCache\RepositoryTagPrefix;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class RepositoryPrefixDecoratorTest extends TestCase
 {
-    /**
-     * @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface
-     */
-    private $purgeClientMock;
+    private PurgeClientInterface & MockObject $purgeClientMock;
 
-    /**
-     * @var \Ibexa\HttpCache\RepositoryTagPrefix
-     */
-    private $tagPrefixMock;
+    private RepositoryTagPrefix & MockObject $tagPrefixMock;
 
-    /**
-     * @var \Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
-     */
-    private $prefixDecorator;
+    private RepositoryPrefixDecorator $prefixDecorator;
 
     protected function setUp(): void
     {
@@ -45,7 +37,7 @@ class RepositoryPrefixDecoratorTest extends TestCase
         parent::tearDown();
     }
 
-    public function testPurge()
+    public function testPurge(): void
     {
         $this->purgeClientMock
             ->expects(self::once())
@@ -60,7 +52,7 @@ class RepositoryPrefixDecoratorTest extends TestCase
         $this->prefixDecorator->purge(['l123', 'c44', 'ez-all']);
     }
 
-    public function testPurgeWithPrefix()
+    public function testPurgeWithPrefix(): void
     {
         $this->purgeClientMock
             ->expects(self::once())
@@ -75,7 +67,7 @@ class RepositoryPrefixDecoratorTest extends TestCase
         $this->prefixDecorator->purge(['l123', 'c44', 'ez-all']);
     }
 
-    public function testPurgeAll()
+    public function testPurgeAll(): void
     {
         $this->purgeClientMock
             ->expects(self::once())
