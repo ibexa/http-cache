@@ -124,7 +124,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addContentTags(array $contentIds): void
     {
-        $this->addTags(array_map(static function (string $contentId): string {
+        $this->addTags(array_map(static function (string|int $contentId): string {
             return ContentTagInterface::CONTENT_PREFIX . $contentId;
         }, $contentIds));
     }
@@ -134,9 +134,11 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addLocationTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function (string $locationId): string {
+        $tags = array_map(static function (string|int|null $locationId): string {
             return ContentTagInterface::LOCATION_PREFIX . $locationId;
-        }, $locationIds));
+        }, $locationIds);
+
+        $this->addTags($tags);
     }
 
     /**
@@ -144,7 +146,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addParentLocationTags(array $parentLocationIds): void
     {
-        $this->addTags(array_map(static function (string $parentLocationId): string {
+        $this->addTags(array_map(static function (string|int $parentLocationId): string {
             return ContentTagInterface::PARENT_LOCATION_PREFIX . $parentLocationId;
         }, $parentLocationIds));
     }
@@ -154,7 +156,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addPathTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function (string $locationId): string {
+        $this->addTags(array_map(static function (string|int $locationId): string {
             return ContentTagInterface::PATH_PREFIX . $locationId;
         }, $locationIds));
     }
@@ -164,7 +166,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addRelationTags(array $contentIds): void
     {
-        $this->addTags(array_map(static function (string $contentId): string {
+        $this->addTags(array_map(static function (string|int $contentId): string {
             return ContentTagInterface::RELATION_PREFIX . $contentId;
         }, $contentIds));
     }
@@ -174,7 +176,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addRelationLocationTags(array $locationIds): void
     {
-        $this->addTags(array_map(static function (string $locationId): string {
+        $this->addTags(array_map(static function (string|int $locationId): string {
             return ContentTagInterface::RELATION_LOCATION_PREFIX . $locationId;
         }, $locationIds));
     }
@@ -184,7 +186,7 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
      */
     public function addContentTypeTags(array $contentTypeIds): void
     {
-        $this->addTags(array_map(static function (string $contentTypeId): string {
+        $this->addTags(array_map(static function (string|int $contentTypeId): string {
             return ContentTagInterface::CONTENT_TYPE_PREFIX . $contentTypeId;
         }, $contentTypeIds));
     }
