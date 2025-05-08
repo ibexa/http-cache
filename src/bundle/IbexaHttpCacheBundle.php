@@ -54,6 +54,8 @@ class IbexaHttpCacheBundle extends Bundle
         if ($this->extension) {
             return $this->extension;
         }
+
+        return null;
     }
 
     public function registerConfigParser(ContainerBuilder $container): void
