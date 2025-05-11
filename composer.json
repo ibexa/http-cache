@@ -35,6 +35,9 @@
         "phpunit/phpunit": "^8.5",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^7.1",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
         "ibexa/code-style": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "symfony/phpunit-bridge": "^5.1"
@@ -59,6 +62,7 @@
         "unit": "phpunit -c phpunit.xml",
         "spec": "phpspec run --format=pretty",
         "check-cs": "@fix-cs --dry-run",
+        "phpstan": "phpstan analyse",
         "test": [
             "@unit",
             "@spec"
