@@ -14,9 +14,9 @@ use FOS\HttpCache\ProxyClient\Invalidation\PurgeCapable;
 use FOS\HttpCache\ProxyClient\Invalidation\RefreshCapable;
 use FOS\HttpCache\ProxyClient\Invalidation\TagCapable;
 use FOS\HttpCache\ProxyClient\Varnish as FosVarnish;
-use Http\Message\RequestFactory;
 use Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriInterface;
 
 final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, RefreshCapable, TagCapable
@@ -27,7 +27,7 @@ final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, Refr
         ConfigResolverInterface $configResolver,
         Dispatcher $httpDispatcher,
         array $options = [],
-        ?RequestFactory $messageFactory = null
+        ?RequestFactoryInterface $messageFactory = null
     ) {
         parent::__construct($httpDispatcher, $options, $messageFactory);
         $this->configResolver = $configResolver;
@@ -59,6 +59,6 @@ final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, Refr
         bool $validateHost = true,
         $body = null
     ): void {
-        parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), $body);
+        parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), body: $body);
     }
 }

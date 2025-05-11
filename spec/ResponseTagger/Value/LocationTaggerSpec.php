@@ -19,6 +19,8 @@ class LocationTaggerSpec extends ObjectBehavior
     public function let(ResponseTagger $tagHandler): void
     {
         $this->beConstructedWith($tagHandler);
+
+        $tagHandler->addTags(Argument::any())->willReturn($tagHandler);
     }
 
     public function it_is_initializable(): void

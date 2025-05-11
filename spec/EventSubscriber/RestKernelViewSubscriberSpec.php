@@ -90,7 +90,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['s5'])->shouldBeCalled();
+        $tagHandler->addTags(['s5'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
@@ -142,7 +142,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['t4'])->shouldBeCalled();
+        $tagHandler->addTags(['t4'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
@@ -197,7 +197,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['t4'])->shouldBeCalled();
+        $tagHandler->addTags(['t4'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
@@ -258,7 +258,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['t4', 'tg2'])->shouldBeCalled();
+        $tagHandler->addTags(['t4', 'tg2'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
@@ -287,7 +287,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['tg2'])->shouldBeCalled();
+        $tagHandler->addTags(['tg2'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
@@ -318,7 +318,7 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
         $request->isMethodCacheable()->willReturn(true);
         $attributes->get('is_rest_request')->willReturn(true);
 
-        $tagHandler->addTags(['c33', 'cv33'])->shouldBeCalled();
+        $tagHandler->addTags(['c33', 'cv33'])->shouldBeCalled()->willReturn($tagHandler);
 
         $event = new ViewEvent(
             $kernel->getWrappedObject(),
