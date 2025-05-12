@@ -19,7 +19,7 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriInterface;
 
-final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, RefreshCapable, TagCapable
+final class Varnish extends FosVarnish
 {
     private ConfigResolverInterface $configResolver;
 
