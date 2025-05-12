@@ -11,12 +11,15 @@ use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 
 class ContentInfoTaggerSpec extends ObjectBehavior
 {
     public function let(ResponseTagger $tagHandler): void
     {
         $this->beConstructedWith($tagHandler);
+
+        $tagHandler->addTags(Argument::any())->willReturn($tagHandler);
     }
 
     public function it_is_initializable(): void

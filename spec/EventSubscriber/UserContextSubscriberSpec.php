@@ -111,7 +111,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $response->isCacheable()->willReturn(true);
         $responseHeaders->get(Argument::exact('Content-Type'))->willReturn('application/vnd.fos.user-context-hash');
         $response->getTtl()->willReturn(100);
-        $responseHeaders->set(Argument::exact('xkey'), Argument::exact('ez-user-context-hash'))->willReturn(null);
+        $responseHeaders->set(Argument::exact('xkey'), Argument::exact('ez-user-context-hash'));
 
         $prefixService->getRepositoryPrefix()->willReturn('');
 
@@ -137,7 +137,7 @@ class UserContextSubscriberSpec extends ObjectBehavior
         $response->getTtl()->willReturn(100);
 
         $prefixService->getRepositoryPrefix()->willReturn('1');
-        $responseHeaders->set(Argument::exact('xkey'), Argument::exact('1ez-user-context-hash'))->willReturn(null);
+        $responseHeaders->set(Argument::exact('xkey'), Argument::exact('1ez-user-context-hash'));
 
         $event = new ResponseEvent(
             $kernel->getWrappedObject(),

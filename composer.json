@@ -14,29 +14,30 @@
     ],
     "require": {
         "php": " >=8.3",
-        "friendsofsymfony/http-cache": "^2.9",
-        "friendsofsymfony/http-cache-bundle": "^2.8",
+        "friendsofsymfony/http-cache": "^3.1",
+        "ibexa/fos-http-cache-bundle": "^3.0",
         "ibexa/core": "~5.0.x-dev",
         "ibexa/rest": "~5.0.x-dev",
         "php-http/curl-client": "^2.1",
         "psr/http-client": "^1.0",
-        "symfony/config": "^6.4",
-        "symfony/dependency-injection": "^6.4",
-        "symfony/event-dispatcher": "^6.4",
-        "symfony/http-foundation": "^6.4",
-        "symfony/http-kernel": "^6.4",
-        "symfony/routing": "^6.4",
-        "symfony/yaml": "^6.4",
+        "symfony/config": "^7.2",
+        "symfony/dependency-injection": "^7.2",
+        "symfony/event-dispatcher": "^7.2",
+        "symfony/http-foundation": "^7.2",
+        "symfony/http-kernel": "^7.2",
+        "symfony/routing": "^7.2",
+        "symfony/yaml": "^7.2",
         "toflar/psr6-symfony-http-cache-store": "^4.2"
     },
     "require-dev": {
+        "guzzlehttp/psr7": "^2.7",
         "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "~5.0.x-dev",
         "ibexa/rector": "~5.0.x-dev",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "matthiasnoback/symfony-dependency-injection-test": "^5.0",
         "phpspec/phpspec": "^7.1",
         "phpunit/phpunit": "^9.6",
-        "symfony/phpunit-bridge": "^6.4"
+        "symfony/phpunit-bridge": "^7.2"
     },
     "autoload": {
         "psr-4": {

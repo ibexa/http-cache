@@ -72,7 +72,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
             ])
         );
 
-        $tagHandler->addTags([
+        $tags = [
             'l123',
             'pl2',
             'p1',
@@ -81,7 +81,9 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
             'c101',
             'ct3',
             'l120',
-        ])->shouldBecalled();
+        ];
+
+        $tagHandler->addTags($tags)->shouldBecalled()->willReturn($tagHandler);
         $responseHeaders->remove('X-Location-Id')->shouldBecalled();
 
         $event = new ResponseEvent(
@@ -109,7 +111,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
 
         $repository->sudo(new AnyValueToken())->willThrow(new NotFoundException('id', 123));
 
-        $tagHandler->addTags(['l123', 'p123'])->shouldBecalled();
+        $tagHandler->addTags(['l123', 'p123'])->shouldBecalled()->willReturn($tagHandler);
         $responseHeaders->remove('X-Location-Id')->shouldBecalled();
 
         $event = new ResponseEvent(
@@ -137,7 +139,7 @@ class XLocationIdResponseSubscriberSpec extends ObjectBehavior
 
         $repository->sudo(new AnyValueToken())->willThrow(new NotFoundException('id', 123));
 
-        $tagHandler->addTags(['l123', 'p123', 'l34', 'p34'])->shouldBeCalled();
+        $tagHandler->addTags(['l123', 'p123', 'l34', 'p34'])->shouldBeCalled()->willReturn($tagHandler);
         $responseHeaders->remove('X-Location-Id')->shouldBeCalled();
 
         $event = new ResponseEvent(
