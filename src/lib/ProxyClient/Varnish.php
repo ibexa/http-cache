@@ -9,10 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\HttpCache\ProxyClient;
 
 use FOS\HttpCache\ProxyClient\Dispatcher;
-use FOS\HttpCache\ProxyClient\Invalidation\BanCapable;
-use FOS\HttpCache\ProxyClient\Invalidation\PurgeCapable;
-use FOS\HttpCache\ProxyClient\Invalidation\RefreshCapable;
-use FOS\HttpCache\ProxyClient\Invalidation\TagCapable;
 use FOS\HttpCache\ProxyClient\Varnish as FosVarnish;
 use Ibexa\Bundle\HttpCache\Controller\InvalidateTokenController;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
@@ -59,6 +55,6 @@ final class Varnish extends FosVarnish
         bool $validateHost = true,
         $body = null
     ): void {
-        parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), body: $body);
+        parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), $validateHost, $body);
     }
 }
