@@ -1,0 +1,23 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/EventSubscriber/XLocationIdResponseSubscriber.php
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, list\<string\>\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+		-
+			message: '#^Parameter \#2 \.\.\.\$arrays of function array_merge expects array, list\<string\>\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#3 \$length of function substr expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php

@@ -2,7 +2,7 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
     - phpstan-baseline.neon
-
+    - ignore-by-php-version.neon.php
 
 parameters:
     level: 8
