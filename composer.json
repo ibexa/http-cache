@@ -36,6 +36,9 @@
         "ibexa/rector": "~5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^5.0",
         "phpspec/phpspec": "^7.1",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.6",
         "symfony/phpunit-bridge": "^7.2"
     },
@@ -57,6 +60,7 @@
         "unit": "phpunit -c phpunit.xml",
         "spec": "phpspec run --format=pretty",
         "check-cs": "@fix-cs --dry-run",
+        "phpstan": "phpstan analyse",
         "test": [
             "@unit",
             "@spec"

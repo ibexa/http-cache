@@ -1,0 +1,1171 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to an undefined method Exception\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentInfo\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Core\\MVC\\Exception\\HiddenLocationException\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\EventSubscriber\\HiddenLocationExceptionSubscriberSpec\:\:tagHiddenLocationExceptionResponse\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\EventSubscriber\\HiddenLocationExceptionSubscriberSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\HttpCache\\ResponseConfigurator\\ResponseCacheConfigurator\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\HttpCache\\ResponseConfigurator\\ResponseCacheConfigurator\:\:shouldNotBecalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\EventSubscriber\\HttpCacheResponseSubscriberSpec\:\:configureCache\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\EventSubscriber\\HttpCacheResponseSubscriberSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseConfigurator\\ResponseCacheConfigurator\:\:enableCache\(\) invoked with 0 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Parameter \#1 \$response of method Ibexa\\HttpCache\\ResponseConfigurator\\ResponseCacheConfigurator\:\:enableCache\(\) expects Symfony\\Component\\HttpFoundation\\Response, Prophecy\\Argument\\Token\\TypeToken given\.$#'
+			identifier: argument.type
+			count: 1
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Parameter \#1 \$response of method Ibexa\\HttpCache\\ResponseConfigurator\\ResponseCacheConfigurator\:\:setSharedMaxAge\(\) expects Symfony\\Component\\HttpFoundation\\Response, Prophecy\\Argument\\Token\\TypeToken given\.$#'
+			identifier: argument.type
+			count: 1
+			path: spec/EventSubscriber/HttpCacheResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldBeCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 6
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldNotBeCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType\:\:beConstructedWith\(\)\.$#'
+			identifier: method.notFound
+			count: 6
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentType\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentTypeGroup\:\:beConstructedWith\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentInfo\:\:beConstructedWith\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\:\:beConstructedWith\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Section\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Core\\Repository\\Values\\Content\\VersionInfo\:\:beConstructedWith\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Rest\\Server\\Values\\ContentTypeGroupList\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Rest\\Server\\Values\\ContentTypeGroupRefList\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Rest\\Server\\Values\\RestContentType\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Rest\\Server\\Values\\VersionList\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 11
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 11
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\EventSubscriber\\RestKernelViewSubscriberSpec\:\:tagUIRestResult\(\)\.$#'
+			identifier: method.notFound
+			count: 11
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\EventSubscriber\\RestKernelViewSubscriberSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Parameter \#1 \$tags of method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) expects array\<string\>, Prophecy\\Argument\\Token\\AnyValueToken given\.$#'
+			identifier: argument.type
+			count: 3
+			path: spec/EventSubscriber/RestKernelViewSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\EventSubscriber\\UserContextSubscriberSpec\:\:tagUserContext\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldNotBeCalled\(\) on null\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldNotBecalled\(\) on int\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldNotBecalled\(\) on string\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on int\|null\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on string\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on string\|null\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\EventSubscriber\\UserContextSubscriberSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Result of method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:set\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 3
+			path: spec/EventSubscriber/UserContextSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldBeCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldBecalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method PhpSpec\\Wrapper\\Subject\\Expectation\\DuringCall\:\:duringRewriteCacheHeader\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:getWrappedObject\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\EventSubscriber\\XLocationIdResponseSubscriberSpec\:\:rewriteCacheHeader\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldBeCalled\(\) on null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldBecalled\(\) on null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method shouldNotBecalled\(\) on null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on string\|null\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\EventSubscriber\\XLocationIdResponseSubscriberSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:set\(\) invoked with 0 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Ibexa\\Core\\Repository\\Repository\:\:sudo\(\) expects callable\(Ibexa\\Contracts\\Core\\Repository\\Repository\)\: T, Prophecy\\Argument\\Token\\AnyValueToken given\.$#'
+			identifier: argument.type
+			count: 3
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Result of method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:remove\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 3
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Result of method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:set\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: spec/EventSubscriber/XLocationIdResponseSubscriberSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:shouldBeCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:shouldNotBeCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\Handler\\TagHandlerSpec\:\:addTags\(\)\.$#'
+			identifier: method.notFound
+			count: 10
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\Handler\\TagHandlerSpec\:\:tagSymfonyResponse\(\)\.$#'
+			identifier: method.notFound
+			count: 10
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method shouldBeCalled\(\) on bool\|string\|null\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method shouldBeCalled\(\) on null\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method shouldNotBeCalled\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 6
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on list\<string\|null\>\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on string\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\Handler\\TagHandlerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Result of method Psr\\Log\\LoggerInterface\:\:warning\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Result of method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:set\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 10
+			path: spec/Handler/TagHandlerSpec.php
+
+		-
+			message: '#^Call to an undefined method Psr\\Http\\Message\\RequestInterface\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Call to an undefined method Psr\\Http\\Message\\RequestInterface\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ProxyClient\\VarnishSpec\:\:purge\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ProxyClient\\VarnishSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Method Psr\\Http\\Message\\RequestFactoryInterface\:\:createRequest\(\) invoked with 4 parameters, 2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Method spec\\Ibexa\\HttpCache\\ProxyClient\\VarnishSpec\:\:requestShouldHaveBeenCreatedWithHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: spec/ProxyClient/VarnishSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\RepositoryTagPrefixSpec\:\:getRepositoryPrefix\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: spec/RepositoryTagPrefixSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\RepositoryTagPrefixSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/RepositoryTagPrefixSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:shouldNotHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Response\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseConfigurator\\ConfigurableResponseCacheConfiguratorSpec\:\:enableCache\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseConfigurator\\ConfigurableResponseCacheConfiguratorSpec\:\:setSharedMaxAge\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseConfigurator\\ConfigurableResponseCacheConfiguratorSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Method Symfony\\Component\\HttpFoundation\\Response\:\:setSharedMaxAge\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Parameter \#1 \$value of method Symfony\\Component\\HttpFoundation\\Response\:\:setSharedMaxAge\(\) expects int, Symfony\\Component\\HttpFoundation\\Response given\.$#'
+			identifier: argument.type
+			count: 1
+			path: spec/ResponseConfigurator/ConfigurableResponseCacheConfiguratorSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/ContentValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\ContentValueViewTaggerSpec\:\:tag\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/ContentValueViewTaggerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\ContentValueViewTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseTagger/Delegator/ContentValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTaggerSpec\:\:tag\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/DispatcherTaggerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseTagger/Delegator/DispatcherTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/LocationValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\LocationValueViewTaggerSpec\:\:tag\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/LocationValueViewTaggerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\LocationValueViewTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseTagger/Delegator/LocationValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldNotHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTaggerSpec\:\:tag\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) invoked with 0 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Parameter \#1 \$tags of method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) expects array\<string\>, Prophecy\\Argument\\Token\\AnyValueToken given\.$#'
+			identifier: argument.type
+			count: 1
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldNotHaveBeenCalled\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTaggerSpec\:\:tag\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Parameter \#1 \$tags of method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) expects array\<string\>, Prophecy\\Argument\\Token\\AnyValueToken given\.$#'
+			identifier: argument.type
+			count: 2
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\HttpKernel\\HttpKernelInterface\:\:isDebug\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/bundle/AppCache.php
+
+		-
+			message: '#^Parameter \#2 \$values of method Symfony\\Component\\HttpFoundation\\ResponseHeaderBag\:\:set\(\) expects array\<string\>\|string\|null, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/bundle/Controller/InvalidateTokenController.php
+
+		-
+			message: '#^Property Ibexa\\Bundle\\HttpCache\\Controller\\InvalidateTokenController\:\:\$tagHandler \(Ibexa\\HttpCache\\Handler\\TagHandler\) does not accept FOS\\HttpCache\\ResponseTagger\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/bundle/Controller/InvalidateTokenController.php
+
+		-
+			message: '#^Part \$purgeType \(array\|bool\|float\|int\|string\|null\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/bundle/DependencyInjection/Compiler/DriverPass.php
+
+		-
+			message: '#^Call to an undefined method Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface\:\:getExtraConfigParsers\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/bundle/DependencyInjection/ConfigResolver/HttpCacheConfigParser.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\HttpCache\\DependencyInjection\\ConfigResolver\\HttpCacheConfigParser\:\:mapConfig\(\) has parameter \$scopeSettings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/bundle/DependencyInjection/ConfigResolver/HttpCacheConfigParser.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\HttpCache\\DependencyInjection\\ConfigResolver\\HttpCacheConfigParser\:\:postMap\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/bundle/DependencyInjection/ConfigResolver/HttpCacheConfigParser.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\HttpCache\\DependencyInjection\\ConfigResolver\\HttpCacheConfigParser\:\:preMap\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/bundle/DependencyInjection/ConfigResolver/HttpCacheConfigParser.php
+
+		-
+			message: '#^Method Ibexa\\Bundle\\HttpCache\\DependencyInjection\\IbexaHttpCacheExtension\:\:getExtraConfigParsers\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/bundle/DependencyInjection/IbexaHttpCacheExtension.php
+
+		-
+			message: '#^Parameter \#1 \$input of static method Symfony\\Component\\Yaml\\Yaml\:\:parse\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/bundle/DependencyInjection/IbexaHttpCacheExtension.php
+
+		-
+			message: '#^Instanceof between Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface and Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/bundle/IbexaHttpCacheBundle.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addContentTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addContentTags\(\) has parameter \$contentIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addContentTypeTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addContentTypeTags\(\) has parameter \$contentTypeIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addLocationTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addLocationTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addParentLocationTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addParentLocationTags\(\) has parameter \$parentLocationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addPathTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addPathTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addRelationLocationTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addRelationLocationTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addRelationTags\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\Handler\\ContentTagInterface\:\:addRelationTags\(\) has parameter \$contentIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/Handler/ContentTagInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\PurgeClient\\PurgeClientInterface\:\:purge\(\) has parameter \$tags with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/contracts/PurgeClient/PurgeClientInterface.php
+
+		-
+			message: '#^Method Ibexa\\Contracts\\HttpCache\\ResponseTagger\\ResponseTagger\:\:tag\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/contracts/ResponseTagger/ResponseTagger.php
+
+		-
+			message: '#^Property Ibexa\\HttpCache\\ContextProvider\\RoleIdentify\:\:\$repository \(Ibexa\\Core\\Repository\\Repository\) does not accept Ibexa\\Contracts\\Core\\Repository\\Repository\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/lib/ContextProvider/RoleIdentify.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventListener\\ConditionallyRemoveVaryHeaderListener\:\:__construct\(\) has parameter \$routes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventListener/ConditionallyRemoveVaryHeaderListener.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventListener\\ConditionallyRemoveVaryHeaderListener\:\:__construct\(\) has parameter \$userIdentifierHeaders with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventListener/ConditionallyRemoveVaryHeaderListener.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(string\|null\)\: mixed\)\|null, ''strtolower'' given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/EventListener/ConditionallyRemoveVaryHeaderListener.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\CachePurge\\AbstractSubscriber\:\:getContentLocationsTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/AbstractSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\CachePurge\\AbstractSubscriber\:\:getContentTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/AbstractSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\CachePurge\\AbstractSubscriber\:\:getContentUrlTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/AbstractSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\CachePurge\\AbstractSubscriber\:\:getLocationTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/AbstractSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\CachePurge\\AbstractSubscriber\:\:getParentLocationTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/AbstractSubscriber.php
+
+		-
+			message: '#^Access to protected property Ibexa\\Contracts\\Core\\Repository\\Values\\URL\\URL\:\:\$id\.$#'
+			identifier: property.protected
+			count: 1
+			path: src/lib/EventSubscriber/CachePurge/UrlEventsSubscriber.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\\Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTagger;\)\: Unexpected token ";", expected TOKEN_HORIZONTAL_WS at offset 68 on line 2$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/lib/EventSubscriber/HiddenLocationExceptionSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\EventSubscriber\\RestKernelViewSubscriber\:\:getTags\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/EventSubscriber/RestKernelViewSubscriber.php
+
+		-
+			message: '#^PHPDoc tag @var has invalid value \(\$location \\Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\)\: Unexpected token "\$location", expected type at offset 9 on line 1$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/lib/EventSubscriber/XLocationIdResponseSubscriber.php
+
+		-
+			message: '#^Parameter \#1 \$locationId of method Ibexa\\Contracts\\Core\\Repository\\LocationService\:\:loadLocation\(\) expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/EventSubscriber/XLocationIdResponseSubscriber.php
+
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/EventSubscriber/XLocationIdResponseSubscriber.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addContentTags\(\) has parameter \$contentIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addContentTypeTags\(\) has parameter \$contentTypeIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addLocationTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addParentLocationTags\(\) has parameter \$parentLocationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addPathTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addRelationLocationTags\(\) has parameter \$locationIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\Handler\\TagHandler\:\:addRelationTags\(\) has parameter \$contentIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function strrpos expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, list\<string\>\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_split expects string, array\<string\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$arrays of function array_merge expects array, list\<string\>\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Parameter \#3 \$length of function substr expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Handler/TagHandler.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ProxyClient\\HttpDispatcherFactory\:\:buildHttpDispatcher\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/lib/ProxyClient/HttpDispatcherFactory.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ProxyClient\\HttpDispatcherFactory\:\:buildHttpDispatcher\(\) has parameter \$servers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ProxyClient/HttpDispatcherFactory.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ProxyClient\\Varnish\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ProxyClient/Varnish.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ProxyClient\\Varnish\:\:fetchAndMergeAuthHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ProxyClient/Varnish.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ProxyClient\\Varnish\:\:fetchAndMergeAuthHeaders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ProxyClient/Varnish.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\PurgeClient\\LocalPurgeClient\:\:purge\(\) has parameter \$tags with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/PurgeClient/LocalPurgeClient.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\PurgeClient\\RepositoryPrefixDecorator\:\:purge\(\) has parameter \$tags with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/PurgeClient/RepositoryPrefixDecorator.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\PurgeClient\\VarnishPurgeClient\:\:purge\(\) has parameter \$tags with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/PurgeClient/VarnishPurgeClient.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\RepositoryTagPrefix\:\:__construct\(\) has parameter \$repositories with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/RepositoryTagPrefix.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Delegator\\ContentValueViewTagger\:\:tag\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/lib/ResponseTagger/Delegator/ContentValueViewTagger.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:__construct\(\) has parameter \$taggers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
+
+		-
+			message: '#^PHPDoc tag @var for property Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:\$taggers with type Ibexa\\Contracts\\HttpCache\\ResponseTagger\\ResponseTagger is incompatible with native type array\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
+
+		-
+			message: '#^Property Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:\$taggers type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Delegator\\LocationValueViewTagger\:\:tag\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/lib/ResponseTagger/Delegator/LocationValueViewTagger.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTagger\:\:tag\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/lib/ResponseTagger/Value/ContentInfoTagger.php
+
+		-
+			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTagger\:\:tag\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/lib/ResponseTagger/Value/LocationTagger.php
