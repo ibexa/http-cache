@@ -2,7 +2,7 @@
 
 {% extends "@IbexaCore/content_fields.html.twig" %}
 
-{% block ezobjectrelationlist_field %}
+{% block ibexa_object_relation_list_field %}
     {% if not ibexa_field_is_empty( content, field ) %}
         <ul {{ block( 'field_attributes' ) }}>
             {% for contentId in field.value.destinationContentIds %}
@@ -17,7 +17,7 @@
     {% endif %}
 {% endblock %}
 
-{% block ezimageasset_field %}
+{% block ibexa_image_asset_field %}
     {% if not ibexa_field_is_empty(content, field) and parameters.available %}
         {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
         <div {{ block('field_attributes') }}>
@@ -33,7 +33,7 @@
     {% endif %}
 {% endblock %}
 
-{% block ezobjectrelation_field %}
+{% block ibexa_object_relation_field %}
     {% if not ibexa_field_is_empty( content, field ) and parameters.available %}
         {{ ibexa_http_cache_tag_relation_ids(field.value.destinationContentId) }}
         <div {{ block( 'field_attributes' ) }}>
