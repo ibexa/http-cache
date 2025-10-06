@@ -16,7 +16,7 @@ jobs:
         php:
           - '8.1'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -26,9 +26,9 @@ jobs:
           extensions: 'pdo_sqlite, gd'
           tools: cs2pr
 
-      - uses: "ramsey/composer-install@v1"
+      - uses: ramsey/composer-install@v3
         with:
-          dependency-versions: "highest"
+          dependency-versions: highest
 
       - name: Run code style check
         run: composer run-script check-cs -- --format=checkstyle | cs2pr
@@ -42,7 +42,7 @@ jobs:
           - '7.4'
           - '8.3'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -52,9 +52,9 @@ jobs:
           extensions: 'pdo_sqlite, gd'
           tools: cs2pr
 
-      - uses: "ramsey/composer-install@v3"
+      - uses: ramsey/composer-install@v3
         with:
-          dependency-versions: "highest"
+          dependency-versions: highest
 
       - name: Run PHPStan analysis
         run: composer run-script phpstan
@@ -76,7 +76,7 @@ jobs:
               composer_options: "--ignore-platform-req php"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -86,9 +86,9 @@ jobs:
           extensions: pdo_sqlite, gd
           tools: cs2pr
 
-      - uses: "ramsey/composer-install@v1"
+      - uses: ramsey/composer-install@v3
         with:
-          dependency-versions: "highest"
+          dependency-versions: highest
           composer-options: "${{ matrix.composer_options }}"
 
       - name: Setup problem matchers for PHPUnit
