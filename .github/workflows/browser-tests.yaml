@@ -17,6 +17,9 @@ jobs:
             test-setup-phase-1:  '--mode=standard --profile=httpCache --suite=setup-symfony-cache'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish6:
         name: "Varnish 6 integration tests"
@@ -27,6 +30,9 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish7:
         name: "Varnish 7 integration tests"
@@ -37,6 +43,9 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish6-translation-aware:
         name: "Varnish integration tests (translation-aware)"
@@ -48,6 +57,9 @@ jobs:
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-translation-aware'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish7-translation-aware:
         name: "Varnish 7 integration tests (translation-aware)"
@@ -59,6 +71,9 @@ jobs:
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-translation-aware'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish6-token:
         name: "Varnish 6 integration tests with invalidate token"
@@ -70,6 +85,9 @@ jobs:
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-token'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     varnish7-token:
         name: "Varnish 7 integration tests with invalidate token"
@@ -81,4 +99,7 @@ jobs:
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-token'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
         secrets:
+            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
+            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
+            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

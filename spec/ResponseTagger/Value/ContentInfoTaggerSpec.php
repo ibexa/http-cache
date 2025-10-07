@@ -36,7 +36,11 @@ class ContentInfoTaggerSpec extends ObjectBehavior
 
     public function it_tags_with_content_and_content_type_id(ResponseTagger $tagHandler): void
     {
-        $value = new ContentInfo(['id' => 123, 'contentTypeId' => 987]);
+        $value = new ContentInfo([
+            'id' => 123,
+            'mainLocationId' => 456,
+            'contentTypeId' => 987,
+        ]);
 
         $this->tag($value);
 
@@ -45,7 +49,11 @@ class ContentInfoTaggerSpec extends ObjectBehavior
 
     public function it_tags_with_location_id_if_one_is_set(ResponseTagger $tagHandler): void
     {
-        $value = new ContentInfo(['mainLocationId' => 456]);
+        $value = new ContentInfo([
+            'id' => 123,
+            'mainLocationId' => 456,
+            'contentTypeId' => 987,
+        ]);
 
         $this->tag($value);
 
