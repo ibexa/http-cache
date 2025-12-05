@@ -2,7 +2,7 @@
     "name": "ibexa/http-cache",
     "description": "HTTP cache handling for Ibexa DXP.",
     "type": "ibexa-bundle",
-    "license": ["(GPL-2.0-only or proprietary)"],
+    "license": "(GPL-2.0-only or proprietary)",
     "replace": {
         "ezsystems/ezplatform-http-cache": "*"
     },
