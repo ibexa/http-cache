@@ -8,7 +8,7 @@ Feature: Cached response is different for users with different permissions
     And I should see "Administrator User"
     And response headers contain
       | Header  | Value |
-      | X-Cache | HIT   |
+      | x-cache | HIT   |
     When I am viewing the pages on siteaccess "site" as "Anonymous"
     And I visit "Users/Administrator-users/Administrator-User" on siteaccess "site"
     Then I should not see "Administrator User"
@@ -30,7 +30,7 @@ Feature: Cached response is different for users with different permissions
     And I should see "Administrator User"
     And response headers contain
       | Header  | Value |
-      | X-Cache | HIT   |
+      | x-cache | HIT   |
     When I am viewing the pages on siteaccess "site" as "Anonymous"
     And I visit "TestContentItem" on siteaccess "site"
     Then I should see "TestContentItem"

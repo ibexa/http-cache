@@ -23,7 +23,7 @@ Feature: Caching of embedded items
     And I should see "<embeddedItemName>"
     And response headers contain
       | Header  | Value |
-      | X-Cache | HIT   |
+      | x-cache | HIT   |
     When I edit "<embeddedItemName>" Content item in "eng-GB"
       | name                     |
       | <editedEmbeddedItemName> |
@@ -54,7 +54,7 @@ Feature: Caching of embedded items
     And I should see "<embeddedItemName>"
     And response headers contain
       | Header  | Value |
-      | X-Cache | HIT   |
+      | x-cache | HIT   |
 
     Examples:
       | embeddingItemName  | embeddedItemName  |

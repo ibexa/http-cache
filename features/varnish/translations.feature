@@ -13,7 +13,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
             | title | <itemName> |
         And response headers contain
             | Header  | Value |
-            | X-Cache | HIT   |
+            | x-cache | HIT   |
         When I edit "<itemName>" Content item in "eng-GB"
             | short_name          |
             | <itemNameAfterEdit> |
@@ -28,7 +28,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
             | title | <itemNameAfterEdit> |
         And response headers contain
             | Header  | Value |
-            | X-Cache | HIT   |
+            | x-cache | HIT   |
 
         Examples:
             | user      | password | itemName        | itemNameAfterEdit |
