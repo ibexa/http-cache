@@ -40,6 +40,7 @@ jobs:
       matrix:
         php:
           - '8.3'
+          - '8.4'
     steps:
       - uses: actions/checkout@v5
 
@@ -68,6 +69,7 @@ jobs:
       matrix:
         php:
           - '8.3'
+          - '8.4'
 
     steps:
       - uses: actions/checkout@v5
