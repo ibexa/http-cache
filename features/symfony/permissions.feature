@@ -9,8 +9,8 @@ Feature: Cached response is different for users with different permissions
     And I should see "Administrator User"
     And response headers contain
       | Header          | Value                                                         |
-      | Cache-Control   | public, s-maxage=86400                                        |
-      | X-Symfony-Cache | GET /site/Users/Administrator-users/Administrator-User: fresh |
+      | cache-control   | public, s-maxage=86400                                        |
+      | x-symfony-cache | GET /site/Users/Administrator-users/Administrator-User: fresh |
     When I am viewing the pages on siteaccess "site" as "Anonymous"
     And I visit "Users/Administrator-users/Administrator-User" on siteaccess "site"
     Then I should not see "Administrator User"
@@ -32,8 +32,8 @@ Feature: Cached response is different for users with different permissions
     And I should see "Administrator User"
     And response headers contain
       | Header          | Value                            |
-      | Cache-Control   | public, s-maxage=86400           |
-      | X-Symfony-Cache | GET /site/testcontentitem: fresh |
+      | cache-control   | public, s-maxage=86400           |
+      | x-symfony-cache | GET /site/testcontentitem: fresh |
     When I am viewing the pages on siteaccess "site" as "Anonymous"
     And I visit "TestContentItem" on siteaccess "site"
     Then I should see "TestContentItem"

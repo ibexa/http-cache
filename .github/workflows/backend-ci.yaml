@@ -41,6 +41,7 @@ jobs:
         php:
           - '7.4'
           - '8.3'
+          - '8.4'
     steps:
       - uses: actions/checkout@v5
 
@@ -70,10 +71,8 @@ jobs:
         php:
           - '7.4'
           - '8.3'
+          - '8.4'
         composer_options: [ "" ]
-        include:
-            - php: '8.1'
-              composer_options: "--ignore-platform-req php"
 
     steps:
       - uses: actions/checkout@v5
@@ -99,4 +98,4 @@ jobs:
 
   integration-tests:
       name: "REST integration tests"
-      uses: ibexa/rest/.github/workflows/integration-tests-callable.yaml@main
+      uses: ibexa/rest/.github/workflows/integration-tests-callable.yaml@4.6
