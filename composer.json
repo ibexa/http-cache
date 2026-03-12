@@ -20,13 +20,13 @@
         "ibexa/rest": "~5.0.x-dev",
         "php-http/curl-client": "^2.1",
         "psr/http-client": "^1.0",
-        "symfony/config": "^7.3",
-        "symfony/dependency-injection": "^7.3",
-        "symfony/event-dispatcher": "^7.3",
-        "symfony/http-foundation": "^7.3",
-        "symfony/http-kernel": "^7.3",
-        "symfony/routing": "^7.3",
-        "symfony/yaml": "^7.3",
+        "symfony/config": "^7.4",
+        "symfony/dependency-injection": "^7.4",
+        "symfony/event-dispatcher": "^7.4",
+        "symfony/http-foundation": "^7.4",
+        "symfony/http-kernel": "^7.4",
+        "symfony/routing": "^7.4",
+        "symfony/yaml": "^7.4",
         "toflar/psr6-symfony-http-cache-store": "^4.2"
     },
     "require-dev": {
@@ -40,7 +40,7 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^9.6",
-        "symfony/phpunit-bridge": "^7.3"
+        "symfony/phpunit-bridge": "^7.4"
     },
     "autoload": {
         "psr-4": {
