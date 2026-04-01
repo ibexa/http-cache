@@ -8,25 +8,27 @@
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
+use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
 /**
  * Dispatches a value to all registered ResponseTaggers.
  */
-class DispatcherTagger implements ResponseTagger
+readonly class DispatcherTagger implements ResponseTagger
 {
     /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
+     * @param \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger[] $taggers
      */
-    private array $taggers;
-
-    public function __construct(array $taggers = [])
+    public function __construct(private array $taggers = [])
     {
-        $this->taggers = $taggers;
     }
 
-    public function tag($value): void
+    public function tag(mixed $value): void
     {
         foreach ($this->taggers as $tagger) {
+            if (!$tagger instanceof AbstractValueTagger || !$tagger->supports($value)) {
+                continue;
+            }
+
             $tagger->tag($value);
         }
     }

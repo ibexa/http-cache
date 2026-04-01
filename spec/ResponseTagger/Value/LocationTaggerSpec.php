@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
 
 namespace spec\Ibexa\HttpCache\ResponseTagger\Value;
 
@@ -14,7 +15,7 @@ use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class LocationTaggerSpec extends ObjectBehavior
+final class LocationTaggerSpec extends ObjectBehavior
 {
     public function let(ResponseTagger $tagHandler): void
     {
@@ -28,11 +29,14 @@ class LocationTaggerSpec extends ObjectBehavior
         $this->shouldHaveType(LocationTagger::class);
     }
 
-    public function it_ignores_non_location(ResponseTagger $tagHandler): void
+    public function it_supports_location(): void
     {
-        $this->tag(null);
+        $this->supports(new Location())->shouldReturn(true);
+    }
 
-        $tagHandler->addTags(Argument::any())->shouldNotHaveBeenCalled();
+    public function it_does_not_support_non_location(): void
+    {
+        $this->supports(new ContentInfo())->shouldReturn(false);
     }
 
     public function it_tags_with_location_id_if_not_main_location(ResponseTagger $tagHandler): void

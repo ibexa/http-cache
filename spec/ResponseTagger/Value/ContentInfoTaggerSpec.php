@@ -4,16 +4,18 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
 
 namespace spec\Ibexa\HttpCache\ResponseTagger\Value;
 
 use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ContentInfoTaggerSpec extends ObjectBehavior
+final class ContentInfoTaggerSpec extends ObjectBehavior
 {
     public function let(ResponseTagger $tagHandler): void
     {
@@ -27,11 +29,14 @@ class ContentInfoTaggerSpec extends ObjectBehavior
         $this->shouldHaveType(ContentInfoTagger::class);
     }
 
-    public function it_ignores_non_content_info(ResponseTagger $tagHandler): void
+    public function it_supports_content_info(): void
     {
-        $this->tag(null);
+        $this->supports(new ContentInfo())->shouldReturn(true);
+    }
 
-        $tagHandler->addTags()->shouldNotHaveBeenCalled();
+    public function it_does_not_support_non_content_info(): void
+    {
+        $this->supports(new Location())->shouldReturn(false);
     }
 
     public function it_tags_with_content_and_content_type_id(ResponseTagger $tagHandler): void

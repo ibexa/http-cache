@@ -609,7 +609,13 @@ parameters:
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Content\:\:willReturn\(\)\.$#'
 			identifier: method.notFound
-			count: 1
+			count: 2
+			path: spec/ResponseTagger/Delegator/ContentValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\ContentValueViewTaggerSpec\:\:supports\(\)\.$#'
+			identifier: method.notFound
+			count: 2
 			path: spec/ResponseTagger/Delegator/ContentValueViewTaggerSpec.php
 
 		-
@@ -627,7 +633,13 @@ parameters:
 		-
 			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTaggerSpec\:\:tag\(\)\.$#'
 			identifier: method.notFound
-			count: 1
+			count: 2
+			path: spec/ResponseTagger/Delegator/DispatcherTaggerSpec.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on bool\.$#'
+			identifier: method.nonObject
+			count: 4
 			path: spec/ResponseTagger/Delegator/DispatcherTaggerSpec.php
 
 		-
@@ -638,6 +650,12 @@ parameters:
 
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:willReturn\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: spec/ResponseTagger/Delegator/LocationValueViewTaggerSpec.php
+
+		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Delegator\\LocationValueViewTaggerSpec\:\:supports\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: spec/ResponseTagger/Delegator/LocationValueViewTaggerSpec.php
@@ -661,32 +679,26 @@ parameters:
 			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
 
 		-
-			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldNotHaveBeenCalled\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
-
-		-
 			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:willReturn\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
 
 		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTaggerSpec\:\:supports\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
+
+		-
 			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTaggerSpec\:\:tag\(\)\.$#'
 			identifier: method.notFound
-			count: 3
+			count: 2
 			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
 
 		-
 			message: '#^Class spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\ContentInfoTaggerSpec extends generic class PhpSpec\\ObjectBehavior but does not specify its types\: TKey, TValue$#'
 			identifier: missingType.generics
-			count: 1
-			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
-
-		-
-			message: '#^Method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) invoked with 0 parameters, 1 required\.$#'
-			identifier: arguments.count
 			count: 1
 			path: spec/ResponseTagger/Value/ContentInfoTaggerSpec.php
 
@@ -703,21 +715,21 @@ parameters:
 			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
 
 		-
-			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:shouldNotHaveBeenCalled\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
-
-		-
 			message: '#^Call to an undefined method FOS\\HttpCache\\ResponseTagger\:\:willReturn\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
 
 		-
+			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTaggerSpec\:\:supports\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
+
+		-
 			message: '#^Call to an undefined method spec\\Ibexa\\HttpCache\\ResponseTagger\\Value\\LocationTaggerSpec\:\:tag\(\)\.$#'
 			identifier: method.notFound
-			count: 4
+			count: 3
 			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
 
 		-
@@ -729,7 +741,7 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$tags of method FOS\\HttpCache\\ResponseTagger\:\:addTags\(\) expects array\<string\>, Prophecy\\Argument\\Token\\AnyValueToken given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: spec/ResponseTagger/Value/LocationTaggerSpec.php
 
 		-
@@ -1121,24 +1133,6 @@ parameters:
 			identifier: missingType.return
 			count: 1
 			path: src/lib/ResponseTagger/Delegator/ContentValueViewTagger.php
-
-		-
-			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:__construct\(\) has parameter \$taggers with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
-
-		-
-			message: '#^PHPDoc tag @var for property Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:\$taggers with type Ibexa\\Contracts\\HttpCache\\ResponseTagger\\ResponseTagger is incompatible with native type array\.$#'
-			identifier: property.phpDocType
-			count: 1
-			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
-
-		-
-			message: '#^Property Ibexa\\HttpCache\\ResponseTagger\\Delegator\\DispatcherTagger\:\:\$taggers type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/ResponseTagger/Delegator/DispatcherTagger.php
 
 		-
 			message: '#^Method Ibexa\\HttpCache\\ResponseTagger\\Delegator\\LocationValueViewTagger\:\:tag\(\) has no return type specified\.$#'
