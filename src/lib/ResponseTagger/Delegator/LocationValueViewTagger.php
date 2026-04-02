@@ -21,7 +21,7 @@ class LocationValueViewTagger extends AbstractValueTagger
 
     public function supports(mixed $value): bool
     {
-        return $value instanceof LocationValueView && !$value->getLocation() instanceof Location;
+        return $value instanceof LocationValueView && $value->getLocation() instanceof Location;
     }
 
     public function tag(mixed $value)
