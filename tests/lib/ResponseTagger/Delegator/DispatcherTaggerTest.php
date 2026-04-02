@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\HttpCache\ResponseTagger\Delegator;
 
+use FOS\HttpCache\ResponseTagger as FosResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\Repository\Values\Content\Location;
@@ -77,5 +78,27 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher->tag($foo);
 
         self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
+    }
+
+    public function testToStringWithNoTaggers(): void
+    {
+        $dispatcher = new DispatcherTagger();
+
+        self::assertSame('Available response taggers are: ', (string)$dispatcher);
+    }
+
+    public function testToStringListsRegisteredTaggerTypes(): void
+    {
+        $fosResponseTagger = $this->createMock(FosResponseTagger::class);
+
+        $dispatcher = new DispatcherTagger([
+            new ContentInfoTagger($fosResponseTagger),
+            new LocationTagger($fosResponseTagger),
+        ]);
+
+        self::assertSame(
+            'Available response taggers are: Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger, Ibexa\HttpCache\ResponseTagger\Value\LocationTagger',
+            (string)$dispatcher
+        );
     }
 }

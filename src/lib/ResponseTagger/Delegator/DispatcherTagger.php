@@ -32,4 +32,17 @@ readonly class DispatcherTagger implements ResponseTagger
             }
         }
     }
+
+    public function __toString(): string
+    {
+        $taggers = implode(
+            ', ',
+            array_map(
+                static fn (ResponseTagger $tagger): string => get_debug_type($tagger),
+                $this->taggers
+            )
+        );
+
+        return sprintf('Available response taggers are: %s', $taggers);
+    }
 }
