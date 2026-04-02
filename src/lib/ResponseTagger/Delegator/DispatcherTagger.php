@@ -25,11 +25,11 @@ readonly class DispatcherTagger implements ResponseTagger
     public function tag(mixed $value): void
     {
         foreach ($this->taggers as $tagger) {
-            if (!$tagger instanceof AbstractValueTagger || !$tagger->supports($value)) {
-                continue;
+            // AbstractValueTagger subclasses declare supports() and should only tag matching values.
+            // Custom ResponseTagger implementations lack supports() for BC reasons and are always called.
+            if (!$tagger instanceof AbstractValueTagger || $tagger->supports($value)) {
+                $tagger->tag($value);
             }
-
-            $tagger->tag($value);
         }
     }
 }

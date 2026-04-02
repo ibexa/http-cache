@@ -9,11 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\Tests\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class DispatcherTaggerTest extends TestCase
 {
@@ -49,5 +51,31 @@ final class DispatcherTaggerTest extends TestCase
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger]);
         $dispatcher->tag($location);
+    }
+
+    public function testCustomResponseTaggerImplementationLackingSupportsMethodShouldTag(): void
+    {
+        $foo = new stdClass();
+
+        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
+        $contentInfoTagger->method('supports')->with($foo)->willReturn(false);
+        $contentInfoTagger->expects(self::never())->method('tag');
+
+        $wasCalled = false;
+        $customTagger = new class($wasCalled) implements ResponseTagger {
+            public function __construct(private bool &$wasCalled)
+            {
+            }
+
+            public function tag(mixed $value): void
+            {
+                $this->wasCalled = true;
+            }
+        };
+
+        $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
+        $dispatcher->tag($foo);
+
+        self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
     }
 }
