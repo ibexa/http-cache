@@ -56,13 +56,29 @@ final class ContentInfoTaggerTest extends TestCase
     {
         $value = new ContentInfo(['id' => 1, 'contentTypeId' => 2, 'mainLocationId' => 456]);
 
+        $calls = 0;
         $this->responseTagger
             ->expects(self::exactly(2))
             ->method('addTags')
-            ->withConsecutive(
-                [[ContentTagInterface::CONTENT_PREFIX . '1', ContentTagInterface::CONTENT_TYPE_PREFIX . '2']],
-                [[ContentTagInterface::LOCATION_PREFIX . '456']],
-            );
+            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
+                match ($calls++) {
+                    0 => self::assertSame(
+                        [
+                            ContentTagInterface::CONTENT_PREFIX . '1',
+                            ContentTagInterface::CONTENT_TYPE_PREFIX . '2',
+                        ],
+                        $tags
+                    ),
+                    1 => self::assertSame(
+                        [
+                            ContentTagInterface::LOCATION_PREFIX . '456',
+                        ],
+                        $tags
+                    ),
+                };
+
+                return $this->responseTagger;
+            });
 
         $this->tagger->tag($value);
     }

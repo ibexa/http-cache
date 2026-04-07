@@ -26,9 +26,8 @@ class LocationValueViewTagger extends AbstractValueTagger
 
     public function tag(mixed $value)
     {
-        /** @var \Ibexa\Core\MVC\Symfony\View\LocationValueView $value */
-        $location = $value->getLocation();
+        assert($value instanceof LocationValueView);
 
-        $this->locationTagger->tag($location);
+        $this->locationTagger->tag($value->getLocation());
     }
 }
