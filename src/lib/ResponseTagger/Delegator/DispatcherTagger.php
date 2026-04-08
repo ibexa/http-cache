@@ -8,7 +8,6 @@
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
 /**
  * Dispatches a value to all registered ResponseTaggers.
@@ -25,9 +24,17 @@ readonly class DispatcherTagger implements ResponseTagger
     public function tag(mixed $value): void
     {
         foreach ($this->taggers as $tagger) {
-            // AbstractValueTagger subclasses declare supports() and should only tag matching values.
-            // Custom ResponseTagger implementations lack supports() for BC reasons and are always called.
-            if (!$tagger instanceof AbstractValueTagger || $tagger->supports($value)) {
+            if (method_exists($tagger, 'supports')) {
+                if ($tagger->supports($value)) {
+                    $tagger->tag($value);
+                }
+            } else {
+                trigger_deprecation(
+                    'ibexa/http-cache',
+                    '5.0.7',
+                    '%s does not implement supports(). This will be required in 6.0, supports() will be a part of ResponseTagger interface',
+                    get_debug_type($tagger),
+                );
                 $tagger->tag($value);
             }
         }
