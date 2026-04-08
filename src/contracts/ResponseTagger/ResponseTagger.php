@@ -15,6 +15,8 @@ interface ResponseTagger
 {
     /**
      * Extracts tags from a value.
+     *
+     * @param mixed $value
      */
-    public function tag(mixed $value);
+    public function tag($value);
 }

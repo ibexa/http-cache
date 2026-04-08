@@ -11,6 +11,9 @@ namespace Ibexa\HttpCache\ResponseTagger\Value;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
+/**
+ * @final
+ */
 class ContentInfoTagger extends AbstractValueTagger
 {
     public function supports(mixed $value): bool

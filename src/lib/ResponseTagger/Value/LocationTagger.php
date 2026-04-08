@@ -11,6 +11,9 @@ namespace Ibexa\HttpCache\ResponseTagger\Value;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 
+/**
+ * @final
+ */
 class LocationTagger extends AbstractValueTagger
 {
     public function supports(mixed $value): bool

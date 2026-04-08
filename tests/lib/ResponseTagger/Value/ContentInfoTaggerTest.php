@@ -55,27 +55,30 @@ final class ContentInfoTaggerTest extends TestCase
     public function testTagsWithLocationIdWhenMainLocationIsSet(): void
     {
         $value = new ContentInfo(['id' => 1, 'contentTypeId' => 2, 'mainLocationId' => 456]);
+        $matcher = self::exactly(2);
 
-        $calls = 0;
         $this->responseTagger
-            ->expects(self::exactly(2))
+            ->expects($matcher)
             ->method('addTags')
-            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
-                match ($calls++) {
-                    0 => self::assertSame(
+            ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
+                if ($matcher->getInvocationCount() === 1) {
+                    self::assertSame(
                         [
                             ContentTagInterface::CONTENT_PREFIX . '1',
                             ContentTagInterface::CONTENT_TYPE_PREFIX . '2',
                         ],
                         $tags
-                    ),
-                    1 => self::assertSame(
+                    );
+                }
+
+                if ($matcher->getInvocationCount() === 2) {
+                    self::assertSame(
                         [
                             ContentTagInterface::LOCATION_PREFIX . '456',
                         ],
                         $tags
-                    ),
-                };
+                    );
+                }
 
                 return $this->responseTagger;
             });

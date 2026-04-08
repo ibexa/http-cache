@@ -46,20 +46,26 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => 321]),
         ]);
 
-        $calls = 0;
+        $matcher = self::exactly(3);
         $this->responseTagger
-            ->expects(self::exactly(3))
+            ->expects($matcher)
             ->method('addTags')
-            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
-                match ($calls++) {
-                    0 => self::assertSame([ContentTagInterface::LOCATION_PREFIX . '123'], $tags),
-                    1 => self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags),
-                    2 => self::assertSame([
+            ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
+                if ($matcher->getInvocationCount() === 1) {
+                    self::assertSame([ContentTagInterface::LOCATION_PREFIX . '123'], $tags);
+                }
+
+                if ($matcher->getInvocationCount() === 2) {
+                    self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags);
+                }
+
+                if ($matcher->getInvocationCount() === 3) {
+                    self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',
                         ContentTagInterface::PATH_PREFIX . '123',
-                    ], $tags),
-                };
+                    ], $tags);
+                }
 
                 return $this->responseTagger;
             });
@@ -76,19 +82,23 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => 55]),
         ]);
 
-        $calls = 0;
+        $matcher = self::exactly(2);
+
         $this->responseTagger
-            ->expects(self::exactly(2))
+            ->expects($matcher)
             ->method('addTags')
-            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
-                match ($calls++) {
-                    0 => self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags),
-                    1 => self::assertSame([
+            ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
+                if ($matcher->getInvocationCount() === 1) {
+                    self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags);
+                }
+
+                if ($matcher->getInvocationCount() === 2) {
+                    self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',
                         ContentTagInterface::PATH_PREFIX . '55',
-                    ], $tags),
-                };
+                    ], $tags);
+                }
 
                 return $this->responseTagger;
             });
@@ -105,12 +115,13 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => null]),
         ]);
 
-        $calls = 0;
+        $matcher = self::atLeastOnce();
+
         $this->responseTagger
-            ->expects(self::atLeastOnce())
+            ->expects($matcher)
             ->method('addTags')
-            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
-                if ($calls++ === 1) {
+            ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
+                if ($matcher->getInvocationCount() === 0) {
                     self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '123'], $tags);
                 }
 
@@ -129,12 +140,12 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => null]),
         ]);
 
-        $calls = 0;
+        $matcher = self::atLeastOnce();
         $this->responseTagger
-            ->expects(self::atLeastOnce())
+            ->expects($matcher)
             ->method('addTags')
-            ->willReturnCallback(function (array $tags) use (&$calls): ResponseTagger {
-                if ($calls++ === 2) {
+            ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
+                if ($matcher->getInvocationCount() === 0) {
                     self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',
