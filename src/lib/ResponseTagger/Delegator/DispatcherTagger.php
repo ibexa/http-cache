@@ -8,6 +8,7 @@
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
+use function Ibexa\PolyfillPhp82\iterator_to_array;
 
 /**
  * Dispatches a value to all registered ResponseTaggers.
@@ -15,9 +16,9 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 readonly class DispatcherTagger implements ResponseTagger
 {
     /**
-     * @param \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger[] $taggers
+     * @param iterable<\Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger> $taggers
      */
-    public function __construct(private array $taggers = [])
+    public function __construct(private iterable $taggers = [])
     {
     }
 
@@ -46,7 +47,7 @@ readonly class DispatcherTagger implements ResponseTagger
             ', ',
             array_map(
                 static fn (ResponseTagger $tagger): string => get_debug_type($tagger),
-                $this->taggers
+                iterator_to_array($this->taggers)
             )
         );
 
