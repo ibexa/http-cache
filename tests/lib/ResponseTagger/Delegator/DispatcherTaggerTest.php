@@ -110,9 +110,24 @@ final class DispatcherTaggerTest extends TestCase
         };
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
-        $dispatcher->tag($foo);
+
+        $deprecation = null;
+        set_error_handler(static function (int $errorCode, string $errorString) use (&$deprecation): bool {
+            if ($errorCode === E_USER_DEPRECATED) {
+                $deprecation = $errorString;
+            }
+
+            return true;
+        });
+
+        try {
+            $dispatcher->tag($foo);
+        } finally {
+            restore_error_handler();
+        }
 
         self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
+        self::assertStringContainsString('does not implement supports()', $deprecation);
     }
 
     public function testToStringWithNoTaggers(): void
