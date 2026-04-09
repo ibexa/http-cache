@@ -26,10 +26,10 @@ class ContentValueViewTagger extends AbstractValueTagger
 
     public function tag(mixed $value)
     {
-        /** @var \Ibexa\Core\MVC\Symfony\View\ContentValueView $value */
-        $content = $value->getContent();
+        assert($value instanceof ContentValueView);
 
-        $contentInfo = $content->getVersionInfo()->getContentInfo();
-        $this->contentInfoTagger->tag($contentInfo);
+        $this->contentInfoTagger->tag(
+            $value->getContent()->getVersionInfo()->getContentInfo()
+        );
     }
 }
