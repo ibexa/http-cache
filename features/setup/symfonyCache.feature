@@ -19,20 +19,20 @@ index 9982c21..03ac40a 100644
 +++ b/public/index.php
 @@ -1,9 +1,14 @@
  <?php
- 
+
  use App\Kernel;
 +use Ibexa\Bundle\HttpCache\AppCache;
 +use Symfony\Component\HttpFoundation\Request;
- 
+
  require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
- 
- return function (array $context) {
+
+ return static function (array $context) {
 -    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
 +    $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
 +    Request::enableHttpMethodParameterOverride();
 +
 +    return new AppCache($kernel);
  };
--- 
+--
 2.30.0
 """
