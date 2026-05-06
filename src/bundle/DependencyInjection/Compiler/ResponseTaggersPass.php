@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+declare(strict_types=1);
 
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\Compiler;
 
@@ -15,7 +16,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Injects services tagged as "ibexa.cache.http.response.tagger" into the dispatcher.
  */
-class ResponseTaggersPass implements CompilerPassInterface
+final readonly class ResponseTaggersPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
