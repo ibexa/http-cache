@@ -8,7 +8,6 @@
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
-use function Ibexa\PolyfillPhp82\iterator_to_array;
 
 /**
  * Dispatches a value to all registered ResponseTaggers.
