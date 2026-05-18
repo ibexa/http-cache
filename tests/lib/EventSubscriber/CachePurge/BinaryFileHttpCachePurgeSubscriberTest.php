@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\HttpCache\EventSubscriber\CachePurge;
 
-use FOS\HttpCache\ProxyClient\ProxyClient;
+use FOS\HttpCache\ProxyClient\Invalidation\PurgeCapable;
 use FOS\HttpCacheBundle\CacheManager;
 use Ibexa\Contracts\Core\Repository\Events\Content\PublishVersionEvent;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
@@ -22,25 +22,27 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
 {
-    private CacheManager $cacheManager;
+    private PurgeCapable $proxyClient;
 
     private BinaryFileHttpCachePurgeSubscriber $subscriber;
 
     protected function setUp(): void
     {
-        $this->cacheManager = $this->getMockBuilder(CacheManager::class)
-            ->setConstructorArgs([
-                $this->createMock(ProxyClient::class),
-                $this->createMock(UrlGeneratorInterface::class),
-            ])
-            ->getMock();
-
-        $this->subscriber = new BinaryFileHttpCachePurgeSubscriber($this->cacheManager);
+        $this->proxyClient = $this->createMock(PurgeCapable::class);
+        $this->subscriber = new BinaryFileHttpCachePurgeSubscriber(
+            new CacheManager(
+                $this->proxyClient,
+                $this->createMock(UrlGeneratorInterface::class)
+            ),
+        );
     }
 
     public function testGetSubscribedEvents(): void
     {
-        self::assertArrayHasKey(PublishVersionEvent::class, BinaryFileHttpCachePurgeSubscriber::getSubscribedEvents());
+        self::assertArrayHasKey(
+            PublishVersionEvent::class,
+            BinaryFileHttpCachePurgeSubscriber::getSubscribedEvents()
+        );
     }
 
     /**
@@ -58,19 +60,20 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         );
     }
 
-    public function testNoFieldsDoesNotCallInvalidatePath(): void
+    public function testNoFieldsDoesNotCallPurge(): void
     {
-        $this->cacheManager->expects(self::never())->method('invalidatePath');
+        $this->proxyClient->expects(self::never())->method('purge');
 
         $this->subscriber->onPublishVersion($this->buildEvent([]));
     }
 
     public function testNonBinaryFieldIsSkipped(): void
     {
-        $this->cacheManager->expects(self::never())->method('invalidatePath');
+        $this->proxyClient->expects(self::never())->method('purge');
 
-        $field = new Field(['value' => new \stdClass()]);
-        $this->subscriber->onPublishVersion($this->buildEvent([$field]));
+        $this->subscriber->onPublishVersion($this->buildEvent([
+            new Field(['value' => new \stdClass()]),
+        ]));
     }
 
     public function testImageValueWithUriIsInvalidated(): void
@@ -78,10 +81,10 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $imageValue = new ImageValue();
         $imageValue->uri = '/var/site/storage/images/foo.jpg';
 
-        $this->cacheManager
+        $this->proxyClient
             ->expects(self::once())
-            ->method('invalidatePath')
-            ->with('/var/site/storage/images/foo.jpg');
+            ->method('purge')
+            ->with('/var/site/storage/images/foo.jpg', []);
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => $imageValue]),
@@ -93,10 +96,10 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $binaryValue = new BinaryFileValue();
         $binaryValue->uri = '/var/site/storage/original/application/foo.pdf';
 
-        $this->cacheManager
+        $this->proxyClient
             ->expects(self::once())
-            ->method('invalidatePath')
-            ->with('/var/site/storage/original/application/foo.pdf');
+            ->method('purge')
+            ->with('/var/site/storage/original/application/foo.pdf', []);
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => $binaryValue]),
@@ -108,7 +111,7 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $imageValue = new ImageValue();
         $imageValue->uri = null;
 
-        $this->cacheManager->expects(self::never())->method('invalidatePath');
+        $this->proxyClient->expects(self::never())->method('purge');
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => $imageValue]),
@@ -120,7 +123,7 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $imageValue = new ImageValue();
         $imageValue->uri = '';
 
-        $this->cacheManager->expects(self::never())->method('invalidatePath');
+        $this->proxyClient->expects(self::never())->method('purge');
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => $imageValue]),
@@ -137,10 +140,10 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $imageValue2 = new ImageValue();
         $imageValue2->uri = $uri;
 
-        $this->cacheManager
+        $this->proxyClient
             ->expects(self::once())
-            ->method('invalidatePath')
-            ->with($uri);
+            ->method('purge')
+            ->with($uri, []);
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => $imageValue1]),
@@ -156,12 +159,12 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $binaryValue = new BinaryFileValue();
         $binaryValue->uri = '/var/site/storage/original/application/b.pdf';
 
-        $this->cacheManager
+        $this->proxyClient
             ->expects(self::exactly(2))
-            ->method('invalidatePath')
+            ->method('purge')
             ->withConsecutive(
-                ['/var/site/storage/images/a.jpg'],
-                ['/var/site/storage/original/application/b.pdf'],
+                ['/var/site/storage/images/a.jpg', []],
+                ['/var/site/storage/original/application/b.pdf', []],
             );
 
         $this->subscriber->onPublishVersion($this->buildEvent([
@@ -175,10 +178,10 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         $imageValue = new ImageValue();
         $imageValue->uri = '/var/site/storage/images/photo.jpg';
 
-        $this->cacheManager
+        $this->proxyClient
             ->expects(self::once())
-            ->method('invalidatePath')
-            ->with('/var/site/storage/images/photo.jpg');
+            ->method('purge')
+            ->with('/var/site/storage/images/photo.jpg', []);
 
         $this->subscriber->onPublishVersion($this->buildEvent([
             new Field(['value' => 'plain text value']),
