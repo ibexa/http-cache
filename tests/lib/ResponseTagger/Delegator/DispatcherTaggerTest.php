@@ -24,8 +24,8 @@ final class DispatcherTaggerTest extends TestCase
     {
         $contentInfo = new ContentInfo(['id' => 1, 'contentTypeId' => 2]);
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
-        $locationTagger = $this->createMock(LocationTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger = $this->createMock(ResponseTagger::class);
 
         $contentInfoTagger
             ->method('supports')
@@ -55,8 +55,8 @@ final class DispatcherTaggerTest extends TestCase
     {
         $location = new Location(['id' => 1]);
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
-        $locationTagger = $this->createMock(LocationTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger = $this->createMock(ResponseTagger::class);
 
         $contentInfoTagger
             ->expects(self::once())
@@ -86,7 +86,7 @@ final class DispatcherTaggerTest extends TestCase
     {
         $foo = new stdClass();
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
         $contentInfoTagger
             ->expects(self::once())
             ->method('supports')

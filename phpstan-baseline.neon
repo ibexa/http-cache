@@ -7,30 +7,6 @@ parameters:
 			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
 
 		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentInfo\:\:willReturn\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
-
-		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:shouldHaveBeenCalled\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
-
-		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\:\:willReturn\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
-
-		-
-			message: '#^Call to an undefined method Ibexa\\Core\\MVC\\Exception\\HiddenLocationException\:\:getWrappedObject\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: spec/EventSubscriber/HiddenLocationExceptionSubscriberSpec.php
-
-		-
 			message: '#^Call to an undefined method Symfony\\Component\\HttpFoundation\\Request\:\:getWrappedObject\(\)\.$#'
 			identifier: method.notFound
 			count: 2

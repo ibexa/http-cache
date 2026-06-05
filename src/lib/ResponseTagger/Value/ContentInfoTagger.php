@@ -16,7 +16,7 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 /**
  * @final
  */
-class ContentInfoTagger implements ResponseTagger
+readonly class ContentInfoTagger implements ResponseTagger
 {
     public function __construct(private readonly FosResponseTagger $responseTagger)
     {
