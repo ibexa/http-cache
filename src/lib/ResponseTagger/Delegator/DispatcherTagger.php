@@ -21,20 +21,15 @@ readonly class DispatcherTagger implements ResponseTagger
     {
     }
 
+    public function supports(mixed $value): bool
+    {
+        return true;
+    }
+
     public function tag(mixed $value): void
     {
         foreach ($this->taggers as $tagger) {
-            if (method_exists($tagger, 'supports')) {
-                if ($tagger->supports($value)) {
-                    $tagger->tag($value);
-                }
-            } else {
-                trigger_deprecation(
-                    'ibexa/http-cache',
-                    '5.0.7',
-                    '%s does not implement supports(). This will be required in 6.0, supports() will be a part of ResponseTagger interface',
-                    get_debug_type($tagger),
-                );
+            if ($tagger->supports($value)) {
                 $tagger->tag($value);
             }
         }

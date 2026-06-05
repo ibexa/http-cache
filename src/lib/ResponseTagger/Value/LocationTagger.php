@@ -8,14 +8,20 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ResponseTagger\Value;
 
+use FOS\HttpCache\ResponseTagger as FosResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
 /**
  * @final
  */
-class LocationTagger extends AbstractValueTagger
+class LocationTagger implements ResponseTagger
 {
+    public function __construct(private readonly FosResponseTagger $responseTagger)
+    {
+    }
+
     public function supports(mixed $value): bool
     {
         return $value instanceof Location;

@@ -82,7 +82,7 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher->tag($location);
     }
 
-    public function testCustomResponseTaggerImplementationLackingSupportsMethodShouldTag(): void
+    public function testCallsCustomResponseTaggerWhenItSupportsTheValue(): void
     {
         $foo = new stdClass();
 
@@ -103,6 +103,11 @@ final class DispatcherTaggerTest extends TestCase
             {
             }
 
+            public function supports(mixed $value): bool
+            {
+                return true;
+            }
+
             public function tag(mixed $value): void
             {
                 $this->wasCalled = true;
@@ -111,23 +116,8 @@ final class DispatcherTaggerTest extends TestCase
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
 
-        $deprecation = null;
-        set_error_handler(static function (int $errorCode, string $errorString) use (&$deprecation): bool {
-            if ($errorCode === E_USER_DEPRECATED) {
-                $deprecation = $errorString;
-            }
-
-            return true;
-        });
-
-        try {
-            $dispatcher->tag($foo);
-        } finally {
-            restore_error_handler();
-        }
-
+        $dispatcher->tag($foo);
         self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
-        self::assertStringContainsString('does not implement supports()', $deprecation);
     }
 
     public function testToStringWithNoTaggers(): void

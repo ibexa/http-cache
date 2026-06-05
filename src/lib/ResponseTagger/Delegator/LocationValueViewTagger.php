@@ -11,9 +11,8 @@ namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
-use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
-class LocationValueViewTagger extends AbstractValueTagger
+class LocationValueViewTagger implements ResponseTagger
 {
     public function __construct(private readonly ResponseTagger $locationTagger)
     {

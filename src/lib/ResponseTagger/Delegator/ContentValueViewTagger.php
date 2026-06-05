@@ -11,9 +11,8 @@ namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\MVC\Symfony\View\ContentValueView;
-use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
-class ContentValueViewTagger extends AbstractValueTagger
+class ContentValueViewTagger implements ResponseTagger
 {
     public function __construct(private readonly ResponseTagger $contentInfoTagger)
     {
