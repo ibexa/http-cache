@@ -13,10 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
-/**
- * @final
- */
-readonly class ContentInfoTagger implements ResponseTagger
+final readonly class ContentInfoTagger implements ResponseTagger
 {
     public function __construct(private readonly FosResponseTagger $responseTagger)
     {

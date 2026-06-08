@@ -13,10 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
-/**
- * @final
- */
-readonly class LocationTagger implements ResponseTagger
+final readonly class LocationTagger implements ResponseTagger
 {
     public function __construct(private readonly FosResponseTagger $responseTagger)
     {

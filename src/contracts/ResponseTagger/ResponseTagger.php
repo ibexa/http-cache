@@ -13,9 +13,6 @@ namespace Ibexa\Contracts\HttpCache\ResponseTagger;
  */
 interface ResponseTagger
 {
-    /**
-     * Checks if a value is supported by the tagger.
-     */
     public function supports(mixed $value): bool;
 
     /**

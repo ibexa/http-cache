@@ -12,7 +12,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 
-class LocationValueViewTagger implements ResponseTagger
+final readonly class LocationValueViewTagger implements ResponseTagger
 {
     public function __construct(private readonly ResponseTagger $locationTagger)
     {
