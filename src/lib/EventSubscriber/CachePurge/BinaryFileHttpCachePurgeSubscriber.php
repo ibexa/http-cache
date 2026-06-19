@@ -36,7 +36,7 @@ final class BinaryFileHttpCachePurgeSubscriber implements EventSubscriberInterfa
         $purged = [];
 
         foreach ($content->getFields() as $field) {
-            $value = $field->value;
+            $value = $field->getValue();
 
             if (!$value instanceof ImageValue && !$value instanceof BinaryBaseValue) {
                 continue;
