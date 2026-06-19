@@ -16,7 +16,7 @@ jobs:
         php:
           - '8.1'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -43,7 +43,7 @@ jobs:
           - '8.3'
           - '8.4'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -75,7 +75,7 @@ jobs:
         composer_options: [ "" ]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
