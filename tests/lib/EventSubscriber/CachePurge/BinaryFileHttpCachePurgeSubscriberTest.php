@@ -60,74 +60,64 @@ final class BinaryFileHttpCachePurgeSubscriberTest extends TestCase
         );
     }
 
-    public function testNoFieldsDoesNotCallPurge(): void
+    /**
+     * @return iterable<string, array{\Ibexa\Contracts\Core\Repository\Values\Content\Field[]}>
+     */
+    public function fieldsThatDoNotTriggerPurgeProvider(): iterable
+    {
+        yield 'no fields' => [[]];
+
+        yield 'non-binary field value' => [[new Field(['value' => new \stdClass()])]];
+
+        $imageWithNullUri = new ImageValue();
+        $imageWithNullUri->uri = null;
+        yield 'image value with null URI' => [[new Field(['value' => $imageWithNullUri])]];
+
+        $imageWithEmptyUri = new ImageValue();
+        $imageWithEmptyUri->uri = '';
+        yield 'image value with empty URI' => [[new Field(['value' => $imageWithEmptyUri])]];
+    }
+
+    /**
+     * @dataProvider fieldsThatDoNotTriggerPurgeProvider
+     *
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Field[] $fields
+     */
+    public function testFieldsThatDoNotTriggerPurge(array $fields): void
     {
         $this->proxyClient->expects(self::never())->method('purge');
 
-        $this->subscriber->onPublishVersion($this->buildEvent([]));
+        $this->subscriber->onPublishVersion($this->buildEvent($fields));
     }
 
-    public function testNonBinaryFieldIsSkipped(): void
-    {
-        $this->proxyClient->expects(self::never())->method('purge');
-
-        $this->subscriber->onPublishVersion($this->buildEvent([
-            new Field(['value' => new \stdClass()]),
-        ]));
-    }
-
-    public function testImageValueWithUriIsInvalidated(): void
+    /**
+     * @return iterable<string, array{\Ibexa\Contracts\Core\Repository\Values\Content\Field[], string}>
+     */
+    public function fieldsThatTriggerPurgeProvider(): iterable
     {
         $imageValue = new ImageValue();
         $imageValue->uri = '/var/site/storage/images/foo.jpg';
+        yield 'image value with URI' => [[new Field(['value' => $imageValue])], '/var/site/storage/images/foo.jpg'];
 
-        $this->proxyClient
-            ->expects(self::once())
-            ->method('purge')
-            ->with('/var/site/storage/images/foo.jpg', []);
-
-        $this->subscriber->onPublishVersion($this->buildEvent([
-            new Field(['value' => $imageValue]),
-        ]));
-    }
-
-    public function testBinaryFileValueWithUriIsInvalidated(): void
-    {
         $binaryValue = new BinaryFileValue();
         $binaryValue->uri = '/var/site/storage/original/application/foo.pdf';
+        yield 'binary file value with URI' => [[new Field(['value' => $binaryValue])], '/var/site/storage/original/application/foo.pdf'];
+    }
 
+    /**
+     * @dataProvider fieldsThatTriggerPurgeProvider
+     *
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Field[] $fields
+     * @param string $expectedUri
+     */
+    public function testFieldsThatTriggerPurge(array $fields, string $expectedUri): void
+    {
         $this->proxyClient
             ->expects(self::once())
             ->method('purge')
-            ->with('/var/site/storage/original/application/foo.pdf', []);
+            ->with($expectedUri, []);
 
-        $this->subscriber->onPublishVersion($this->buildEvent([
-            new Field(['value' => $binaryValue]),
-        ]));
-    }
-
-    public function testImageValueWithNullUriIsSkipped(): void
-    {
-        $imageValue = new ImageValue();
-        $imageValue->uri = null;
-
-        $this->proxyClient->expects(self::never())->method('purge');
-
-        $this->subscriber->onPublishVersion($this->buildEvent([
-            new Field(['value' => $imageValue]),
-        ]));
-    }
-
-    public function testImageValueWithEmptyUriIsSkipped(): void
-    {
-        $imageValue = new ImageValue();
-        $imageValue->uri = '';
-
-        $this->proxyClient->expects(self::never())->method('purge');
-
-        $this->subscriber->onPublishVersion($this->buildEvent([
-            new Field(['value' => $imageValue]),
-        ]));
+        $this->subscriber->onPublishVersion($this->buildEvent($fields));
     }
 
     public function testDuplicateUriIsInvalidatedOnlyOnce(): void
