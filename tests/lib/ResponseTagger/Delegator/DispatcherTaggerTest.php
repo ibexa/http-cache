@@ -15,7 +15,9 @@ use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use stdClass;
 
 final class DispatcherTaggerTest extends TestCase
@@ -51,7 +53,7 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher->tag($contentInfo);
     }
 
-    public function testDoesNotCallTagWhenNoTaggerSupportsTheValue(): void
+    public function testLogsWarningWhenNoTaggerSupportsTheValueInProduction(): void
     {
         $location = new Location(['id' => 1]);
 
@@ -78,7 +80,40 @@ final class DispatcherTaggerTest extends TestCase
             ->expects(self::never())
             ->method('tag');
 
-        $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger]);
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects(self::once())
+            ->method('warning');
+
+        $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger], $logger, false);
+        $dispatcher->tag($location);
+    }
+
+    public function testThrowsWhenNoTaggerSupportsTheValueInDebugMode(): void
+    {
+        $location = new Location(['id' => 1]);
+
+        $locationTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger
+            ->expects(self::once())
+            ->method('supports')
+            ->with($location)
+            ->willReturn(false);
+
+        $locationTagger
+            ->expects(self::never())
+            ->method('tag');
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects(self::never())
+            ->method('warning');
+
+        $dispatcher = new DispatcherTagger([$locationTagger], $logger, true);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('No response tagger supports value of type');
+
         $dispatcher->tag($location);
     }
 

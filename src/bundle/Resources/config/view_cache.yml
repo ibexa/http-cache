@@ -58,6 +58,8 @@ services:
         # Taggers are added by a compiler pass
         arguments:
             - []
+            - '@logger'
+            - '%kernel.debug%'
 
     # Alias for ResponseTagger interface => DispatcherTagger
     Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger: '@Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger'
