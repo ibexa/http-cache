@@ -13,6 +13,8 @@ namespace Ibexa\Contracts\HttpCache\ResponseTagger;
  */
 interface ResponseTagger
 {
+    public function supports(mixed $value): bool;
+
     /**
      * Extracts tags from a value.
      *

@@ -8,14 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\ResponseTagger\Value;
 
+use FOS\HttpCache\ResponseTagger as FosResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
-/**
- * @final
- */
-class ContentInfoTagger extends AbstractValueTagger
+final readonly class ContentInfoTagger implements ResponseTagger
 {
+    public function __construct(private readonly FosResponseTagger $responseTagger)
+    {
+    }
+
     public function supports(mixed $value): bool
     {
         return $value instanceof ContentInfo;

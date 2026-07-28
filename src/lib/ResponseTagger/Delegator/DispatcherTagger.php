@@ -8,6 +8,8 @@
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Dispatches a value to all registered ResponseTaggers.
@@ -17,26 +19,30 @@ readonly class DispatcherTagger implements ResponseTagger
     /**
      * @param iterable<\Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger> $taggers
      */
-    public function __construct(private iterable $taggers = [])
+    public function __construct(
+        private iterable $taggers = [],
+        private LoggerInterface $logger = new NullLogger(),
+        private bool $debug = false,
+    ) {
+    }
+
+    public function supports(mixed $value): bool
     {
+        return true;
     }
 
     public function tag(mixed $value): void
     {
+        $handled = false;
         foreach ($this->taggers as $tagger) {
-            if (method_exists($tagger, 'supports')) {
-                if ($tagger->supports($value)) {
-                    $tagger->tag($value);
-                }
-            } else {
-                trigger_deprecation(
-                    'ibexa/http-cache',
-                    '5.0.7',
-                    '%s does not implement supports(). This will be required in 6.0, supports() will be a part of ResponseTagger interface',
-                    get_debug_type($tagger),
-                );
+            if ($tagger->supports($value)) {
                 $tagger->tag($value);
+                $handled = true;
             }
+        }
+
+        if (!$handled) {
+            $this->handleUnsupportedValue($value);
         }
     }
 
@@ -51,5 +57,19 @@ readonly class DispatcherTagger implements ResponseTagger
         );
 
         return sprintf('Available response taggers are: %s', $taggers);
+    }
+
+    private function handleUnsupportedValue(mixed $value): void
+    {
+        $message = sprintf(
+            'No response tagger supports value of type "%s"; no cache tags were added.',
+            get_debug_type($value),
+        );
+
+        if ($this->debug) {
+            throw new \InvalidArgumentException($message);
+        }
+
+        $this->logger->warning($message, ['taggers' => (string)$this]);
     }
 }

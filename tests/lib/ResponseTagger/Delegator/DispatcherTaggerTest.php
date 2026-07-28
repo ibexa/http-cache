@@ -15,7 +15,9 @@ use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Delegator\DispatcherTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use stdClass;
 
 final class DispatcherTaggerTest extends TestCase
@@ -24,8 +26,8 @@ final class DispatcherTaggerTest extends TestCase
     {
         $contentInfo = new ContentInfo(['id' => 1, 'contentTypeId' => 2]);
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
-        $locationTagger = $this->createMock(LocationTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger = $this->createMock(ResponseTagger::class);
 
         $contentInfoTagger
             ->method('supports')
@@ -51,12 +53,12 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher->tag($contentInfo);
     }
 
-    public function testDoesNotCallTagWhenNoTaggerSupportsTheValue(): void
+    public function testLogsWarningWhenNoTaggerSupportsTheValueInProduction(): void
     {
         $location = new Location(['id' => 1]);
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
-        $locationTagger = $this->createMock(LocationTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger = $this->createMock(ResponseTagger::class);
 
         $contentInfoTagger
             ->expects(self::once())
@@ -78,15 +80,48 @@ final class DispatcherTaggerTest extends TestCase
             ->expects(self::never())
             ->method('tag');
 
-        $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger]);
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects(self::once())
+            ->method('warning');
+
+        $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger], $logger, false);
         $dispatcher->tag($location);
     }
 
-    public function testCustomResponseTaggerImplementationLackingSupportsMethodShouldTag(): void
+    public function testThrowsWhenNoTaggerSupportsTheValueInDebugMode(): void
+    {
+        $location = new Location(['id' => 1]);
+
+        $locationTagger = $this->createMock(ResponseTagger::class);
+        $locationTagger
+            ->expects(self::once())
+            ->method('supports')
+            ->with($location)
+            ->willReturn(false);
+
+        $locationTagger
+            ->expects(self::never())
+            ->method('tag');
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects(self::never())
+            ->method('warning');
+
+        $dispatcher = new DispatcherTagger([$locationTagger], $logger, true);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('No response tagger supports value of type');
+
+        $dispatcher->tag($location);
+    }
+
+    public function testCallsCustomResponseTaggerWhenItSupportsTheValue(): void
     {
         $foo = new stdClass();
 
-        $contentInfoTagger = $this->createMock(ContentInfoTagger::class);
+        $contentInfoTagger = $this->createMock(ResponseTagger::class);
         $contentInfoTagger
             ->expects(self::once())
             ->method('supports')
@@ -103,6 +138,11 @@ final class DispatcherTaggerTest extends TestCase
             {
             }
 
+            public function supports(mixed $value): bool
+            {
+                return true;
+            }
+
             public function tag(mixed $value): void
             {
                 $this->wasCalled = true;
@@ -111,23 +151,8 @@ final class DispatcherTaggerTest extends TestCase
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
 
-        $deprecation = null;
-        set_error_handler(static function (int $errorCode, string $errorString) use (&$deprecation): bool {
-            if ($errorCode === E_USER_DEPRECATED) {
-                $deprecation = $errorString;
-            }
-
-            return true;
-        });
-
-        try {
-            $dispatcher->tag($foo);
-        } finally {
-            restore_error_handler();
-        }
-
+        $dispatcher->tag($foo);
         self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
-        self::assertStringContainsString('does not implement supports()', $deprecation);
     }
 
     public function testToStringWithNoTaggers(): void
