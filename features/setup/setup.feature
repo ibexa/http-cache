@@ -65,3 +65,8 @@ Feature: Set system to desired state before tests
     And I add a siteaccess "cache_ttl_short" to "site_group" with settings
       | key                 | value |
       | content.default_ttl | 5     |
+    # The Anonymous role's existing user/login policy is limited by SiteAccess, so without this
+    # the siteaccesses above are unreachable anonymously
+    And I add policies to "Anonymous"
+      | module | function |
+      | user   | login    |
