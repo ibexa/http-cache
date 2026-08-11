@@ -55,3 +55,13 @@ Feature: Set system to desired state before tests
             match:
                 Identifier\ContentType: [embeddedContentType]
     """
+
+  Scenario: Set up siteaccesses with distinct HTTP cache TTLs
+    # Dedicated siteaccesses so that TTL assertions do not depend on the default TTL,
+    # and so that shortening the TTL does not affect the timing of any other suite.
+    Given I add a siteaccess "cache_ttl_long" to "site_group" with settings
+      | key                 | value |
+      | content.default_ttl | 60    |
+    And I add a siteaccess "cache_ttl_short" to "site_group" with settings
+      | key                 | value |
+      | content.default_ttl | 5     |
