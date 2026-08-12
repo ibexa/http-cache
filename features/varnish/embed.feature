@@ -1,4 +1,4 @@
-@varnish6 @varnish7
+@varnish6 @varnish7 @varnish9
 Feature: Caching of embedded items
 
   @admin
