@@ -35,7 +35,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
             | admin     | publish  | ItemPolskiAdmin | ItemEnglishAdmin  |
             | anonymous |          | ItemPolskiAnon  | ItemEnglishAnon   |
 
-  @APIUser:admin @javascript @translationNotAware @varnish6
+  @APIUser:admin @javascript @translationNotAware @varnish6 @varnish7 @varnish9
   Scenario: Main translation cache is purged when a fallback translation is edited
     Given I am viewing the pages on siteaccess "site" as "admin" with password "publish"
     And I create "embeddedContentType" Content items in root in "eng-GB"
