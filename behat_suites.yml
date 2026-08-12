@@ -82,6 +82,7 @@ httpCache:
                 - Ibexa\Behat\Core\Context\ConfigurationContext
                 - Ibexa\Behat\API\Context\ContentContext
                 - Ibexa\Behat\API\Context\LanguageContext
+                - Ibexa\Behat\API\Context\RoleContext
         setup-token:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/invalidateToken.feature'
