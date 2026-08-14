@@ -55,3 +55,16 @@ Feature: Set system to desired state before tests
             match:
                 Identifier\ContentType: [embeddedContentType]
     """
+
+  @APIUser:admin
+  Scenario: Set up the system to test filtering of reverse proxy headers
+    Given I create a "proxyHeadersContentType" content type in "Content" with "proxyHeadersContentType" identifier
+      | Field Type                | Name      | Identifier | Required | Searchable | Translatable |
+      | Text line                 | Name      | name	   | yes      | yes	       | yes          |
+    And I append configuration to "ibexa.system.default.content_view.full"
+    """
+      proxyHeadersContentType:
+          template: "@IbexaHttpCache/tests/cache/proxy_headers.html.twig"
+          match:
+              Identifier\ContentType: [proxyHeadersContentType]
+    """
