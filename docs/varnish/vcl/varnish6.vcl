@@ -23,6 +23,29 @@ sub vcl_recv {
     // Add a Surrogate-Capability header to announce ESI support.
     set req.http.Surrogate-Capability = "abc=ESI/1.0";
 
+    // Stop clients from injecting reverse proxy headers, as the application trusts them once
+    // framework.trusted_proxies is configured. See parameters.vcl for the trusted_proxies ACL.
+    if (client.ip !~ trusted_proxies) {
+        // Varnish appends client.ip to X-Forwarded-For before vcl_recv is entered, so overwrite
+        // rather than unset, to keep the real client IP as the only entry.
+        set req.http.X-Forwarded-For = client.ip;
+        unset req.http.Forwarded;
+        unset req.http.X-Forwarded-Host;
+        unset req.http.X-Forwarded-Prefix;
+        unset req.http.X-Forwarded-Port;
+        // To prevent the Ibexa Cloud detection in Ibexa DXP from kicking in:
+        unset req.http.X-Client-IP;
+        unset req.http.Client-Cdn;
+
+        // Varnish itself only knows the scheme when a TLS terminator hands the connection over
+        // using the PROXY protocol, in which case server.ip is the address the client connected to.
+        if (std.port(server.ip) == 443) {
+            set req.http.X-Forwarded-Proto = "https";
+        } else {
+            unset req.http.X-Forwarded-Proto;
+        }
+    }
+
     // Ensure that the Symfony Router generates URLs correctly with Varnish
     if (req.http.X-Forwarded-Proto == "https" ) {
         set req.http.X-Forwarded-Port = "443";
