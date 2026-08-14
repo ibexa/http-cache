@@ -44,3 +44,29 @@ Feature: As a site administrator I want Varnish to drop reverse proxy headers se
             | user      | password | itemName             |
             | admin     | publish  | ProxyProbeAdmin      |
             | anonymous |          | ProxyProbeAnonymous  |
+
+    # Runs only with the varnish-trusted-proxy overlay applied, where the app container is added to the
+    # trusted_proxies ACL. Guards against the filtering degrading into a blanket strip, which would
+    # break every setup with a TLS terminator, load balancer or CDN in front of Varnish.
+    @admin @trustedProxy
+    Scenario: Reverse proxy headers from a trusted proxy do reach the application
+        Given I create "proxyHeadersContentType" Content items in root in "eng-GB"
+            | name                  |
+            | ProxyProbeTrusted     |
+        And I am viewing the pages on siteaccess "site" as "anonymous" ""
+        And I set request header "X-Forwarded-Host" to "upstream.example"
+        And I set request header "X-Forwarded-Proto" to "https"
+        And I set request header "X-Forwarded-Prefix" to "/admin"
+        And I set request header "X-Client-IP" to "203.0.113.9"
+        And I set request header "Client-Cdn" to "fastly"
+        When I visit "ProxyProbeTrusted" on siteaccess "site"
+        And response headers contain
+            | Header  | Value |
+            | x-cache | MISS  |
+        Then I should see "XFHOST:upstream.example"
+        And I should see "XFPROTO:https"
+        And I should see "XFPREFIX:/admin"
+        And I should see "XCLIENTIP:203.0.113.9"
+        And I should see "CLIENTCDN:fastly"
+        # Derived by the VCL from the trusted X-Forwarded-Proto
+        And I should see "XFPORT:443"
