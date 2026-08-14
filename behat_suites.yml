@@ -28,6 +28,7 @@ httpCache:
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
+                - Ibexa\HttpCache\Behat\Context\ProxyHeaderContext
         varnish6-translation-aware:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
@@ -43,6 +44,7 @@ httpCache:
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
+                - Ibexa\HttpCache\Behat\Context\ProxyHeaderContext
         varnish7:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
@@ -58,6 +60,7 @@ httpCache:
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
+                - Ibexa\HttpCache\Behat\Context\ProxyHeaderContext
         varnish7-translation-aware:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/varnish'
@@ -73,6 +76,7 @@ httpCache:
                 - Ibexa\Behat\Browser\Context\AuthenticationContext
                 - Behat\MinkExtension\Context\MinkContext
                 - Ibexa\Behat\Browser\Context\ContentPreviewContext
+                - Ibexa\HttpCache\Behat\Context\ProxyHeaderContext
         setup:
             paths:
                 - '%paths.base%/vendor/ibexa/http-cache/features/setup/setup.feature'
