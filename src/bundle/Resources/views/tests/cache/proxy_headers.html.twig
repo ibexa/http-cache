@@ -1,0 +1,22 @@
+{# Renders the reverse proxy headers as the application received them.
+
+   Used by features/varnish/proxyHeaders.feature to assert what Varnish forwarded to the backend,
+   which cannot be observed from the response alone. Test fixture, not part of the public API. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Proxy headers received by the application</title>
+</head>
+<body>
+<div id="proxy-headers">
+    <div>XFF:{{ app.request.headers.get('x-forwarded-for')|default('-') }}</div>
+    <div>XFHOST:{{ app.request.headers.get('x-forwarded-host')|default('-') }}</div>
+    <div>XFPROTO:{{ app.request.headers.get('x-forwarded-proto')|default('-') }}</div>
+    <div>XFPORT:{{ app.request.headers.get('x-forwarded-port')|default('-') }}</div>
+    <div>XFPREFIX:{{ app.request.headers.get('x-forwarded-prefix')|default('-') }}</div>
+    <div>FORWARDED:{{ app.request.headers.get('forwarded')|default('-') }}</div>
+    <div>XCLIENTIP:{{ app.request.headers.get('x-client-ip')|default('-') }}</div>
+    <div>CLIENTCDN:{{ app.request.headers.get('client-cdn')|default('-') }}</div>
+</div>
+</body>
+</html>
