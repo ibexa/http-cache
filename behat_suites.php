@@ -22,6 +22,8 @@ use Ibexa\Behat\Core\Context\ConfigurationContext;
 use Ibexa\Behat\Core\Context\FileContext;
 use Ibexa\Behat\Core\Context\TimeContext;
 
+$varnishFeaturesPath = '%paths.base%/vendor/ibexa/http-cache/features/varnish';
+
 $browserContexts = [
     TestContext::class,
     ContentTypeContext::class,
@@ -41,19 +43,19 @@ return (new Config())
             ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/symfony'))
         ->withSuite((new Suite('varnish6'))
             ->withContexts(...$browserContexts)
-            ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/varnish')
+            ->withPaths($varnishFeaturesPath)
             ->withFilter(new TagFilter('@varnish6&&~@translationAware')))
         ->withSuite((new Suite('varnish6-translation-aware'))
             ->withContexts(...$browserContexts)
-            ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/varnish')
+            ->withPaths($varnishFeaturesPath)
             ->withFilter(new TagFilter('@varnish6&&~@translationNotAware')))
         ->withSuite((new Suite('varnish7'))
             ->withContexts(...$browserContexts)
-            ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/varnish')
+            ->withPaths($varnishFeaturesPath)
             ->withFilter(new TagFilter('@varnish7&&~@translationAware')))
         ->withSuite((new Suite('varnish7-translation-aware'))
             ->withContexts(...$browserContexts)
-            ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/varnish')
+            ->withPaths($varnishFeaturesPath)
             ->withFilter(new TagFilter('@varnish7&&~@translationNotAware')))
         ->withSuite((new Suite('setup'))
             ->withContexts(
