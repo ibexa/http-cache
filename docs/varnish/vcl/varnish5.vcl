@@ -14,6 +14,17 @@ import xkey;
 // For customizing your backend and acl rules see parameters.vcl
 include "parameters.vcl";
 
+// if you're using Blackfire tool, please uncomment the lines above
+//acl profile {
+//   # Authorized IPs, add your own IPs from which you want to profile.
+//   "x.y.z.w";
+
+//   # Add the Blackfire.io IPs when using builds:
+//   # Ref https://blackfire.io/docs/reference-guide/faq#how-should-i-configure-my-firewall-to-let-blackfire-access-my-apps
+//   "46.51.168.2";
+//   "54.75.240.245";
+//}
+
 // Called at the beginning of a request, after the complete request has been received
 sub vcl_recv {
 
@@ -37,6 +48,24 @@ sub vcl_recv {
     if (req.method != "GET" && req.method != "HEAD") {
         return (pass);
     }
+
+    // if you're using Blackfire tool, please uncomment the lines above
+    //if (req.esi_level > 0) {
+    //    # ESI request should not be included in the profile.
+    //    # Instead you should profile them separately, each one
+    //    # in their dedicated profile.
+    //    # Removing the Blackfire header avoids to trigger the profiling.
+    //    # Not returning let it go trough your usual workflow as a regular
+    //    # ESI request without distinction.
+    //    unset req.http.X-Blackfire-Query;
+    //}
+
+    // if you're using Blackfire tool, please uncomment the lines above
+    //# If it's a Blackfire query and the client is authorized,
+    //# just pass directly to the application.
+    //if (req.http.X-Blackfire-Query && client.ip ~ profile) {
+    //  return (pass);
+    //}
 
     // Don't cache Authenticate & Authorization
     // You may remove this when using REST API with basic auth.
