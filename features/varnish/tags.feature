@@ -1,6 +1,6 @@
 Feature: As a site administrator I want responses to carry the cache tags Varnish invalidates on
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: A Content view response is tagged with the content and location it was built from
         # Tags are what every purge in this bundle keys on, but they are otherwise only tested
         # indirectly - through whether a purge happened to work. fos_http_cache is configured

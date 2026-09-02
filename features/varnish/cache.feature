@@ -1,4 +1,4 @@
-@varnish6 @varnish7
+@varnish6 @varnish7 @varnish9
 Feature: As an site administrator I want my pages to be cached using Varnish
 
     @admin
