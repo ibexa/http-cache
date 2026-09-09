@@ -77,9 +77,8 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
      */
     public function testOnKernelResponse(array $varyHeaders, array $expectedVaryHeaders): void
     {
-        $request = $this->createMock(Request::class);
-        $request->method('get')
-            ->willReturn('testroute1');
+        $request = new Request();
+        $request->attributes->set('_route', 'testroute1');
 
         $response = new Response('test content', Response::HTTP_OK, ['vary' => $varyHeaders]);
 
