@@ -13,6 +13,20 @@ For Varnish to work properly with eZ, you'll need to use the provided configurat
 
 * [eZ Platform 2.5LTs optimized Varnish 5.1+ VCL](vcl/varnish5.vcl)
 
+Trusted proxies
+---------------
+The VCL strips the `X-Forwarded-*` and `Forwarded` request headers from every client that is not
+listed in the `trusted_proxies` ACL in [parameters.vcl](vcl/parameters.vcl). The application trusts
+those headers as soon as `framework.trusted_proxies` is configured, so leaving them unfiltered lets
+a client spoof the scheme, host and IP address it is seen with.
+
+If a TLS terminator, load balancer or CDN runs in front of Varnish, add its IP to that ACL —
+otherwise the `X-Forwarded-Proto` it sets is discarded and URLs are generated as `http://`.
+
+_Upgrading: `parameters.vcl` and the VCL above must be updated together. The VCL references the
+`trusted_proxies` ACL, so an older `parameters.vcl` without it makes Varnish fail to load the
+configuration._
+
 For tuning the VCL further to you needs, see the following relevant examples:
 - [FOSHttpCache documentation](https://foshttpcache.readthedocs.io/en/latest/varnish-configuration.html)
 - Symfony documentation [4.4](https://symfony.com/doc/4.4/http_cache/varnish.html)

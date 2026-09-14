@@ -30,6 +30,7 @@
         "toflar/psr6-symfony-http-cache-store": "^2.2 || ^3.0"
     },
     "require-dev": {
+        "ibexa/behat": "~4.6.0",
         "ibexa/ci-scripts": "^0.2@dev",
         "ibexa/doctrine-schema": "~4.6.0@dev",
         "phpunit/phpunit": "^8.5",

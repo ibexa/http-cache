@@ -1,0 +1,41 @@
+varnishtest "Proxy headers from a trusted proxy are passed on to the backend untouched"
+
+# Guards against the filtering turning into a blanket strip, which would break every setup with a
+# TLS terminator, load balancer or CDN in front of Varnish.
+#
+# Run with fixtures/parameters-trusted.vcl mounted as /etc/varnish/parameters.vcl, and the VCL
+# under test as /etc/varnish/default.vcl. See run.sh.
+
+server s1 -listen "127.0.0.1:9081" {
+    rxreq
+
+    expect req.http.X-Forwarded-Host   == "upstream.example"
+    expect req.http.X-Forwarded-Prefix == "/admin"
+    expect req.http.X-Forwarded-Proto  == "https"
+    expect req.http.Forwarded          == "for=203.0.113.9;host=upstream.example;proto=https"
+    expect req.http.X-Client-IP        == "203.0.113.9"
+    expect req.http.Client-Cdn         == "fastly"
+
+    # Left as Varnish built it: what the proxy sent, with the proxy's own address appended.
+    expect req.http.X-Forwarded-For == "203.0.113.9, 127.0.0.1"
+
+    # Derived by the VCL from the trusted X-Forwarded-Proto.
+    expect req.http.X-Forwarded-Port == "443"
+
+    txresp
+} -start
+
+varnish v1 -arg "-f /etc/varnish/default.vcl" -start
+
+client c1 {
+    txreq -url "/trusted" \
+        -hdr "X-Forwarded-Host: upstream.example" \
+        -hdr "X-Forwarded-Proto: https" \
+        -hdr "X-Forwarded-Prefix: /admin" \
+        -hdr "X-Forwarded-For: 203.0.113.9" \
+        -hdr "X-Client-IP: 203.0.113.9" \
+        -hdr "Client-Cdn: fastly" \
+        -hdr "Forwarded: for=203.0.113.9;host=upstream.example;proto=https"
+    rxresp
+    expect resp.status == 200
+} -run
