@@ -53,7 +53,7 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
             return;
         }
 
-        if (!\in_array($event->getRequest()->get('_route'), $this->routes)) {
+        if (!\in_array($event->getRequest()->attributes->get('_route'), $this->routes)) {
             return;
         }
 
