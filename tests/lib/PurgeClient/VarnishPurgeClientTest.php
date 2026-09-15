@@ -10,6 +10,7 @@ namespace Ibexa\Tests\HttpCache\PurgeClient;
 use FOS\HttpCache\ProxyClient\ProxyClient;
 use FOS\HttpCacheBundle\CacheManager;
 use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -26,8 +27,8 @@ class VarnishPurgeClientTest extends TestCase
         $this->cacheManager = $this->getMockBuilder(CacheManager::class)
             ->setConstructorArgs(
                 [
-                    $this->createMock(ProxyClient::class),
-                    $this->createMock(
+                    $this->createStub(ProxyClient::class),
+                    $this->createStub(
                         UrlGeneratorInterface::class
                     ),
                 ]
@@ -48,9 +49,7 @@ class VarnishPurgeClientTest extends TestCase
         $this->purgeClient->purge([]);
     }
 
-    /**
-     * @dataProvider purgeTestProvider
-     */
+    #[DataProvider('purgeTestProvider')]
     public function testPurge(array $locationIds): void
     {
         $keys = array_map(
@@ -68,7 +67,7 @@ class VarnishPurgeClientTest extends TestCase
         $this->purgeClient->purge($keys);
     }
 
-    public function purgeTestProvider(): array
+    public static function purgeTestProvider(): array
     {
         return [
             [[123]],

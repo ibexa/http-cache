@@ -8,6 +8,7 @@
 namespace Ibexa\Tests\Bundle\HttpCache\EventListener;
 
 use Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
     /**
      * @return iterable<array{varyHeaders: string[], expectedVaryHeaders: string[]}>
      */
-    public function onKernelResponseProvider(): iterable
+    public static function onKernelResponseProvider(): iterable
     {
         return [
             [
@@ -70,11 +71,10 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider onKernelResponseProvider
-     *
      * @param string[] $varyHeaders
      * @param string[] $expectedVaryHeaders
      */
+    #[DataProvider('onKernelResponseProvider')]
     public function testOnKernelResponse(array $varyHeaders, array $expectedVaryHeaders): void
     {
         $request = new Request();
@@ -82,7 +82,7 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
 
         $response = new Response('test content', Response::HTTP_OK, ['vary' => $varyHeaders]);
 
-        $kernel = $this->createMock(HttpKernelInterface::class);
+        $kernel = $this->createStub(HttpKernelInterface::class);
         $event = new ResponseEvent($kernel, $request, HttpKernelInterface::MAIN_REQUEST, $response);
 
         $this->conditionallyRemoveVaryHeaderListener->onKernelResponse($event);

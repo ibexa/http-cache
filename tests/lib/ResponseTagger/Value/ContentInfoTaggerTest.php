@@ -61,7 +61,7 @@ final class ContentInfoTaggerTest extends TestCase
             ->expects($matcher)
             ->method('addTags')
             ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
-                if ($matcher->getInvocationCount() === 1) {
+                if ($matcher->numberOfInvocations() === 1) {
                     self::assertSame(
                         [
                             ContentTagInterface::CONTENT_PREFIX . '1',
@@ -71,7 +71,7 @@ final class ContentInfoTaggerTest extends TestCase
                     );
                 }
 
-                if ($matcher->getInvocationCount() === 2) {
+                if ($matcher->numberOfInvocations() === 2) {
                     self::assertSame(
                         [
                             ContentTagInterface::LOCATION_PREFIX . '456',

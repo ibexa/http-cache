@@ -164,7 +164,7 @@ final class DispatcherTaggerTest extends TestCase
 
     public function testToStringListsRegisteredTaggerTypes(): void
     {
-        $fosResponseTagger = $this->createMock(FosResponseTagger::class);
+        $fosResponseTagger = $this->createStub(FosResponseTagger::class);
 
         $dispatcher = new DispatcherTagger([
             new ContentInfoTagger($fosResponseTagger),
