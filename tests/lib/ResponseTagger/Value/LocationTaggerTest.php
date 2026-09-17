@@ -51,15 +51,15 @@ final class LocationTaggerTest extends TestCase
             ->expects($matcher)
             ->method('addTags')
             ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
-                if ($matcher->getInvocationCount() === 1) {
+                if ($matcher->numberOfInvocations() === 1) {
                     self::assertSame([ContentTagInterface::LOCATION_PREFIX . '123'], $tags);
                 }
 
-                if ($matcher->getInvocationCount() === 2) {
+                if ($matcher->numberOfInvocations() === 2) {
                     self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags);
                 }
 
-                if ($matcher->getInvocationCount() === 3) {
+                if ($matcher->numberOfInvocations() === 3) {
                     self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',
@@ -88,11 +88,11 @@ final class LocationTaggerTest extends TestCase
             ->expects($matcher)
             ->method('addTags')
             ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
-                if ($matcher->getInvocationCount() === 1) {
+                if ($matcher->numberOfInvocations() === 1) {
                     self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '2'], $tags);
                 }
 
-                if ($matcher->getInvocationCount() === 2) {
+                if ($matcher->numberOfInvocations() === 2) {
                     self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',
@@ -121,7 +121,7 @@ final class LocationTaggerTest extends TestCase
             ->expects($matcher)
             ->method('addTags')
             ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
-                if ($matcher->getInvocationCount() === 0) {
+                if ($matcher->numberOfInvocations() === 0) {
                     self::assertSame([ContentTagInterface::PARENT_LOCATION_PREFIX . '123'], $tags);
                 }
 
@@ -145,7 +145,7 @@ final class LocationTaggerTest extends TestCase
             ->expects($matcher)
             ->method('addTags')
             ->willReturnCallback(function (array $tags) use ($matcher): ResponseTagger {
-                if ($matcher->getInvocationCount() === 0) {
+                if ($matcher->numberOfInvocations() === 0) {
                     self::assertSame([
                         ContentTagInterface::PATH_PREFIX . '1',
                         ContentTagInterface::PATH_PREFIX . '2',

@@ -36,7 +36,7 @@ class RoleIdentifyTest extends TestCase
         $this->repositoryMock = $this
             ->getMockBuilder(Repository::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getRoleService', 'getPermissionResolver'])
+            ->onlyMethods(['getRoleService', 'getPermissionResolver'])
             ->getMock();
 
         $this->roleServiceMock = $this->createMock(RoleService::class);
@@ -49,8 +49,8 @@ class RoleIdentifyTest extends TestCase
 
     public function testSetIdentity(): void
     {
-        $user = $this->createMock(APIUser::class);
-        $userReference = $this->createMock(UserReference::class);
+        $user = $this->createStub(APIUser::class);
+        $userReference = $this->createStub(UserReference::class);
         $userContext = new UserContext();
 
         $permissionResolver = $this->getPermissionResolverMock();
@@ -175,8 +175,8 @@ class RoleIdentifyTest extends TestCase
     {
         return $this
             ->getMockBuilder(PermissionResolver::class)
-            ->setMethods(['getCurrentUserReference'])
             ->disableOriginalConstructor()
+            ->onlyMethods(['getCurrentUserReference'])
             ->getMock();
     }
 
