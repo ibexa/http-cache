@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<phpunit backupGlobals="false" bootstrap="bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+<phpunit backupGlobals="false" bootstrap="bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" backupStaticProperties="false" failOnDeprecation="true" displayDetailsOnTestsThatTriggerDeprecations="true">
   <php>
     <ini name="error_reporting" value="-1"/>
-    <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled=1"/>
   </php>
   <extensions>
     <bootstrap class="Symfony\Bridge\PhpUnit\SymfonyExtension"/>
@@ -12,4 +11,11 @@
       <directory>tests</directory>
     </testsuite>
   </testsuites>
+  <source baseline="phpunit.baseline.xml" ignoreIndirectDeprecations="false" ignoreSuppressionOfDeprecations="true">
+    <include>
+      <directory>src/lib</directory>
+      <directory>src/bundle</directory>
+      <directory>src/contracts</directory>
+    </include>
+  </source>
 </phpunit>
