@@ -14,8 +14,8 @@
     ],
     "require": {
         "php": " >=8.3",
-        "friendsofsymfony/http-cache": "^3.1",
-        "friendsofsymfony/http-cache-bundle": "^3.1.2",
+        "friendsofsymfony/http-cache": "^3.1.2",
+        "friendsofsymfony/http-cache-bundle": "^3.3",
         "ibexa/core": "~6.0.x-dev",
         "ibexa/rest": "~6.0.x-dev",
         "php-http/curl-client": "^2.1",
