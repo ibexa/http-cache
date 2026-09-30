@@ -27,8 +27,8 @@ class VarnishPurgeClientTest extends TestCase
         $this->cacheManager = $this->getMockBuilder(CacheManager::class)
             ->setConstructorArgs(
                 [
-                    $this->createStub(ProxyClient::class),
-                    $this->createStub(
+                    self::createStub(ProxyClient::class),
+                    self::createStub(
                         UrlGeneratorInterface::class
                     ),
                 ]

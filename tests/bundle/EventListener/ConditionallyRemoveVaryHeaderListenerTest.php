@@ -82,7 +82,7 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
 
         $response = new Response('test content', Response::HTTP_OK, ['vary' => $varyHeaders]);
 
-        $kernel = $this->createStub(HttpKernelInterface::class);
+        $kernel = self::createStub(HttpKernelInterface::class);
         $event = new ResponseEvent($kernel, $request, HttpKernelInterface::MAIN_REQUEST, $response);
 
         $this->conditionallyRemoveVaryHeaderListener->onKernelResponse($event);

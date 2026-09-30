@@ -49,8 +49,8 @@ class RoleIdentifyTest extends TestCase
 
     public function testSetIdentity(): void
     {
-        $user = $this->createStub(APIUser::class);
-        $userReference = $this->createStub(UserReference::class);
+        $user = self::createStub(APIUser::class);
+        $userReference = self::createStub(UserReference::class);
         $userContext = new UserContext();
 
         $permissionResolver = $this->getPermissionResolverMock();
