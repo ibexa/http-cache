@@ -3,7 +3,6 @@ name: Browser tests
 on:
     push:
         branches:
-            - main
             - '[0-9]+.[0-9]+'
     pull_request: ~
 
@@ -16,11 +15,7 @@ jobs:
             test-suite: '--mode=standard --profile=httpCache --suite=symfonycache'
             test-setup-phase-1:  '--mode=standard --profile=httpCache --suite=setup-symfony-cache'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish6:
         name: "Varnish 6 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -29,11 +24,7 @@ jobs:
             setup: "doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish7:
         name: "Varnish 7 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -42,11 +33,7 @@ jobs:
             setup: "doc/docker/base-dev.yml:doc/docker/varnish7.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish6-translation-aware:
         name: "Varnish integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -56,11 +43,7 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6-translation-aware'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-translation-aware'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish7-translation-aware:
         name: "Varnish 7 integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -70,11 +53,7 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7-translation-aware'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-translation-aware'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish6-token:
         name: "Varnish 6 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -84,11 +63,7 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-token'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish7-token:
         name: "Varnish 7 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -98,8 +73,33 @@ jobs:
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-token'
             test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
+    varnish9:
+        name: "Varnish 9 integration tests"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
+            test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
+            test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
+        secrets: inherit
+    varnish9-translation-aware:
+        name: "Varnish 9 integration tests (translation-aware)"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
+            test-suite:  '--mode=standard --profile=httpCache --suite=varnish9-translation-aware'
+            test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-translation-aware'
+            test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
+        secrets: inherit
+    varnish9-token:
+        name: "Varnish 9 integration tests with invalidate token"
+        uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
+        with:
+            project-edition: 'oss'
+            setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
+            test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
+            test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup-token'
+            test-setup-phase-2: '--mode=standard --profile=httpCache --suite=setup'
+        secrets: inherit
