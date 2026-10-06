@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": " >=8.3",
+        "php": ">=8.5",
         "friendsofsymfony/http-cache": "^3.1.2",
         "friendsofsymfony/http-cache-bundle": "^3.3",
         "ibexa/core": "~6.0.x-dev",
