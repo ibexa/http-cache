@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\HttpCache\EventSubscriber\CachePurge;
 
 use Ibexa\Contracts\Core\Persistence\Content\Location\Handler as LocationHandler;
-use Ibexa\Contracts\Core\Persistence\URL\Handler;
 use Ibexa\Contracts\Core\Persistence\URL\Handler as UrlHandler;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
@@ -26,7 +25,7 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
     /** @var LocationHandler */
     private $locationHandler;
 
-    /** @var Handler */
+    /** @var UrlHandler */
     private $urlHandler;
 
     public function __construct(
