@@ -4,8 +4,10 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\HttpCache;
 
+use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\DriverPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\KernelPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\ResponseTaggersPass;
@@ -57,7 +59,7 @@ class IbexaHttpCacheBundle extends Bundle
 
     public function registerConfigParser(ContainerBuilder $container)
     {
-        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
+        /** @var IbexaCoreExtension $eZExtension */
         $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(
             new HttpCacheConfigParser(

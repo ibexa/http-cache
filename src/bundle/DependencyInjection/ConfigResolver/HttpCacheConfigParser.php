@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\ConfigResolver;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface;
@@ -14,7 +15,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 class HttpCacheConfigParser implements ParserInterface
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
+     * @var ExtensionInterface
      */
     private $httpCacheExtension;
 
@@ -47,8 +48,11 @@ class HttpCacheConfigParser implements ParserInterface
         $nodeBuilder->end()->end();
     }
 
-    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer)
-    {
+    public function mapConfig(
+        array &$scopeSettings,
+        $currentScope,
+        ContextualizerInterface $contextualizer
+    ) {
         if (!isset($scopeSettings['http_cache'])) {
             return;
         }
@@ -66,8 +70,10 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function preMap(array $config, ContextualizerInterface $contextualizer)
-    {
+    public function preMap(
+        array $config,
+        ContextualizerInterface $contextualizer
+    ) {
         if (!isset($config['http_cache'])) {
             return;
         }
@@ -77,8 +83,10 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function postMap(array $config, ContextualizerInterface $contextualizer)
-    {
+    public function postMap(
+        array $config,
+        ContextualizerInterface $contextualizer
+    ) {
         if (!isset($config['http_cache'])) {
             return;
         }
@@ -89,7 +97,7 @@ class HttpCacheConfigParser implements ParserInterface
     }
 
     /**
-     * @return \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
+     * @return ParserInterface[]
      */
     private function getExtraConfigParsers()
     {

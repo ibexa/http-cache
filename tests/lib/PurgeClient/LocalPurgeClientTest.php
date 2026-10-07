@@ -4,15 +4,17 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use Ibexa\HttpCache\PurgeClient\LocalPurgeClient;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 class LocalPurgeClientTest extends TestCase
 {
-    /** @var \PHPUnit\Framework\MockObject\MockObject|\Toflar\Psr6HttpCacheStore\Psr6StoreInterface */
+    /** @var MockObject|Psr6StoreInterface */
     private $store;
 
     protected function setUp(): void

@@ -16,10 +16,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class UserContextSiteAccessMatchSubscriber implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Core\MVC\Symfony\EventListener\SiteAccessMatchListener */
+    /** @var SiteAccessMatchListener */
     protected $innerSubscriber;
 
-    /** @var \Symfony\Component\HttpFoundation\RequestMatcherInterface */
+    /** @var RequestMatcherInterface */
     private $userContextRequestMatcher;
 
     public function __construct(

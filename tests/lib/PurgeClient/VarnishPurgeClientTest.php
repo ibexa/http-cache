@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use FOS\HttpCache\ProxyClient\ProxyClient;
@@ -14,10 +15,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VarnishPurgeClientTest extends TestCase
 {
-    /** @var \FOS\HttpCacheBundle\CacheManager */
+    /** @var CacheManager */
     private $cacheManager;
 
-    /** @var \Ibexa\HttpCache\PurgeClient\VarnishPurgeClient */
+    /** @var VarnishPurgeClient */
     private $purgeClient;
 
     protected function setUp(): void

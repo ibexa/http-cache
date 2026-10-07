@@ -4,8 +4,10 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventSubscriber;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\MVC\Exception\HiddenLocationException;
 use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
@@ -21,12 +23,14 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
     private $locationTagger;
 
     /**
-     * @var \Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger
+     * @var ContentInfoTagger
      */
     private $contentInfoTagger;
 
-    public function __construct(LocationTagger $locationTagger, ContentInfoTagger $contentInfoTagger)
-    {
+    public function __construct(
+        LocationTagger $locationTagger,
+        ContentInfoTagger $contentInfoTagger
+    ) {
         $this->locationTagger = $locationTagger;
         $this->contentInfoTagger = $contentInfoTagger;
     }
@@ -42,7 +46,7 @@ class HiddenLocationExceptionSubscriber implements EventSubscriberInterface
             return;
         }
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
+        /** @var Location $location */
         $location = $event->getThrowable()->getLocation();
         $this->locationTagger->tag($location);
         $this->contentInfoTagger->tag($location->getContentInfo());

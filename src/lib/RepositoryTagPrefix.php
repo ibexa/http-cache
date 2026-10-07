@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
@@ -16,7 +17,7 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 class RepositoryTagPrefix
 {
     /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
+     * @var ConfigResolverInterface
      */
     private $resolver;
 
@@ -25,8 +26,10 @@ class RepositoryTagPrefix
      */
     private $repositoryMap = [];
 
-    public function __construct(ConfigResolverInterface $resolver, array $repositories)
-    {
+    public function __construct(
+        ConfigResolverInterface $resolver,
+        array $repositories
+    ) {
         $this->resolver = $resolver;
 
         // Build a map of repository identifier <> array index, as we will return the latter as prefix
