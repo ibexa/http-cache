@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\PurgeClient;
 
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
@@ -16,14 +17,16 @@ use Ibexa\HttpCache\RepositoryTagPrefix;
  */
 class RepositoryPrefixDecorator implements PurgeClientInterface
 {
-    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
+    /** @var PurgeClientInterface */
     private $purgeClient;
 
-    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
+    /** @var RepositoryTagPrefix */
     private $prefixService;
 
-    public function __construct(PurgeClientInterface $purgeClient, RepositoryTagPrefix $prefixService)
-    {
+    public function __construct(
+        PurgeClientInterface $purgeClient,
+        RepositoryTagPrefix $prefixService
+    ) {
         $this->purgeClient = $purgeClient;
         $this->prefixService = $prefixService;
     }

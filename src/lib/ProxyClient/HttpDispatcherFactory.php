@@ -13,10 +13,10 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 
 class HttpDispatcherFactory
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
+    /** @var ConfigResolverInterface */
     private $configResolver;
 
-    /** @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\DynamicSettingParserInterface */
+    /** @var DynamicSettingParserInterface */
     private $dynamicSettingParser;
 
     /** @var string */
@@ -32,8 +32,10 @@ class HttpDispatcherFactory
         $this->httpDispatcherClass = $httpDispatcherClass;
     }
 
-    public function buildHttpDispatcher(array $servers, string $baseUrl = '')
-    {
+    public function buildHttpDispatcher(
+        array $servers,
+        string $baseUrl = ''
+    ) {
         $allServers = [];
         foreach ($servers as $server) {
             if (!$this->dynamicSettingParser->isDynamicSetting($server)) {

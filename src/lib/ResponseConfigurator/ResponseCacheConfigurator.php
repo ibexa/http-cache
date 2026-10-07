@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\ResponseConfigurator;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ interface ResponseCacheConfigurator
     /**
      * Enables cache on a Response.
      *
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      *
      * @return ResponseCacheConfigurator
      */
@@ -25,7 +26,7 @@ interface ResponseCacheConfigurator
     /**
      * Sets the shared-max-age property of a Response if it is not already set.
      *
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      *
      * @return ResponseCacheConfigurator
      */

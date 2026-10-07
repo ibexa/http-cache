@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\HttpCache\DependencyInjection;
 
 use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
@@ -19,7 +20,7 @@ use Symfony\Component\Yaml\Yaml;
 class IbexaHttpCacheExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
+     * @var ParserInterface[]
      */
     private $extraConfigParsers = [];
 
@@ -28,8 +29,10 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         return 'ibexa_http_cache';
     }
 
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load(
+        array $configs,
+        ContainerBuilder $container
+    ) {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 

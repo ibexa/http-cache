@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
@@ -26,14 +27,16 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
 {
     public const LOCATION_ID_HEADER = 'X-Location-Id';
 
-    /** @var \FOS\HttpCache\ResponseTagger */
+    /** @var ResponseTagger */
     private $responseTagger;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
+    /** @var Repository */
     private $repository;
 
-    public function __construct(ResponseTagger $responseTagger, Repository $repository)
-    {
+    public function __construct(
+        ResponseTagger $responseTagger,
+        Repository $repository
+    ) {
         $this->responseTagger = $responseTagger;
         $this->repository = $repository;
     }

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\ContextProvider;
 
 use FOS\HttpCache\UserContext\ContextProvider;
@@ -11,6 +12,8 @@ use FOS\HttpCache\UserContext\UserContext;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment;
+use Ibexa\Contracts\Core\Repository\Values\User\UserRoleAssignment;
 
 /**
  * Identity definer based on current user role ids and role limitations.
@@ -27,10 +30,10 @@ class RoleIdentify implements ContextProvider
     /** @var \Ibexa\Core\Repository\Repository */
     protected $repository;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     private $userService;
 
     public function __construct(
@@ -49,7 +52,7 @@ class RoleIdentify implements ContextProvider
             $this->permissionResolver->getCurrentUserReference()->getUserId()
         );
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment[] $roleAssignments */
+        /** @var RoleAssignment[] $roleAssignments */
         $roleAssignments = $this->repository->sudo(
             static function (Repository $repository) use ($user) {
                 return $repository->getRoleService()->getRoleAssignmentsForUser($user, true);
@@ -58,7 +61,7 @@ class RoleIdentify implements ContextProvider
 
         $roleIds = [];
         $limitationValues = [];
-        /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserRoleAssignment $roleAssignment */
+        /** @var UserRoleAssignment $roleAssignment */
         foreach ($roleAssignments as $roleAssignment) {
             $roleId = $roleAssignment->getRole()->id;
             $roleIds[] = $roleId;

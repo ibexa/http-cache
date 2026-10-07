@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ConfigurableResponseCacheConfigurator implements ResponseCacheConfigurator
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
+    /** @var ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
