@@ -19,13 +19,13 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 abstract class AbstractSubscriber implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface */
+    /** @var PurgeClientInterface */
     protected $purgeClient;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Location\Handler */
+    /** @var LocationHandler */
     private $locationHandler;
 
-    /** @var \Ibexa\Contracts\Core\Persistence\URL\Handler */
+    /** @var UrlHandler */
     private $urlHandler;
 
     public function __construct(

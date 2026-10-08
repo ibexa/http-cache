@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
@@ -18,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class UserContextSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \Ibexa\HttpCache\RepositoryTagPrefix
+     * @var RepositoryTagPrefix
      */
     private $prefixService;
 
@@ -43,7 +44,7 @@ class UserContextSubscriber implements EventSubscriberInterface
     /**
      * Tag vnd.fos.user-context-hash responses if they are set to cached.
      *
-     * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+     * @param ResponseEvent $event
      */
     public function tagUserContext(ResponseEvent $event)
     {

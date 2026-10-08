@@ -28,7 +28,7 @@ use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
 
 final class ContentEventsSubscriber extends AbstractSubscriber
 {
-    /** @var \Ibexa\Contracts\Core\Persistence\Content\Handler */
+    /** @var ContentHandler */
     private $contentHandler;
 
     /** @var bool */

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\PurgeClient;
 
 use Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface;
@@ -14,17 +15,17 @@ use PHPUnit\Framework\TestCase;
 class RepositoryPrefixDecoratorTest extends TestCase
 {
     /**
-     * @var \Ibexa\Contracts\HttpCache\PurgeClient\PurgeClientInterface
+     * @var PurgeClientInterface
      */
     private $purgeClientMock;
 
     /**
-     * @var \Ibexa\HttpCache\RepositoryTagPrefix
+     * @var RepositoryTagPrefix
      */
     private $tagPrefixMock;
 
     /**
-     * @var \Ibexa\HttpCache\PurgeClient\RepositoryPrefixDecorator
+     * @var RepositoryPrefixDecorator
      */
     private $prefixDecorator;
 

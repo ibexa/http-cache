@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\Handler;
 
 use FOS\HttpCacheBundle\Http\SymfonyResponseTagger;
@@ -22,10 +23,10 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
 {
-    /** @var \Ibexa\HttpCache\RepositoryTagPrefix */
+    /** @var RepositoryTagPrefix */
     private $prefixService;
 
-    /** @var \Psr\Log\LoggerInterface */
+    /** @var LoggerInterface */
     private $logger;
 
     /** @var int|null */
@@ -56,8 +57,10 @@ class TagHandler extends SymfonyResponseTagger implements ContentTagInterface
         $this->addTags(['ez-all']);
     }
 
-    public function tagSymfonyResponse(Response $response, $replace = false)
-    {
+    public function tagSymfonyResponse(
+        Response $response,
+        $replace = false
+    ) {
         $tags = [];
         if (!$replace && $response->headers->has($this->getTagsHeaderName())) {
             $headers = $response->headers->all($this->getTagsHeaderName());

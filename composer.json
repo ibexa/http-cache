@@ -32,15 +32,16 @@
     "require-dev": {
         "ibexa/ci-scripts": "^0.2@dev",
         "ibexa/doctrine-schema": "~4.6.0@dev",
-        "phpunit/phpunit": "^8.5",
+        "phpunit/phpunit": "^9.6",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^7.1 || ^8.0",
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
-        "ibexa/code-style": "^1.0",
+        "ibexa/code-style": "~2.3.1",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "symfony/phpunit-bridge": "^5.1"
+        "symfony/phpunit-bridge": "^5.1",
+        "ibexa/doctrine-migrations": "~4.6.x-dev"
     },
     "autoload": {
         "psr-4": {
