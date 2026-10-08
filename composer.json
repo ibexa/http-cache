@@ -40,7 +40,8 @@
         "phpstan/phpstan-symfony": "^2.0",
         "ibexa/code-style": "~2.3.1",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "symfony/phpunit-bridge": "^5.1"
+        "symfony/phpunit-bridge": "^5.1",
+        "ibexa/doctrine-migrations": "~4.6.x-dev"
     },
     "autoload": {
         "psr-4": {
