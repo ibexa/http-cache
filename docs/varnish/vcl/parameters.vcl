@@ -26,3 +26,16 @@ acl debuggers {
     "127.0.0.1";
     "192.168.0.0"/16;
 }
+
+// ACL for reverse proxies, TLS terminators and CDNs running in front of Varnish
+//
+// Only requests coming from these are allowed to set the "X-Forwarded-*" and "Forwarded" headers,
+// see vcl_recv. Requests from anyone else get them stripped, as the application trusts them once
+// framework.trusted_proxies is configured, which would otherwise let a client spoof the scheme,
+// host and client IP it is seen with.
+//
+// Add the IP of your TLS terminator/load balancer/CDN here if one runs in front of Varnish,
+// otherwise leave this as is.
+acl trusted_proxies {
+    "127.0.0.1";
+}
