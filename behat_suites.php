@@ -14,6 +14,7 @@ use Behat\MinkExtension\Context\MinkContext;
 use Ibexa\Behat\API\Context\ContentContext;
 use Ibexa\Behat\API\Context\ContentTypeContext;
 use Ibexa\Behat\API\Context\LanguageContext;
+use Ibexa\Behat\API\Context\RoleContext;
 use Ibexa\Behat\API\Context\TestContext;
 use Ibexa\Behat\Browser\Context\AuthenticationContext;
 use Ibexa\Behat\Browser\Context\BrowserContext;
@@ -63,7 +64,8 @@ return (new Config())
                 ContentTypeContext::class,
                 ConfigurationContext::class,
                 ContentContext::class,
-                LanguageContext::class
+                LanguageContext::class,
+                RoleContext::class
             )
             ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/setup/setup.feature'))
         ->withSuite((new Suite('setup-token'))
