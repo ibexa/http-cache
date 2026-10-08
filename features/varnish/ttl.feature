@@ -5,7 +5,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
     # Keeping them separate means the timing of the other suites is untouched and the assertions
     # do not depend on whatever the default TTL happens to be.
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: The TTL Varnish stores an object with comes from content.default_ttl
         Given I create "Folder" Content items in root in "eng-GB"
             | name       | short_name  |
@@ -27,7 +27,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
             | Header      | Pattern        |
             | x-cache-ttl | /^[0-4]\.\d+$/ |
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: Responses for anonymous users may be cached by shared proxies for a short while
         Given I create "Folder" Content items in root in "eng-GB"
             | name       | short_name    |
@@ -41,7 +41,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
             | Header | Pattern                          |
             | vary   | /^(?!.*X-User-Context-Hash).*$/i |
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: Responses for logged-in users are not cacheable by shared proxies or browsers
         Given I create "Folder" Content items in root in "eng-GB"
             | name       | short_name     |
@@ -52,7 +52,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
             | Header        | Value                                        |
             | cache-control | private, no-cache, no-store, must-revalidate |
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: An expired object is served from grace and refreshed in the background
         Given I create "Folder" Content items in root in "eng-GB"
             | name       | short_name    |
@@ -83,7 +83,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
             | Header      | Pattern        |
             | x-cache-ttl | /^[0-4]\.\d+$/ |
 
-    @varnish6 @varnish7
+    @varnish6 @varnish7 @varnish9
     Scenario: A logged-in user in the grace window gets a refreshed response, not a stale one
         # Editors must never be shown stale content. varnish5/6.vcl enforce that in vcl_hit with
         # return (miss); varnish7.vcl drops the grace allowance in vcl_recv instead, because later
