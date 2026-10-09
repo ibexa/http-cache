@@ -1,6 +1,6 @@
 // Varnish VCL for:
-// - Varnish 7.1 or higher
-//   - Varnish xkey vmod (via varnish-modules package 0.10.2 or higher, or via Varnish Plus)
+// - Varnish 9.0 or higher
+//   - Varnish xkey vmod (via varnish-modules package 0.28.0 or higher, or via Varnish Plus)
 //
 //
 // Make sure to at least adjust default parameters.vcl, defaults there reflect our testing needs with docker.
