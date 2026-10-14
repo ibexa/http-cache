@@ -42,11 +42,7 @@ jobs:
             setup: "doc/docker/base-dev.yml:doc/docker/varnish7.yml:doc/docker/varnish-trusted-proxy.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish-trusted-proxy'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish6-trusted-proxy:
         name: "Varnish 6 integration tests (trusted proxy)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
@@ -55,11 +51,7 @@ jobs:
             setup: "doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/varnish-trusted-proxy.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish-trusted-proxy'
             test-setup-phase-1: '--mode=standard --profile=httpCache --suite=setup'
-        secrets:
-            AUTOMATION_CLIENT_ID: ${{ secrets.AUTOMATION_CLIENT_ID }}
-            AUTOMATION_CLIENT_INSTALLATION: ${{ secrets.AUTOMATION_CLIENT_INSTALLATION }}
-            AUTOMATION_CLIENT_SECRET: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        secrets: inherit
     varnish6-translation-aware:
         name: "Varnish integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
