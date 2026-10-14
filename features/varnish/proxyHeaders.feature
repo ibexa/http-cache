@@ -1,4 +1,4 @@
-@varnish6 @varnish7
+@varnish6 @varnish7 @varnish9
 Feature: As a site administrator I want Varnish to drop reverse proxy headers sent by clients
 
     # The application trusts X-Forwarded-* as soon as framework.trusted_proxies is configured, so a
