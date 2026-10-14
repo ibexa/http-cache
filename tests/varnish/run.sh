@@ -10,8 +10,8 @@
 #   tests/varnish/run.sh varnish7.vcl    # a single VCL
 #
 # varnish5.vcl and varnish6.vcl target Varnish 6.0LTS and do not compile on 7.x (vcl_hit returns
-# miss, which 7.x rejects), so they need a different image than varnish7.vcl. Both images must
-# carry the xkey vmod, since the VCLs import it.
+# miss, which 7.x rejects), so they need a different image than varnish7.vcl. varnish9.vcl needs a
+# third, built from Dockerfile-9. All images must carry the xkey vmod, since the VCLs import it.
 
 set -euo pipefail
 
@@ -20,12 +20,14 @@ VCLDIR="$(cd "$TESTDIR/../../docs/varnish/vcl" && pwd)"
 
 IMAGE_VARNISH6="${IMAGE_VARNISH6:-ibexa-varnishtest:6}"
 IMAGE_VARNISH7="${IMAGE_VARNISH7:-ibexa-varnishtest:7}"
+IMAGE_VARNISH9="${IMAGE_VARNISH9:-ibexa-varnishtest:9}"
 
 image_for() {
     local vcl="$1"
 
     case "$vcl" in
         varnish7.vcl) echo "$IMAGE_VARNISH7" ;;
+        varnish9.vcl) echo "$IMAGE_VARNISH9" ;;
         *)            echo "$IMAGE_VARNISH6" ;;
     esac
 }
@@ -52,7 +54,7 @@ check_copies_in_sync() {
     echo "==> varnish5.vcl and varnish6.vcl are in sync"
 }
 
-vcls=("${@:-varnish5.vcl varnish6.vcl varnish7.vcl}")
+vcls=("${@:-varnish5.vcl varnish6.vcl varnish7.vcl varnish9.vcl}")
 # shellcheck disable=SC2206
 vcls=(${vcls[@]})
 

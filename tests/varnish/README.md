@@ -19,14 +19,15 @@ Running them
 
 ```bash
 docker build -t ibexa-varnishtest:7 tests/varnish
-IMAGE_VARNISH7=ibexa-varnishtest:7 tests/varnish/run.sh varnish7.vcl
+docker build -t ibexa-varnishtest:9 -f tests/varnish/Dockerfile-9 tests/varnish
+IMAGE_VARNISH7=ibexa-varnishtest:7 IMAGE_VARNISH9=ibexa-varnishtest:9 tests/varnish/run.sh varnish7.vcl varnish9.vcl
 ```
 
 `run.sh` with no arguments runs every VCL. `varnish5.vcl` and `varnish6.vcl` target Varnish 6.0LTS
 and do not compile on 7.x — their `vcl_hit` returns `miss`, which 7.x rejects — so they need a
 Varnish 6.0 image carrying xkey, which you can point at with `IMAGE_VARNISH6`. CI only runs
-`varnish7.vcl`; the 6.0 line is covered end to end by the `varnish6` browser-test job, which builds
-`varnish5.vcl`.
+`varnish7.vcl` and `varnish9.vcl`; the 6.0 line is covered end to end by the `varnish6`
+browser-test job, which builds `varnish5.vcl`.
 
 `run.sh` also asserts that `varnish5.vcl` and `varnish6.vcl` stay identical apart from their
 two-line header comment, since they are documented as 1:1 copies.
