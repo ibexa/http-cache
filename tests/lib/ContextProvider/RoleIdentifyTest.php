@@ -42,7 +42,7 @@ class RoleIdentifyTest extends TestCase
         $this->roleServiceMock = $this->createMock(RoleService::class);
 
         $this->repositoryMock
-            ->expects(self::any())
+            ->expects($this->any())
             ->method('getRoleService')
             ->willReturn($this->roleServiceMock);
     }
@@ -59,7 +59,7 @@ class RoleIdentifyTest extends TestCase
             ->willReturn($userReference);
 
         $this->repositoryMock
-            ->expects(self::any())
+            ->expects($this->any())
             ->method('getPermissionResolver')
             ->willReturn($permissionResolver);
 
@@ -114,7 +114,7 @@ class RoleIdentifyTest extends TestCase
         ];
 
         $this->roleServiceMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getRoleAssignmentsForUser')
             ->with($user, true)
             ->willReturn($returnedRoleAssignments);
@@ -164,7 +164,7 @@ class RoleIdentifyTest extends TestCase
             ->setConstructorArgs([$properties])
             ->getMockForAbstractClass();
         $limitationMock
-            ->expects(self::any())
+            ->expects($this->any())
             ->method('getIdentifier')
             ->willReturn(\get_class($limitationMock));
 

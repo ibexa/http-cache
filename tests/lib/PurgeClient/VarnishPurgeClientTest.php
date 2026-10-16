@@ -43,7 +43,7 @@ class VarnishPurgeClientTest extends TestCase
     public function testPurgeNoLocationIds(): void
     {
         $this->cacheManager
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('invalidate');
 
         $this->purgeClient->purge([]);
@@ -60,7 +60,7 @@ class VarnishPurgeClientTest extends TestCase
         );
 
         $this->cacheManager
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('invalidateTags')
             ->with($keys);
 
@@ -79,7 +79,7 @@ class VarnishPurgeClientTest extends TestCase
     public function testPurgeAll(): void
     {
         $this->cacheManager
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('invalidateTags')
             ->with(['ez-all']);
 

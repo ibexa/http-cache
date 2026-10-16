@@ -42,7 +42,7 @@ final class ContentInfoTaggerTest extends TestCase
         $value = new ContentInfo(['id' => 123, 'contentTypeId' => 987, 'mainLocationId' => null]);
 
         $this->responseTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('addTags')
             ->with([
                 ContentTagInterface::CONTENT_PREFIX . '123',
@@ -55,7 +55,7 @@ final class ContentInfoTaggerTest extends TestCase
     public function testTagsWithLocationIdWhenMainLocationIsSet(): void
     {
         $value = new ContentInfo(['id' => 1, 'contentTypeId' => 2, 'mainLocationId' => 456]);
-        $matcher = self::exactly(2);
+        $matcher = $this->exactly(2);
 
         $this->responseTagger
             ->expects($matcher)
@@ -91,7 +91,7 @@ final class ContentInfoTaggerTest extends TestCase
         $value = new ContentInfo(['id' => 1, 'contentTypeId' => 2, 'mainLocationId' => null]);
 
         $this->responseTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('addTags');
 
         $this->tagger->tag($value);

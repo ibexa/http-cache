@@ -15,9 +15,7 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 
 final readonly class ContentInfoTagger implements ResponseTagger
 {
-    public function __construct(private readonly FosResponseTagger $responseTagger)
-    {
-    }
+    public function __construct(private readonly FosResponseTagger $responseTagger) {}
 
     public function supports(mixed $value): bool
     {

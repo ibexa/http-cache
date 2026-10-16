@@ -40,7 +40,7 @@ final class LocationValueViewTaggerTest extends TestCase
         $view->method('getLocation')->willReturn($location);
 
         $this->locationTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('tag')
             ->with($location);
 

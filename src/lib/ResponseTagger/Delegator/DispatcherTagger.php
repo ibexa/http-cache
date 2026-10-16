@@ -17,14 +17,13 @@ use Psr\Log\NullLogger;
 readonly class DispatcherTagger implements ResponseTagger
 {
     /**
-     * @param iterable<\Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger> $taggers
+     * @param iterable<ResponseTagger> $taggers
      */
     public function __construct(
         private iterable $taggers = [],
         private LoggerInterface $logger = new NullLogger(),
         private bool $debug = false,
-    ) {
-    }
+    ) {}
 
     public function supports(mixed $value): bool
     {

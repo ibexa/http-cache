@@ -46,7 +46,7 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => 321]),
         ]);
 
-        $matcher = self::exactly(3);
+        $matcher = $this->exactly(3);
         $this->responseTagger
             ->expects($matcher)
             ->method('addTags')
@@ -82,7 +82,7 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => 55]),
         ]);
 
-        $matcher = self::exactly(2);
+        $matcher = $this->exactly(2);
 
         $this->responseTagger
             ->expects($matcher)
@@ -115,7 +115,7 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => null]),
         ]);
 
-        $matcher = self::atLeastOnce();
+        $matcher = $this->atLeastOnce();
 
         $this->responseTagger
             ->expects($matcher)
@@ -140,7 +140,7 @@ final class LocationTaggerTest extends TestCase
             'contentInfo' => new ContentInfo(['mainLocationId' => null]),
         ]);
 
-        $matcher = self::atLeastOnce();
+        $matcher = $this->atLeastOnce();
         $this->responseTagger
             ->expects($matcher)
             ->method('addTags')

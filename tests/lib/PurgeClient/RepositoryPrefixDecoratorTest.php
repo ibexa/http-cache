@@ -40,12 +40,12 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurge(): void
     {
         $this->purgeClientMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('purge')
             ->with(self::equalTo(['l123', 'c44', 'ez-all']));
 
         $this->tagPrefixMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getRepositoryPrefix')
             ->willReturn('');
 
@@ -55,12 +55,12 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurgeWithPrefix(): void
     {
         $this->purgeClientMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('purge')
             ->with(self::equalTo(['0l123', '0c44', '0ez-all']));
 
         $this->tagPrefixMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getRepositoryPrefix')
             ->willReturn('0');
 
@@ -70,11 +70,11 @@ class RepositoryPrefixDecoratorTest extends TestCase
     public function testPurgeAll(): void
     {
         $this->purgeClientMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('purgeAll');
 
         $this->tagPrefixMock
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('getRepositoryPrefix');
 
         $this->prefixDecorator->purgeAll();

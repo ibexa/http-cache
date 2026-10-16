@@ -32,7 +32,7 @@ class LocalPurgeClientTest extends TestCase
         );
 
         $this->store
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('invalidateTags')
             ->with($keys);
 

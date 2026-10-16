@@ -52,7 +52,7 @@ final class ContentValueViewTaggerTest extends TestCase
         $view->method('getContent')->willReturn($content);
 
         $this->contentInfoTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('tag')
             ->with($contentInfo);
 

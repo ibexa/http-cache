@@ -35,18 +35,18 @@ final class DispatcherTaggerTest extends TestCase
             ->willReturn(true);
 
         $locationTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('supports')
             ->with($contentInfo)
             ->willReturn(false);
 
         $contentInfoTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('tag')
             ->with($contentInfo);
 
         $locationTagger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('tag');
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger]);
@@ -61,28 +61,28 @@ final class DispatcherTaggerTest extends TestCase
         $locationTagger = $this->createMock(ResponseTagger::class);
 
         $contentInfoTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('supports')
             ->with($location)
             ->willReturn(false);
 
         $locationTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('supports')
             ->with($location)
             ->willReturn(false);
 
         $contentInfoTagger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('tag');
 
         $locationTagger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('tag');
 
         $logger = $this->createMock(LoggerInterface::class);
         $logger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('warning');
 
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $locationTagger], $logger, false);
@@ -95,18 +95,18 @@ final class DispatcherTaggerTest extends TestCase
 
         $locationTagger = $this->createMock(ResponseTagger::class);
         $locationTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('supports')
             ->with($location)
             ->willReturn(false);
 
         $locationTagger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('tag');
 
         $logger = $this->createMock(LoggerInterface::class);
         $logger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('warning');
 
         $dispatcher = new DispatcherTagger([$locationTagger], $logger, true);
@@ -123,20 +123,18 @@ final class DispatcherTaggerTest extends TestCase
 
         $contentInfoTagger = $this->createMock(ResponseTagger::class);
         $contentInfoTagger
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('supports')
             ->with($foo)
             ->willReturn(false);
 
         $contentInfoTagger
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('tag');
 
         $wasCalled = false;
         $customTagger = new class($wasCalled) implements ResponseTagger {
-            public function __construct(private bool &$wasCalled)
-            {
-            }
+            public function __construct(private bool &$wasCalled) {}
 
             public function supports(mixed $value): bool
             {
