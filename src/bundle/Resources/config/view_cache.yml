@@ -8,17 +8,26 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    Ibexa\HttpCache\EventSubscriber\XLocationIdResponseSubscriber:
-        class: Ibexa\HttpCache\EventSubscriber\XLocationIdResponseSubscriber
-        arguments: ['@fos_http_cache.http.symfony_response_tagger', '@ibexa.api.repository']
+    Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber:
+        arguments:
+            $locationIdTagger: '@Ibexa\HttpCache\ResponseTagger\LocationIdTagger'
         tags:
             - { name: kernel.event_subscriber }
 
     Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber:
         class: Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber
-        arguments: ['@fos_http_cache.http.symfony_response_tagger']
+        arguments:
+            - '@fos_http_cache.http.symfony_response_tagger'
+            - '@Ibexa\HttpCache\ResponseTagger\LocationIdTagger'
         tags:
             - { name: kernel.event_subscriber }
+
+    Ibexa\HttpCache\ResponseTagger\LocationIdTagger:
+        arguments:
+            $repository: '@ibexa.api.repository'
+            $locationTagger: '@Ibexa\HttpCache\ResponseTagger\Value\LocationTagger'
+            $contentInfoTagger: '@Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger'
+            $responseTagger: '@fos_http_cache.http.symfony_response_tagger'
 
     Ibexa\HttpCache\EventSubscriber\UserContextSubscriber:
         class: Ibexa\HttpCache\EventSubscriber\UserContextSubscriber
