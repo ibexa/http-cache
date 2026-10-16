@@ -8,11 +8,17 @@
 namespace spec\Ibexa\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
+use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\HttpCache\ResponseTagger\LocationIdTagger;
+use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
+use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
+use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
 use Ibexa\Rest\Server\Values\RestContentType;
@@ -30,11 +36,70 @@ class RestKernelViewSubscriberSpec extends ObjectBehavior
     public function let(
         Request $request,
         ParameterBag $attributes,
-        ResponseTagger $tagHandler
+        ResponseTagger $tagHandler,
+        Repository $repository
     ): void {
         $request->attributes = $attributes;
 
-        $this->beConstructedWith($tagHandler);
+        $this->beConstructedWith(
+            $tagHandler,
+            new LocationIdTagger(
+                $repository->getWrappedObject(),
+                new LocationTagger($tagHandler->getWrappedObject()),
+                new ContentInfoTagger($tagHandler->getWrappedObject()),
+                $tagHandler->getWrappedObject()
+            )
+        );
+    }
+
+    public function it_tags_cached_value_by_location_id(
+        HttpKernelInterface $kernel,
+        Request $request,
+        ParameterBag $attributes,
+        ResponseTagger $tagHandler,
+        Repository $repository
+    ): void {
+        $request->isMethodCacheable()->willReturn(true);
+        $attributes->get('is_rest_request')->willReturn(true);
+        $repository->sudo(new AnyValueToken())->willThrow(new NotFoundException('Location', 59));
+
+        $tagHandler->addTags(['l59', 'p59'])->shouldBeCalled()->willReturn($tagHandler);
+
+        $cachedValue = new CachedValue(new \stdClass(), ['locationId' => 59]);
+        $event = new ViewEvent(
+            $kernel->getWrappedObject(),
+            $request->getWrappedObject(),
+            HttpKernelInterface::MAIN_REQUEST,
+            $cachedValue
+        );
+
+        $this->tagUIRestResult($event);
+
+        if ($event->getControllerResult() !== $cachedValue) {
+            throw new \RuntimeException('CachedValue should not be wrapped again');
+        }
+    }
+
+    public function it_does_not_tag_cached_value_without_location_id(
+        HttpKernelInterface $kernel,
+        Request $request,
+        ParameterBag $attributes,
+        ResponseTagger $tagHandler,
+        Repository $repository
+    ): void {
+        $request->isMethodCacheable()->willReturn(true);
+        $attributes->get('is_rest_request')->willReturn(true);
+        $repository->sudo(new AnyValueToken())->shouldNotBeCalled();
+        $tagHandler->addTags(new AnyValueToken())->shouldNotBeCalled();
+
+        $event = new ViewEvent(
+            $kernel->getWrappedObject(),
+            $request->getWrappedObject(),
+            HttpKernelInterface::MAIN_REQUEST,
+            new CachedValue(new \stdClass())
+        );
+
+        $this->tagUIRestResult($event);
     }
 
     public function it_does_nothing_on_uncachable_methods(
