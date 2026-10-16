@@ -14,9 +14,7 @@ use Ibexa\Core\MVC\Symfony\View\ContentValueView;
 
 final readonly class ContentValueViewTagger implements ResponseTagger
 {
-    public function __construct(private readonly ResponseTagger $contentInfoTagger)
-    {
-    }
+    public function __construct(private readonly ResponseTagger $contentInfoTagger) {}
 
     public function supports(mixed $value): bool
     {

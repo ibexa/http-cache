@@ -1,4 +1,4 @@
-@varnish6 @varnish7
+@varnish6 @varnish7 @varnish9
 Feature: Cached response is different for users with different permissions
 
   Scenario: Content Items are cached based on users permissions when directly visited

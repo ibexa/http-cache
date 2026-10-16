@@ -17,7 +17,7 @@ interface ResponseCacheConfigurator
     /**
      * Enables cache on a Response.
      *
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      *
      * @return ResponseCacheConfigurator
      */
@@ -26,7 +26,7 @@ interface ResponseCacheConfigurator
     /**
      * Sets the shared-max-age property of a Response if it is not already set.
      *
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      *
      * @return ResponseCacheConfigurator
      */

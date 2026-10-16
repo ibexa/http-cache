@@ -29,8 +29,10 @@ class HttpDispatcherFactory
         $this->httpDispatcherClass = $httpDispatcherClass;
     }
 
-    public function buildHttpDispatcher(array $servers, string $baseUrl = '')
-    {
+    public function buildHttpDispatcher(
+        array $servers,
+        string $baseUrl = ''
+    ) {
         $allServers = [];
         foreach ($servers as $server) {
             if (!$this->dynamicSettingParser->isDynamicSetting($server)) {

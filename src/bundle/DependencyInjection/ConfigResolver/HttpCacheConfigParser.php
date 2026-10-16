@@ -45,8 +45,11 @@ class HttpCacheConfigParser implements ParserInterface
         $nodeBuilder->end()->end();
     }
 
-    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
-    {
+    public function mapConfig(
+        array &$scopeSettings,
+        $currentScope,
+        ContextualizerInterface $contextualizer
+    ): void {
         if (!isset($scopeSettings['http_cache'])) {
             return;
         }
@@ -64,8 +67,10 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function preMap(array $config, ContextualizerInterface $contextualizer): void
-    {
+    public function preMap(
+        array $config,
+        ContextualizerInterface $contextualizer
+    ): void {
         if (!isset($config['http_cache'])) {
             return;
         }
@@ -75,8 +80,10 @@ class HttpCacheConfigParser implements ParserInterface
         }
     }
 
-    public function postMap(array $config, ContextualizerInterface $contextualizer): void
-    {
+    public function postMap(
+        array $config,
+        ContextualizerInterface $contextualizer
+    ): void {
         if (!isset($config['http_cache'])) {
             return;
         }
@@ -87,7 +94,7 @@ class HttpCacheConfigParser implements ParserInterface
     }
 
     /**
-     * @return \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
+     * @return ParserInterface[]
      */
     private function getExtraConfigParsers()
     {

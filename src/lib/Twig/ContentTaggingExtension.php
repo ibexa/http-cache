@@ -23,14 +23,16 @@ class ContentTaggingExtension extends AbstractExtension
 
     protected ContentTagInterface $contentTagHandler;
 
-    public function __construct(ResponseTagger $responseTagger, ContentTagInterface $contentTagHandler)
-    {
+    public function __construct(
+        ResponseTagger $responseTagger,
+        ContentTagInterface $contentTagHandler
+    ) {
         $this->responseTagger = $responseTagger;
         $this->contentTagHandler = $contentTagHandler;
     }
 
     /**
-     * @return \Twig\TwigFunction[]
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {
@@ -55,7 +57,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @internal Function is only for use within this class (and implicit by Twig).
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
+     * @param Location $location
      */
     public function tagHttpCacheForLocation(Location $location): void
     {
@@ -70,7 +72,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @param int|int[] $contentIds
      */
-    public function tagHttpCacheForRelationIds(array|int $contentIds): void
+    public function tagHttpCacheForRelationIds(array | int $contentIds): void
     {
         $this->contentTagHandler->addRelationTags((array)$contentIds);
     }
@@ -82,7 +84,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @param int|int[] $locationIds
      */
-    public function tagHttpCacheForRelationLocationIds(array|int $locationIds): void
+    public function tagHttpCacheForRelationLocationIds(array | int $locationIds): void
     {
         $this->contentTagHandler->addRelationLocationTags((array)$locationIds);
     }

@@ -14,9 +14,7 @@ use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 
 final readonly class LocationValueViewTagger implements ResponseTagger
 {
-    public function __construct(private readonly ResponseTagger $locationTagger)
-    {
-    }
+    public function __construct(private readonly ResponseTagger $locationTagger) {}
 
     public function supports(mixed $value): bool
     {

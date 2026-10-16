@@ -20,7 +20,7 @@ use Symfony\Component\Yaml\Yaml;
 class IbexaHttpCacheExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * @var \Ibexa\Bundle\Core\DependencyInjection\Configuration\ParserInterface[]
+     * @var ParserInterface[]
      */
     private array $extraConfigParsers = [];
 
@@ -29,8 +29,10 @@ class IbexaHttpCacheExtension extends Extension implements PrependExtensionInter
         return 'ibexa_http_cache';
     }
 
-    public function load(array $configs, ContainerBuilder $container): void
-    {
+    public function load(
+        array $configs,
+        ContainerBuilder $container
+    ): void {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 

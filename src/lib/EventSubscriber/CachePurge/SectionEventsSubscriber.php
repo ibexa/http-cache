@@ -44,7 +44,7 @@ final class SectionEventsSubscriber extends AbstractSubscriber
         $sectionId = $event->getSection()->id;
 
         $this->purgeClient->purge([
-           self::SECTION_TAG_PREFIX . $sectionId,
+            self::SECTION_TAG_PREFIX . $sectionId,
         ]);
     }
 

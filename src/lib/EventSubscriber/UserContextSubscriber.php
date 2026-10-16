@@ -38,7 +38,7 @@ class UserContextSubscriber implements EventSubscriberInterface
     /**
      * Tag vnd.fos.user-context-hash responses if they are set to cached.
      *
-     * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+     * @param ResponseEvent $event
      */
     public function tagUserContext(ResponseEvent $event): void
     {

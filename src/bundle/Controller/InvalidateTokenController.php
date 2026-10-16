@@ -9,6 +9,7 @@ namespace Ibexa\Bundle\HttpCache\Controller;
 
 use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Ibexa\HttpCache\Handler\TagHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\EventListener\SessionListener;
@@ -25,28 +26,31 @@ class InvalidateTokenController
     private $ttl;
 
     /**
-     * @var \Ibexa\HttpCache\Handler\TagHandler
+     * @var TagHandler
      */
     private ResponseTagger $tagHandler;
 
     /**
      * TokenController constructor.
      *
-     * @param \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface $configResolver
+     * @param ConfigResolverInterface $configResolver
      * @param int $ttl
-     * @param \FOS\HttpCache\ResponseTagger $tagHandler
+     * @param ResponseTagger $tagHandler
      */
-    public function __construct(ConfigResolverInterface $configResolver, $ttl, ResponseTagger $tagHandler)
-    {
+    public function __construct(
+        ConfigResolverInterface $configResolver,
+        $ttl,
+        ResponseTagger $tagHandler
+    ) {
         $this->configResolver = $configResolver;
         $this->ttl = $ttl;
         $this->tagHandler = $tagHandler;
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function tokenAction(Request $request)
     {
