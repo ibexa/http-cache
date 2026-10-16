@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
 {
-    /** @var \Ibexa\HttpCache\EventListener\ConditionallyRemoveVaryHeaderListener */
+    /** @var ConditionallyRemoveVaryHeaderListener */
     public $conditionallyRemoveVaryHeaderListener;
 
     protected function setUp(): void
@@ -75,8 +75,10 @@ final class ConditionallyRemoveVaryHeaderListenerTest extends TestCase
      * @param string[] $varyHeaders
      * @param string[] $expectedVaryHeaders
      */
-    public function testOnKernelResponse(array $varyHeaders, array $expectedVaryHeaders): void
-    {
+    public function testOnKernelResponse(
+        array $varyHeaders,
+        array $expectedVaryHeaders
+    ): void {
         $request = $this->createMock(Request::class);
         $request->method('get')
             ->willReturn('testroute1');

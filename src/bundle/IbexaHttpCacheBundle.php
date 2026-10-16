@@ -7,6 +7,7 @@
 
 namespace Ibexa\Bundle\HttpCache;
 
+use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\DriverPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\KernelPass;
 use Ibexa\Bundle\HttpCache\DependencyInjection\Compiler\ResponseTaggersPass;
@@ -60,7 +61,7 @@ class IbexaHttpCacheBundle extends Bundle
 
     public function registerConfigParser(ContainerBuilder $container): void
     {
-        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $eZExtension */
+        /** @var IbexaCoreExtension $eZExtension */
         $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(
             new HttpCacheConfigParser(
