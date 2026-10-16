@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Tests\HttpCache\ContextProvider;
 
 use FOS\HttpCache\UserContext\UserContext;
@@ -30,7 +31,7 @@ class RoleIdentifyTest extends TestCase
     private $repositoryMock;
 
     /**
-     * @var \Ibexa\Contracts\Core\Repository\RoleService|\PHPUnit_Framework_MockObject_MockObject
+     * @var RoleService|\PHPUnit_Framework_MockObject_MockObject
      */
     private $roleServiceMock;
 

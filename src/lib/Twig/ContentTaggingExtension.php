@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\Twig;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -18,20 +19,22 @@ use Twig\TwigFunction;
  */
 class ContentTaggingExtension extends AbstractExtension
 {
-    /** @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger */
+    /** @var ResponseTagger */
     protected $responseTagger;
 
-    /** @var \Ibexa\Contracts\HttpCache\Handler\ContentTagInterface */
+    /** @var ContentTagInterface */
     protected $contentTagHandler;
 
-    public function __construct(ResponseTagger $responseTagger, ContentTagInterface $contentTagHandler)
-    {
+    public function __construct(
+        ResponseTagger $responseTagger,
+        ContentTagInterface $contentTagHandler
+    ) {
         $this->responseTagger = $responseTagger;
         $this->contentTagHandler = $contentTagHandler;
     }
 
     /**
-     * @return array|\Twig\TwigFunction[]
+     * @return array|TwigFunction[]
      */
     public function getFunctions()
     {
@@ -88,7 +91,7 @@ class ContentTaggingExtension extends AbstractExtension
      *
      * @internal Function is only for use within this class (and implicit by Twig).
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
+     * @param Location $location
      */
     public function tagHttpCacheForLocation(Location $location)
     {

@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
@@ -29,7 +30,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class RestKernelViewSubscriber implements EventSubscriberInterface
 {
-    /** @var \FOS\HttpCache\ResponseTagger */
+    /** @var ResponseTagger */
     private $tagHandler;
 
     public function __construct(ResponseTagger $tagHandler)

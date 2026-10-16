@@ -20,7 +20,7 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 
 final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, RefreshCapable, TagCapable
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
+    /** @var ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(
@@ -52,8 +52,13 @@ final class Varnish extends FosVarnish implements BanCapable, PurgeCapable, Refr
         return null;
     }
 
-    protected function queueRequest($method, $url, array $headers, $validateHost = true, $body = null)
-    {
+    protected function queueRequest(
+        $method,
+        $url,
+        array $headers,
+        $validateHost = true,
+        $body = null
+    ) {
         parent::queueRequest($method, $url, $this->fetchAndMergeAuthHeaders($headers), $body);
     }
 }

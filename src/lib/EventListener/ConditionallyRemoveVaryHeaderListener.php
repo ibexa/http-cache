@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -35,8 +36,11 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
      * @param array $routes List of routes which will not have default vary headers
      * @param array $userIdentifierHeaders
      */
-    public function __construct(array $routes, array $userIdentifierHeaders = ['Cookie', 'Authorization'])
-    {
+    public function __construct(
+        array $routes,
+        array $userIdentifierHeaders = ['Cookie',
+        'Authorization']
+    ) {
         $this->routes = $routes;
         $this->userIdentifierHeaders = array_map('strtolower', $userIdentifierHeaders);
     }
@@ -44,7 +48,7 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
     /**
      * Remove Vary headers for matched routes.
      *
-     * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
+     * @param ResponseEvent $event
      */
     public function onKernelResponse(ResponseEvent $event)
     {

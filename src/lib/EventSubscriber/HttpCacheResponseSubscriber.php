@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\EventSubscriber;
 
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
@@ -19,17 +20,19 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class HttpCacheResponseSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
+     * @var ResponseTagger
      */
     private $dispatcherTagger;
 
     /**
-     * @var \Ibexa\HttpCache\ResponseConfigurator\ResponseCacheConfigurator
+     * @var ResponseCacheConfigurator
      */
     private $responseConfigurator;
 
-    public function __construct(ResponseCacheConfigurator $responseConfigurator, ResponseTagger $dispatcherTagger)
-    {
+    public function __construct(
+        ResponseCacheConfigurator $responseConfigurator,
+        ResponseTagger $dispatcherTagger
+    ) {
         $this->responseConfigurator = $responseConfigurator;
         $this->dispatcherTagger = $dispatcherTagger;
     }

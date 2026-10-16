@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\HttpCache\DependencyInjection\Compiler;
 
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
@@ -41,8 +42,10 @@ class DriverPass implements CompilerPassInterface
         $container->setAlias(ContentTagInterface::class, 'fos_http_cache.http.symfony_response_tagger');
     }
 
-    public static function getTaggedService(ContainerBuilder $container, $tag)
-    {
+    public static function getTaggedService(
+        ContainerBuilder $container,
+        $tag
+    ) {
         $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         $configuredTagHandlerServiceId = null;
 

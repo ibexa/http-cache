@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\Bundle\HttpCache;
 
 use FOS\HttpCache\SymfonyCache\CacheInvalidation;
@@ -30,16 +31,20 @@ class AppCache extends HttpCache implements CacheInvalidation
         handle as protected baseHandle;
     }
 
-    public function __construct(KernelInterface $kernel, $cacheDir = null)
-    {
+    public function __construct(
+        KernelInterface $kernel,
+        $cacheDir = null
+    ) {
         parent::__construct($kernel, $cacheDir);
         $this->addSubscriber(new UserContextListener(['session_name_prefix' => 'eZSESSID']));
         $this->addSubscriber(new PurgeTagsListener(['tags_method' => 'PURGE', 'client_ips' => $this->getInternalAllowedIPs()]));
         $this->addSubscriber(new PurgeListener(['client_ips' => $this->getInternalAllowedIPs()]));
     }
 
-    public function fetch(Request $request, $catch = false)
-    {
+    public function fetch(
+        Request $request,
+        $catch = false
+    ) {
         return parent::fetch($request, $catch);
     }
 
@@ -57,8 +62,11 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * {@inheritdoc}
      */
-    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
-    {
+    public function handle(
+        Request $request,
+        $type = HttpKernelInterface::MASTER_REQUEST,
+        $catch = true
+    ) {
         $response = $this->baseHandle($request, $type, $catch);
 
         if (!$this->getKernel()->isDebug()) {
@@ -81,7 +89,7 @@ class AppCache extends HttpCache implements CacheInvalidation
     /**
      * Perform cleanup of reponse.
      *
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      */
     protected function cleanupHeadersForProd(Response $response)
     {

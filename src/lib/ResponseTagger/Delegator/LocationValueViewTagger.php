@@ -4,6 +4,7 @@
  * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
+
 namespace Ibexa\HttpCache\ResponseTagger\Delegator;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -13,7 +14,7 @@ use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 class LocationValueViewTagger implements ResponseTagger
 {
     /**
-     * @var \Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger
+     * @var ResponseTagger
      */
     private $locationTagger;
 
