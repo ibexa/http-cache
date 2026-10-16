@@ -21,8 +21,10 @@ class RepositoryPrefixDecorator implements PurgeClientInterface
 
     private RepositoryTagPrefix $prefixService;
 
-    public function __construct(PurgeClientInterface $purgeClient, RepositoryTagPrefix $prefixService)
-    {
+    public function __construct(
+        PurgeClientInterface $purgeClient,
+        RepositoryTagPrefix $prefixService
+    ) {
         $this->purgeClient = $purgeClient;
         $this->prefixService = $prefixService;
     }

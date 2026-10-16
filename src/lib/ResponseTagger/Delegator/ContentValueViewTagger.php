@@ -15,9 +15,7 @@ use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
 class ContentValueViewTagger extends AbstractValueTagger
 {
-    public function __construct(private readonly ResponseTagger $contentInfoTagger)
-    {
-    }
+    public function __construct(private readonly ResponseTagger $contentInfoTagger) {}
 
     public function supports(mixed $value): bool
     {

@@ -42,8 +42,10 @@ class DriverPass implements CompilerPassInterface
         $container->setAlias(ContentTagInterface::class, 'fos_http_cache.http.symfony_response_tagger');
     }
 
-    public static function getTaggedService(ContainerBuilder $container, string $tag): string|null
-    {
+    public static function getTaggedService(
+        ContainerBuilder $container,
+        string $tag
+    ): string | null {
         $purgeType = $container->getParameter('ibexa.http_cache.purge_type');
         $configuredTagHandlerServiceId = null;
 

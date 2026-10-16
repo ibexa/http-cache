@@ -39,7 +39,7 @@ class ConditionallyRemoveVaryHeaderListener implements EventSubscriberInterface
     public function __construct(
         array $routes,
         array $userIdentifierHeaders = ['Cookie',
-        'Authorization']
+            'Authorization']
     ) {
         $this->routes = $routes;
         $this->userIdentifierHeaders = array_map('strtolower', $userIdentifierHeaders);

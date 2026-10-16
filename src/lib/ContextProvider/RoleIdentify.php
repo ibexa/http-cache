@@ -12,6 +12,8 @@ use FOS\HttpCache\UserContext\UserContext;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment;
+use Ibexa\Contracts\Core\Repository\Values\User\UserRoleAssignment;
 
 /**
  * Identity definer based on current user role ids and role limitations.
@@ -48,7 +50,7 @@ class RoleIdentify implements ContextProvider
             $this->permissionResolver->getCurrentUserReference()->getUserId()
         );
 
-        /** @var \Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment[] $roleAssignments */
+        /** @var RoleAssignment[] $roleAssignments */
         $roleAssignments = $this->repository->sudo(
             static function (Repository $repository) use ($user): iterable {
                 return $repository->getRoleService()->getRoleAssignmentsForUser($user, true);
@@ -57,7 +59,7 @@ class RoleIdentify implements ContextProvider
 
         $roleIds = [];
         $limitationValues = [];
-        /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserRoleAssignment $roleAssignment */
+        /** @var UserRoleAssignment $roleAssignment */
         foreach ($roleAssignments as $roleAssignment) {
             $roleId = $roleAssignment->getRole()->id;
             $roleIds[] = $roleId;

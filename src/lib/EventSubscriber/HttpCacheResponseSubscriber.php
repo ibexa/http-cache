@@ -23,8 +23,10 @@ class HttpCacheResponseSubscriber implements EventSubscriberInterface
 
     private ResponseCacheConfigurator $responseConfigurator;
 
-    public function __construct(ResponseCacheConfigurator $responseConfigurator, ResponseTagger $dispatcherTagger)
-    {
+    public function __construct(
+        ResponseCacheConfigurator $responseConfigurator,
+        ResponseTagger $dispatcherTagger
+    ) {
         $this->responseConfigurator = $responseConfigurator;
         $this->dispatcherTagger = $dispatcherTagger;
     }

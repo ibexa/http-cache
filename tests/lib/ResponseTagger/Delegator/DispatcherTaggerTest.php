@@ -99,9 +99,7 @@ final class DispatcherTaggerTest extends TestCase
 
         $wasCalled = false;
         $customTagger = new class($wasCalled) implements ResponseTagger {
-            public function __construct(private bool &$wasCalled)
-            {
-            }
+            public function __construct(private bool &$wasCalled) {}
 
             public function tag(mixed $value): void
             {
@@ -112,7 +110,10 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
 
         $deprecation = null;
-        set_error_handler(static function (int $errorCode, string $errorString) use (&$deprecation): bool {
+        set_error_handler(static function (
+            int $errorCode,
+            string $errorString
+        ) use (&$deprecation): bool {
             if ($errorCode === E_USER_DEPRECATED) {
                 $deprecation = $errorString;
             }

@@ -32,8 +32,10 @@ class XLocationIdResponseSubscriber implements EventSubscriberInterface
 
     private Repository $repository;
 
-    public function __construct(ResponseTagger $responseTagger, Repository $repository)
-    {
+    public function __construct(
+        ResponseTagger $responseTagger,
+        Repository $repository
+    ) {
         $this->responseTagger = $responseTagger;
         $this->repository = $repository;
     }

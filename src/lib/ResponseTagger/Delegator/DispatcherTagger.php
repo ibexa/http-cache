@@ -15,11 +15,9 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 readonly class DispatcherTagger implements ResponseTagger
 {
     /**
-     * @param iterable<\Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger> $taggers
+     * @param iterable<ResponseTagger> $taggers
      */
-    public function __construct(private iterable $taggers = [])
-    {
-    }
+    public function __construct(private iterable $taggers = []) {}
 
     public function tag(mixed $value): void
     {

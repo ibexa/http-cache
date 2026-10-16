@@ -15,9 +15,7 @@ use Ibexa\HttpCache\ResponseTagger\Value\AbstractValueTagger;
 
 class LocationValueViewTagger extends AbstractValueTagger
 {
-    public function __construct(private readonly ResponseTagger $locationTagger)
-    {
-    }
+    public function __construct(private readonly ResponseTagger $locationTagger) {}
 
     public function supports(mixed $value): bool
     {

@@ -21,8 +21,10 @@ class RepositoryTagPrefix
     /** @var array<string, int|string> */
     private array $repositoryMap = [];
 
-    public function __construct(ConfigResolverInterface $resolver, array $repositories)
-    {
+    public function __construct(
+        ConfigResolverInterface $resolver,
+        array $repositories
+    ) {
         $this->resolver = $resolver;
 
         // Build a map of repository identifier <> array index, as we will return the latter as prefix

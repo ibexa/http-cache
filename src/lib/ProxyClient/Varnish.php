@@ -50,7 +50,7 @@ final class Varnish extends FosVarnish
 
     protected function queueRequest(
         string $method,
-        UriInterface|string $url,
+        UriInterface | string $url,
         array $headers,
         bool $validateHost = true,
         $body = null
