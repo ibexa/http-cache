@@ -85,6 +85,7 @@ jobs:
         name: "Varnish 9 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
+            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
@@ -94,6 +95,7 @@ jobs:
         name: "Varnish 9 integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
+            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9-translation-aware'
@@ -104,6 +106,7 @@ jobs:
         name: "Varnish 9 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
+            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
