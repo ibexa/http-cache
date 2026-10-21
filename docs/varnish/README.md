@@ -11,7 +11,9 @@ Recommended VCL base files
 --------------------------
 For Varnish to work properly with eZ, you'll need to use the provided configuration:
 
-* [eZ Platform 2.5LTs optimized Varnish 5.1+ VCL](vcl/varnish5.vcl)
+* [Varnish 6.0 LTS VCL](vcl/varnish6.vcl)
+* [Varnish 7 VCL](vcl/varnish7.vcl)
+* [Varnish 9 VCL](vcl/varnish9.vcl)
 
 For tuning the VCL further to you needs, see the following relevant examples:
 - [FOSHttpCache documentation](https://foshttpcache.readthedocs.io/en/latest/varnish-configuration.html)
