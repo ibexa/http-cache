@@ -64,7 +64,7 @@ sub vcl_recv {
 
     // Logged-in users must not be served stale content while the backend is healthy: drop their
     // grace allowance so an expired object is refetched rather than delivered from the grace
-    // window. varnish5/6.vcl do this in vcl_hit with return (miss), which later versions do not support.
+    // window. varnish6.vcl does this in vcl_hit with return (miss), which later versions do not support.
     if (req.http.cookie && std.healthy(req.backend_hint)) {
         set req.grace = 0s;
     }

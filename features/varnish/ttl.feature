@@ -85,7 +85,7 @@ Feature: As a site administrator I want Varnish to apply the configured TTL and 
 
     @varnish6 @varnish7 @varnish9
     Scenario: A logged-in user in the grace window gets a refreshed response, not a stale one
-        # Editors must never be shown stale content. varnish5/6.vcl enforce that in vcl_hit with
+        # Editors must never be shown stale content. varnish6.vcl enforces that in vcl_hit with
         # return (miss); varnish7.vcl drops the grace allowance in vcl_recv instead, because later
         # Varnish versions no longer support return (miss) there.
         Given I create "Folder" Content items in root in "eng-GB"
