@@ -35,7 +35,10 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
             ->method('sudo')
             ->willThrowException(new NotFoundException('Location', 42));
 
-        $this->dispatch($repository, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 42);
+        $responseTagger = $this->createMock(ResponseTagger::class);
+        $responseTagger->expects($this->once())->method('addTags')->with(['l42', 'p42']);
+
+        $this->dispatch($repository, $responseTagger, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '42');
     }
 
     /**
@@ -46,6 +49,7 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         yield 'not a redirect' => [new Response(), HttpKernelInterface::MAIN_REQUEST, 42];
         yield 'sub request' => [new RedirectResponse('/folder'), HttpKernelInterface::SUB_REQUEST, 42];
         yield 'no location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, null];
+        yield 'non-numeric location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 'foo'];
     }
 
     #[DataProvider('providerForSkipped')]
@@ -57,16 +61,19 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         $repository = $this->createMock(Repository::class);
         $repository->expects($this->never())->method('sudo');
 
-        $this->dispatch($repository, $response, $requestType, $locationId);
+        $responseTagger = $this->createMock(ResponseTagger::class);
+        $responseTagger->expects($this->never())->method('addTags');
+
+        $this->dispatch($repository, $responseTagger, $response, $requestType, $locationId);
     }
 
     private function dispatch(
         Repository $repository,
+        ResponseTagger $responseTagger,
         Response $response,
         int $requestType,
         mixed $locationId
     ): void {
-        $responseTagger = self::createStub(ResponseTagger::class);
         $subscriber = new LocationRedirectResponseSubscriber(
             new LocationIdTagger(
                 $repository,
