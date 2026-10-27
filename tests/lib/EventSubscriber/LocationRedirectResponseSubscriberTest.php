@@ -39,26 +39,35 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
     }
 
     /**
-     * @return iterable<string, array{Response, int, mixed}>
+     * @return iterable<string, array{Response, int, mixed, bool}>
      */
     public static function providerForSkipped(): iterable
     {
-        yield 'not a redirect' => [new Response(), HttpKernelInterface::MAIN_REQUEST, 42];
-        yield 'sub request' => [new RedirectResponse('/folder'), HttpKernelInterface::SUB_REQUEST, 42];
-        yield 'no location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, null];
-        yield 'non-numeric location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 'foo'];
+        yield 'not a redirect' => [new Response(), HttpKernelInterface::MAIN_REQUEST, 42, true];
+        yield 'sub request' => [new RedirectResponse('/folder'), HttpKernelInterface::SUB_REQUEST, 42, true];
+        yield 'not a URL alias redirect' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 42, false];
+        yield 'no location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, null, true];
+        yield 'non-numeric location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 'foo', true];
     }
 
     #[DataProvider('providerForSkipped')]
     public function testSkips(
         Response $response,
         int $requestType,
-        mixed $locationId
+        mixed $locationId,
+        bool $needsRedirect
     ): void {
         $repository = $this->createMock(Repository::class);
         $repository->expects($this->never())->method('sudo');
 
-        $this->dispatch(self::createStub(ContentTagInterface::class), $repository, $response, $requestType, $locationId);
+        $this->dispatch(
+            self::createStub(ContentTagInterface::class),
+            $repository,
+            $response,
+            $requestType,
+            $locationId,
+            $needsRedirect
+        );
     }
 
     private function dispatch(
@@ -66,13 +75,15 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         Repository $repository,
         Response $response,
         int $requestType,
-        mixed $locationId
+        mixed $locationId,
+        bool $needsRedirect = true
     ): void {
         $subscriber = new LocationRedirectResponseSubscriber(
             new LocationIdTagging($tagHandler, self::createStub(ValueTagger::class), $repository)
         );
 
         $request = new Request();
+        $request->attributes->set('needsRedirect', $needsRedirect);
         if ($locationId !== null) {
             $request->attributes->set('locationId', $locationId);
         }

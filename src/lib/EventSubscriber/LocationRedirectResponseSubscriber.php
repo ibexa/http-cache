@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Tags redirects issued for a Location (e.g. URL alias redirects) so they get purged together with the Location.
+ * Tags URL alias redirects issued for a Location so they get purged together with the Location.
  */
 final readonly class LocationRedirectResponseSubscriber implements EventSubscriberInterface
 {
@@ -27,8 +27,14 @@ final readonly class LocationRedirectResponseSubscriber implements EventSubscrib
 
     public function tagLocationRedirect(ResponseEvent $event): void
     {
-        $locationId = $event->getRequest()->attributes->get('locationId');
-        if (!$event->isMainRequest() || !$event->getResponse()->isRedirection() || !is_numeric($locationId)) {
+        $attributes = $event->getRequest()->attributes;
+        // Only URL alias redirects, see \Ibexa\Bundle\Core\EventListener\RequestEventListener::onKernelRequestRedirect()
+        if (!$event->isMainRequest() || !$event->getResponse()->isRedirection() || !$attributes->get('needsRedirect')) {
+            return;
+        }
+
+        $locationId = $attributes->get('locationId');
+        if (!is_numeric($locationId)) {
             return;
         }
 
