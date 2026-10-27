@@ -23,7 +23,7 @@ class LocalPurgeClientTest extends TestCase
         $this->store = $this->createMock(Psr6StoreInterface::class);
     }
 
-    public function testPurge()
+    public function testPurge(): void
     {
         $keys = array_map(
             static function ($id) {
