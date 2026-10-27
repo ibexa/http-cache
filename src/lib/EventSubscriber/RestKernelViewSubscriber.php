@@ -27,17 +27,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class RestKernelViewSubscriber implements EventSubscriberInterface
 {
-    private ResponseTagger $tagHandler;
-
-    private LocationIdTagger $locationIdTagger;
-
     public function __construct(
-        ResponseTagger $tagHandler,
-        LocationIdTagger $locationIdTagger
-    ) {
-        $this->tagHandler = $tagHandler;
-        $this->locationIdTagger = $locationIdTagger;
-    }
+        private readonly ResponseTagger $tagHandler,
+        private readonly LocationIdTagger $locationIdTagger
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
