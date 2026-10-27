@@ -9,17 +9,17 @@ declare(strict_types=1);
 namespace Ibexa\Tests\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
+use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber;
-use Ibexa\HttpCache\ResponseTagger\LocationIdTagger;
-use Ibexa\HttpCache\ResponseTagger\Value\ContentInfoTagger;
-use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
@@ -110,10 +110,48 @@ final class RestKernelViewSubscriberTest extends TestCase
         self::assertSame($value, $event->getControllerResult());
     }
 
-    public function testTagsCachedValueByLocationId(): void
+    public function testTagsCachedValueWithLocationAndContentInfo(): void
+    {
+        $contentInfo = new ContentInfo(['id' => 42, 'mainLocationId' => 59]);
+        $location = new Location(['id' => 59, 'contentInfo' => $contentInfo]);
+
+        $locationService = $this->createMock(LocationService::class);
+        $locationService->expects($this->once())->method('loadLocation')->with(59)->willReturn($location);
+
+        $repository = $this->createMock(Repository::class);
+        $repository->expects($this->once())->method('getLocationService')->willReturn($locationService);
+        $repository
+            ->expects($this->once())
+            ->method('sudo')
+            ->willReturnCallback(static fn (callable $callback): mixed => $callback($repository));
+
+        $tagged = [];
+        $valueTagger = $this->createMock(ValueTagger::class);
+        $valueTagger
+            ->expects($this->exactly(2))
+            ->method('tag')
+            ->willReturnCallback(static function (mixed $value) use (&$tagged): void {
+                $tagged[] = $value;
+            });
+
+        $responseTagger = $this->createMock(ResponseTagger::class);
+        $responseTagger->expects($this->never())->method('addTags');
+
+        $cachedValue = new CachedValue(new \stdClass(), ['locationId' => 59]);
+        $event = $this->createEvent($cachedValue);
+        (new RestKernelViewSubscriber($responseTagger, $valueTagger, $repository))->tagUIRestResult($event);
+
+        self::assertSame([$location, $contentInfo], $tagged);
+        self::assertSame($cachedValue, $event->getControllerResult());
+    }
+
+    public function testTagsCachedValueLocationIdAndPathWhenLocationDoesNotExist(): void
     {
         $responseTagger = $this->createMock(ResponseTagger::class);
         $responseTagger->expects($this->once())->method('addTags')->with(['l59', 'p59']);
+
+        $valueTagger = $this->createMock(ValueTagger::class);
+        $valueTagger->expects($this->never())->method('tag');
 
         $repository = $this->createMock(Repository::class);
         $repository
@@ -123,23 +161,17 @@ final class RestKernelViewSubscriberTest extends TestCase
 
         $cachedValue = new CachedValue(new \stdClass(), ['locationId' => 59]);
         $event = $this->createEvent($cachedValue);
-        $this->createSubscriber($responseTagger, $repository)->tagUIRestResult($event);
+        (new RestKernelViewSubscriber($responseTagger, $valueTagger, $repository))->tagUIRestResult($event);
 
         self::assertSame($cachedValue, $event->getControllerResult());
     }
 
-    private function createSubscriber(
-        ResponseTagger $responseTagger,
-        ?Repository $repository = null
-    ): RestKernelViewSubscriber {
+    private function createSubscriber(ResponseTagger $responseTagger): RestKernelViewSubscriber
+    {
         return new RestKernelViewSubscriber(
             $responseTagger,
-            new LocationIdTagger(
-                $repository ?? self::createStub(Repository::class),
-                new LocationTagger($responseTagger),
-                new ContentInfoTagger($responseTagger),
-                $responseTagger
-            )
+            self::createStub(ValueTagger::class),
+            self::createStub(Repository::class)
         );
     }
 
