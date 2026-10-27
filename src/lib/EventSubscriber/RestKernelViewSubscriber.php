@@ -25,11 +25,11 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Set cache tags on REST responses: CachedValue by its Location, and a few values used by UI in order to be able to cache them.
  */
-class RestKernelViewSubscriber implements EventSubscriberInterface
+final readonly class RestKernelViewSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly ResponseTagger $tagHandler,
-        private readonly LocationIdTagging $locationIdTagging
+        private ResponseTagger $tagHandler,
+        private LocationIdTagging $locationIdTagging
     ) {}
 
     public static function getSubscribedEvents(): array
@@ -71,7 +71,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
      *
      * @return array
      */
-    protected function getTags($value): array
+    private function getTags($value): array
     {
         $tags = [];
         switch ($value) {
