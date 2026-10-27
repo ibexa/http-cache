@@ -28,6 +28,7 @@ use Ibexa\Rest\Server\Values\VersionList;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -92,7 +93,7 @@ final class RestKernelViewSubscriberTest extends TestCase
             Request::METHOD_GET,
             true,
         ];
-        yield 'cached value without location' => [new CachedValue(new \stdClass()), Request::METHOD_GET, true];
+        yield 'cached value without location' => [new CachedValue(new stdClass()), Request::METHOD_GET, true];
     }
 
     #[DataProvider('providerForSkipped')]
@@ -119,7 +120,7 @@ final class RestKernelViewSubscriberTest extends TestCase
         $contentTagHandler->expects($this->once())->method('addLocationTags')->with([59]);
         $contentTagHandler->expects($this->once())->method('addPathTags')->with([59]);
 
-        $cachedValue = new CachedValue(new \stdClass(), ['locationId' => 59]);
+        $cachedValue = new CachedValue(new stdClass(), ['locationId' => 59]);
         $event = $this->createEvent($cachedValue);
         $this->createSubscriber(self::createStub(ResponseTagger::class), $repository, $contentTagHandler)
             ->tagUIRestResult($event);
