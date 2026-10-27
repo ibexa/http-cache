@@ -9,12 +9,10 @@ declare(strict_types=1);
 namespace Ibexa\Tests\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
-use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Repository;
-use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
-use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\HttpCache\EventSubscriber\LocationIdTagging;
 use Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -28,53 +26,15 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 #[CoversClass(LocationRedirectResponseSubscriber::class)]
 final class LocationRedirectResponseSubscriberTest extends TestCase
 {
-    public function testTagsRedirectWithLocationAndContentInfo(): void
+    public function testTagsRedirectForLocation(): void
     {
-        $contentInfo = new ContentInfo(['id' => 42, 'mainLocationId' => 123]);
-        $location = new Location(['id' => 123, 'contentInfo' => $contentInfo]);
-
-        $locationService = $this->createMock(LocationService::class);
-        $locationService->expects($this->once())->method('loadLocation')->with(123)->willReturn($location);
-
-        $repository = $this->createMock(Repository::class);
-        $repository->expects($this->once())->method('getLocationService')->willReturn($locationService);
-        $repository
-            ->expects($this->once())
-            ->method('sudo')
-            ->willReturnCallback(static fn (callable $callback): mixed => $callback($repository));
-
-        $tagged = [];
-        $valueTagger = $this->createMock(ValueTagger::class);
-        $valueTagger
-            ->expects($this->exactly(2))
-            ->method('tag')
-            ->willReturnCallback(static function (mixed $value) use (&$tagged): void {
-                $tagged[] = $value;
-            });
-
-        $tagHandler = $this->createMock(ResponseTagger::class);
-        $tagHandler->expects($this->never())->method('addTags');
-
-        $this->dispatch($tagHandler, $valueTagger, $repository, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '123');
-
-        self::assertSame([$location, $contentInfo], $tagged);
-    }
-
-    public function testTagsLocationIdAndPathWhenLocationDoesNotExist(): void
-    {
-        $repository = $this->createMock(Repository::class);
-        $repository
-            ->expects($this->once())
-            ->method('sudo')
-            ->willThrowException(new NotFoundException('Location', 42));
+        $repository = self::createStub(Repository::class);
+        $repository->method('sudo')->willThrowException(new NotFoundException('Location', 42));
 
         $tagHandler = $this->createMock(ResponseTagger::class);
         $tagHandler->expects($this->once())->method('addTags')->with(['l42', 'p42']);
 
-        $valueTagger = $this->createMock(ValueTagger::class);
-        $valueTagger->expects($this->never())->method('tag');
-
-        $this->dispatch($tagHandler, $valueTagger, $repository, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '42');
+        $this->dispatch($tagHandler, $repository, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '42');
     }
 
     /**
@@ -100,21 +60,19 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         $tagHandler = $this->createMock(ResponseTagger::class);
         $tagHandler->expects($this->never())->method('addTags');
 
-        $valueTagger = $this->createMock(ValueTagger::class);
-        $valueTagger->expects($this->never())->method('tag');
-
-        $this->dispatch($tagHandler, $valueTagger, $repository, $response, $requestType, $locationId);
+        $this->dispatch($tagHandler, $repository, $response, $requestType, $locationId);
     }
 
     private function dispatch(
         ResponseTagger $tagHandler,
-        ValueTagger $valueTagger,
         Repository $repository,
         Response $response,
         int $requestType,
         mixed $locationId
     ): void {
-        $subscriber = new LocationRedirectResponseSubscriber($tagHandler, $valueTagger, $repository);
+        $subscriber = new LocationRedirectResponseSubscriber(
+            new LocationIdTagging($tagHandler, self::createStub(ValueTagger::class), $repository)
+        );
 
         $request = new Request();
         if ($locationId !== null) {

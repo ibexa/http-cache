@@ -8,13 +8,9 @@
 namespace Ibexa\HttpCache\EventSubscriber;
 
 use FOS\HttpCache\ResponseTagger;
-use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
-use Ibexa\Contracts\Core\Repository\Repository;
-use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
-use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
@@ -32,8 +28,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly ResponseTagger $tagHandler,
-        private readonly ValueTagger $valueTagger,
-        private readonly Repository $repository
+        private readonly LocationIdTagging $locationIdTagging
     ) {}
 
     public static function getSubscribedEvents(): array
@@ -53,7 +48,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
         // Values the REST server already marked as cacheable, tagged by the Location they belong to
         if ($restValue instanceof CachedValue) {
             if (isset($restValue->cacheTags['locationId'])) {
-                $this->tagLocation((int)$restValue->cacheTags['locationId']);
+                $this->locationIdTagging->tag((int)$restValue->cacheTags['locationId']);
             }
 
             return;
@@ -68,25 +63,6 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
         // Add tags and swap Rest Value for cached value now that REST server can safely cache it
         $this->tagHandler->addTags($tags);
         $event->setControllerResult(new CachedValue($restValue));
-    }
-
-    private function tagLocation(int $locationId): void
-    {
-        try {
-            $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($locationId)
-            );
-        } catch (NotFoundException) {
-            $this->tagHandler->addTags([
-                ContentTagInterface::LOCATION_PREFIX . $locationId,
-                ContentTagInterface::PATH_PREFIX . $locationId,
-            ]);
-
-            return;
-        }
-
-        $this->valueTagger->tag($location);
-        $this->valueTagger->tag($location->getContentInfo());
     }
 
     /**

@@ -8,11 +8,15 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber:
+    Ibexa\HttpCache\EventSubscriber\LocationIdTagging:
         arguments:
             $tagHandler: '@fos_http_cache.http.symfony_response_tagger'
             $valueTagger: '@Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger'
             $repository: '@ibexa.api.repository'
+
+    Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber:
+        arguments:
+            $locationIdTagging: '@Ibexa\HttpCache\EventSubscriber\LocationIdTagging'
         tags:
             - { name: kernel.event_subscriber }
 
@@ -20,8 +24,7 @@ services:
         class: Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber
         arguments:
             - '@fos_http_cache.http.symfony_response_tagger'
-            - '@Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger'
-            - '@ibexa.api.repository'
+            - '@Ibexa\HttpCache\EventSubscriber\LocationIdTagging'
         tags:
             - { name: kernel.event_subscriber }
 
