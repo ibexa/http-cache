@@ -43,9 +43,11 @@ class VarnishPurgeClientTest extends TestCase
 
     public function testPurgeNoLocationIds(): void
     {
+        // FOS proxy clients send no request for an empty tag list
         $this->cacheManager
-            ->expects($this->never())
-            ->method('invalidate');
+            ->expects($this->once())
+            ->method('invalidateTags')
+            ->with([]);
 
         $this->purgeClient->purge([]);
     }
