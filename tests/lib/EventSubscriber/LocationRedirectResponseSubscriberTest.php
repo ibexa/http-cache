@@ -48,6 +48,8 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         yield 'not a URL alias redirect' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 42, false];
         yield 'no location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, null, true];
         yield 'non-numeric location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, 'foo', true];
+        yield 'float location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '1.5', true];
+        yield 'exponent location' => [new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '1e3', true];
     }
 
     #[DataProvider('providerForSkipped')]

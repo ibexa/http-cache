@@ -33,11 +33,11 @@ final readonly class LocationRedirectResponseSubscriber implements EventSubscrib
             return;
         }
 
-        $locationId = $attributes->get('locationId');
-        if (!is_numeric($locationId)) {
+        $locationId = filter_var($attributes->get('locationId'), FILTER_VALIDATE_INT);
+        if ($locationId === false) {
             return;
         }
 
-        $this->locationIdTagging->tag((int)$locationId);
+        $this->locationIdTagging->tag($locationId);
     }
 }
