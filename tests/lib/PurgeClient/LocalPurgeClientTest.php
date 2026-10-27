@@ -14,7 +14,7 @@ use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 class LocalPurgeClientTest extends TestCase
 {
-    /** @var MockObject|Psr6StoreInterface */
+    /** @var Psr6StoreInterface&MockObject */
     private $store;
 
     protected function setUp(): void
