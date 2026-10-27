@@ -10,7 +10,7 @@ services:
 
     Ibexa\HttpCache\Handler\LocationIdTagging:
         arguments:
-            $tagHandler: '@fos_http_cache.http.symfony_response_tagger'
+            $tagHandler: '@Ibexa\Contracts\HttpCache\Handler\ContentTagInterface'
             $valueTagger: '@Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger'
             $repository: '@ibexa.api.repository'
 

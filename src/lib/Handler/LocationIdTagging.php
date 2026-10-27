@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\HttpCache\Handler;
 
-use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -24,7 +23,7 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 final readonly class LocationIdTagging
 {
     public function __construct(
-        private ResponseTagger $tagHandler,
+        private ContentTagInterface $tagHandler,
         private ValueTagger $valueTagger,
         private Repository $repository
     ) {}
@@ -36,10 +35,8 @@ final readonly class LocationIdTagging
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($locationId)
             );
         } catch (NotFoundException) {
-            $this->tagHandler->addTags([
-                ContentTagInterface::LOCATION_PREFIX . $locationId,
-                ContentTagInterface::PATH_PREFIX . $locationId,
-            ]);
+            $this->tagHandler->addLocationTags([$locationId]);
+            $this->tagHandler->addPathTags([$locationId]);
 
             return;
         }

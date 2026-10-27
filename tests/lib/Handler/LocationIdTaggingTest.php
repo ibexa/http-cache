@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\HttpCache\Handler;
 
-use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Location;
@@ -43,8 +43,9 @@ final class LocationIdTaggingTest extends TestCase
                 $tagged[] = $value;
             });
 
-        $tagHandler = $this->createMock(ResponseTagger::class);
-        $tagHandler->expects($this->never())->method('addTags');
+        $tagHandler = $this->createMock(ContentTagInterface::class);
+        $tagHandler->expects($this->never())->method('addLocationTags');
+        $tagHandler->expects($this->never())->method('addPathTags');
 
         (new LocationIdTagging($tagHandler, $valueTagger, $repository))->tag(123);
 
@@ -59,8 +60,9 @@ final class LocationIdTaggingTest extends TestCase
         $valueTagger = $this->createMock(ValueTagger::class);
         $valueTagger->expects($this->never())->method('tag');
 
-        $tagHandler = $this->createMock(ResponseTagger::class);
-        $tagHandler->expects($this->once())->method('addTags')->with(['l999', 'p999']);
+        $tagHandler = $this->createMock(ContentTagInterface::class);
+        $tagHandler->expects($this->once())->method('addLocationTags')->with([999]);
+        $tagHandler->expects($this->once())->method('addPathTags')->with([999]);
 
         (new LocationIdTagging($tagHandler, $valueTagger, $repository))->tag(999);
     }

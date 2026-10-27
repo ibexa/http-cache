@@ -12,13 +12,14 @@ use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
@@ -114,24 +115,27 @@ final class RestKernelViewSubscriberTest extends TestCase
         $repository = self::createStub(Repository::class);
         $repository->method('sudo')->willThrowException(new NotFoundException('Location', 59));
 
-        $responseTagger = $this->createMock(ResponseTagger::class);
-        $responseTagger->expects($this->once())->method('addTags')->with(['l59', 'p59']);
+        $contentTagHandler = $this->createMock(ContentTagInterface::class);
+        $contentTagHandler->expects($this->once())->method('addLocationTags')->with([59]);
+        $contentTagHandler->expects($this->once())->method('addPathTags')->with([59]);
 
         $cachedValue = new CachedValue(new \stdClass(), ['locationId' => 59]);
         $event = $this->createEvent($cachedValue);
-        $this->createSubscriber($responseTagger, $repository)->tagUIRestResult($event);
+        $this->createSubscriber(self::createStub(ResponseTagger::class), $repository, $contentTagHandler)
+            ->tagUIRestResult($event);
 
         self::assertSame($cachedValue, $event->getControllerResult());
     }
 
     private function createSubscriber(
         ResponseTagger $responseTagger,
-        ?Repository $repository = null
+        ?Repository $repository = null,
+        ?ContentTagInterface $contentTagHandler = null
     ): RestKernelViewSubscriber {
         return new RestKernelViewSubscriber(
             $responseTagger,
             new LocationIdTagging(
-                $responseTagger,
+                $contentTagHandler ?? self::createStub(ContentTagInterface::class),
                 self::createStub(ValueTagger::class),
                 $repository ?? self::createStub(Repository::class)
             )

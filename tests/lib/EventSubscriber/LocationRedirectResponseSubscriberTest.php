@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\HttpCache\EventSubscriber;
 
-use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
-use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -31,8 +31,9 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         $repository = self::createStub(Repository::class);
         $repository->method('sudo')->willThrowException(new NotFoundException('Location', 42));
 
-        $tagHandler = $this->createMock(ResponseTagger::class);
-        $tagHandler->expects($this->once())->method('addTags')->with(['l42', 'p42']);
+        $tagHandler = $this->createMock(ContentTagInterface::class);
+        $tagHandler->expects($this->once())->method('addLocationTags')->with([42]);
+        $tagHandler->expects($this->once())->method('addPathTags')->with([42]);
 
         $this->dispatch($tagHandler, $repository, new RedirectResponse('/folder'), HttpKernelInterface::MAIN_REQUEST, '42');
     }
@@ -57,14 +58,11 @@ final class LocationRedirectResponseSubscriberTest extends TestCase
         $repository = $this->createMock(Repository::class);
         $repository->expects($this->never())->method('sudo');
 
-        $tagHandler = $this->createMock(ResponseTagger::class);
-        $tagHandler->expects($this->never())->method('addTags');
-
-        $this->dispatch($tagHandler, $repository, $response, $requestType, $locationId);
+        $this->dispatch(self::createStub(ContentTagInterface::class), $repository, $response, $requestType, $locationId);
     }
 
     private function dispatch(
-        ResponseTagger $tagHandler,
+        ContentTagInterface $tagHandler,
         Repository $repository,
         Response $response,
         int $requestType,
