@@ -12,7 +12,7 @@ use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
-use Ibexa\HttpCache\EventSubscriber\LocationIdTagging;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\HttpCache\EventSubscriber\LocationRedirectResponseSubscriber;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;

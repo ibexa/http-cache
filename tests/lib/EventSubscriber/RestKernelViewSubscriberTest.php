@@ -17,7 +17,7 @@ use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Ibexa\HttpCache\EventSubscriber\LocationIdTagging;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\HttpCache\EventSubscriber\RestKernelViewSubscriber;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;

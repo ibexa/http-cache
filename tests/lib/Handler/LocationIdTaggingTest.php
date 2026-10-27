@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\Tests\HttpCache\EventSubscriber;
+namespace Ibexa\Tests\HttpCache\Handler;
 
 use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\LocationService;
@@ -15,7 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger as ValueTagger;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Location;
-use Ibexa\HttpCache\EventSubscriber\LocationIdTagging;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

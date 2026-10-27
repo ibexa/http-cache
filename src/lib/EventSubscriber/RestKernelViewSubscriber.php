@@ -11,6 +11,7 @@ use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;

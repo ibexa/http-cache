@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace Ibexa\HttpCache\EventSubscriber;
+namespace Ibexa\HttpCache\Handler;
 
 use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
