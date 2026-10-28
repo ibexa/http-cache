@@ -11,6 +11,7 @@ use FOS\HttpCache\ResponseTagger;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
+use Ibexa\HttpCache\Handler\LocationIdTagging;
 use Ibexa\Rest\Server\Values\CachedValue;
 use Ibexa\Rest\Server\Values\ContentTypeGroupList;
 use Ibexa\Rest\Server\Values\ContentTypeGroupRefList;
@@ -22,20 +23,14 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Set cache tags on a few REST responses used by UI in order to be able to cache them.
- *
- * @deprecated This is a temprary approach to caching certain parts of REST used by UI, it is deprecated in favour of
- *             nativly using tags and CachedValue in kernel's REST server itself once we switch to FOSHttpCache 2.x
- *             where tagger service can be used directly.
+ * Set cache tags on REST responses: CachedValue by its Location, and a few values used by UI in order to be able to cache them.
  */
-class RestKernelViewSubscriber implements EventSubscriberInterface
+final readonly class RestKernelViewSubscriber implements EventSubscriberInterface
 {
-    private ResponseTagger $tagHandler;
-
-    public function __construct(ResponseTagger $tagHandler)
-    {
-        $this->tagHandler = $tagHandler;
-    }
+    public function __construct(
+        private ResponseTagger $tagHandler,
+        private LocationIdTagging $locationIdTagging
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -49,8 +44,18 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
             return;
         }
 
-        // Get tags, and exit if none where found
         $restValue = $event->getControllerResult();
+
+        // Values the REST server already marked as cacheable, tagged by the Location they belong to
+        if ($restValue instanceof CachedValue) {
+            if (isset($restValue->cacheTags['locationId'])) {
+                $this->locationIdTagging->tag((int)$restValue->cacheTags['locationId']);
+            }
+
+            return;
+        }
+
+        // Get tags, and exit if none where found
         $tags = $this->getTags($restValue);
         if (empty($tags)) {
             return;
@@ -66,7 +71,7 @@ class RestKernelViewSubscriber implements EventSubscriberInterface
      *
      * @return array
      */
-    protected function getTags($value): array
+    private function getTags($value): array
     {
         $tags = [];
         switch ($value) {
