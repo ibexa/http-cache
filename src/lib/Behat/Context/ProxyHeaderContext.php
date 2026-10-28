@@ -19,8 +19,10 @@ final class ProxyHeaderContext extends RawMinkContext
     /**
      * @Given I set request header :name to :value
      */
-    public function iSetRequestHeader(string $name, string $value): void
-    {
+    public function iSetRequestHeader(
+        string $name,
+        string $value
+    ): void {
         $this->getSession()->setRequestHeader($name, $value);
     }
 }
