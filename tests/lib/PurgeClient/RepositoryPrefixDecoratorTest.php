@@ -17,22 +17,16 @@ class RepositoryPrefixDecoratorTest extends TestCase
 {
     private PurgeClientInterface & MockObject $purgeClientMock;
 
-    private RepositoryTagPrefix & MockObject $tagPrefixMock;
-
-    private RepositoryPrefixDecorator $prefixDecorator;
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->purgeClientMock = $this->createMock(PurgeClientInterface::class);
-        $this->tagPrefixMock = $this->createMock(RepositoryTagPrefix::class);
-        $this->prefixDecorator = new RepositoryPrefixDecorator($this->purgeClientMock, $this->tagPrefixMock);
     }
 
     protected function tearDown(): void
     {
-        unset($this->purgeClientMock, $this->tagPrefixMock, $this->prefixDecorator);
+        unset($this->purgeClientMock);
 
         parent::tearDown();
     }
@@ -44,12 +38,7 @@ class RepositoryPrefixDecoratorTest extends TestCase
             ->method('purge')
             ->with(self::equalTo(['l123', 'c44', 'ez-all']));
 
-        $this->tagPrefixMock
-            ->expects(self::once())
-            ->method('getRepositoryPrefix')
-            ->willReturn('');
-
-        $this->prefixDecorator->purge(['l123', 'c44', 'ez-all']);
+        $this->createDecorator($this->createTagPrefix(''))->purge(['l123', 'c44', 'ez-all']);
     }
 
     public function testPurgeWithPrefix(): void
@@ -59,12 +48,7 @@ class RepositoryPrefixDecoratorTest extends TestCase
             ->method('purge')
             ->with(self::equalTo(['0l123', '0c44', '0ez-all']));
 
-        $this->tagPrefixMock
-            ->expects(self::once())
-            ->method('getRepositoryPrefix')
-            ->willReturn('0');
-
-        $this->prefixDecorator->purge(['l123', 'c44', 'ez-all']);
+        $this->createDecorator($this->createTagPrefix('0'))->purge(['l123', 'c44', 'ez-all']);
     }
 
     public function testPurgeAll(): void
@@ -73,10 +57,24 @@ class RepositoryPrefixDecoratorTest extends TestCase
             ->expects(self::once())
             ->method('purgeAll');
 
-        $this->tagPrefixMock
+        $tagPrefix = $this->createMock(RepositoryTagPrefix::class);
+        $tagPrefix
             ->expects(self::never())
             ->method('getRepositoryPrefix');
 
-        $this->prefixDecorator->purgeAll();
+        $this->createDecorator($tagPrefix)->purgeAll();
+    }
+
+    private function createTagPrefix(string $prefix): RepositoryTagPrefix
+    {
+        $tagPrefix = self::createStub(RepositoryTagPrefix::class);
+        $tagPrefix->method('getRepositoryPrefix')->willReturn($prefix);
+
+        return $tagPrefix;
+    }
+
+    private function createDecorator(RepositoryTagPrefix $tagPrefix): RepositoryPrefixDecorator
+    {
+        return new RepositoryPrefixDecorator($this->purgeClientMock, $tagPrefix);
     }
 }

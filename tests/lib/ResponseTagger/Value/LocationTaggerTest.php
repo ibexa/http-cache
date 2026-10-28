@@ -13,11 +13,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\HttpCache\Handler\ContentTagInterface;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Value\LocationTagger;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class LocationTaggerTest extends TestCase
 {
-    private ResponseTagger $responseTagger;
+    private ResponseTagger & MockObject $responseTagger;
 
     private LocationTagger $tagger;
 

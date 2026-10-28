@@ -13,11 +13,12 @@ use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\HttpCache\ResponseTagger\Delegator\LocationValueViewTagger;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class LocationValueViewTaggerTest extends TestCase
 {
-    private ResponseTagger $locationTagger;
+    private ResponseTagger & MockObject $locationTagger;
 
     private LocationValueViewTagger $tagger;
 
