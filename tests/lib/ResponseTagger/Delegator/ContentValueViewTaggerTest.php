@@ -15,11 +15,12 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\HttpCache\ResponseTagger\Delegator\ContentValueViewTagger;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentValueViewTaggerTest extends TestCase
 {
-    private ResponseTagger $contentInfoTagger;
+    private ResponseTagger & MockObject $contentInfoTagger;
 
     private ContentValueViewTagger $tagger;
 

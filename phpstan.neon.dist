@@ -9,4 +9,5 @@ parameters:
     paths:
         - src
         - spec
+        - tests
     treatPhpDocTypesAsCertain: false

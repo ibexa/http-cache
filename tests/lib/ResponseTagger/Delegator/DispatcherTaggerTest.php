@@ -132,9 +132,8 @@ final class DispatcherTaggerTest extends TestCase
             ->expects($this->never())
             ->method('tag');
 
-        $wasCalled = false;
-        $customTagger = new class($wasCalled) implements ResponseTagger {
-            public function __construct(private bool &$wasCalled) {}
+        $customTagger = new class() implements ResponseTagger {
+            public bool $wasCalled = false;
 
             public function supports(mixed $value): bool
             {
@@ -150,7 +149,7 @@ final class DispatcherTaggerTest extends TestCase
         $dispatcher = new DispatcherTagger([$contentInfoTagger, $customTagger]);
 
         $dispatcher->tag($foo);
-        self::assertTrue($wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
+        self::assertTrue($customTagger->wasCalled, 'Custom ResponseTagger::tag() was not called by the dispatcher.');
     }
 
     public function testToStringWithNoTaggers(): void
