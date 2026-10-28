@@ -18,6 +18,8 @@ use Ibexa\Core\Repository\Permission\PermissionResolver;
 use Ibexa\Core\Repository\Repository;
 use Ibexa\Core\Repository\Values\User\UserRoleAssignment;
 use Ibexa\HttpCache\ContextProvider\RoleIdentify;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,49 +28,47 @@ use PHPUnit\Framework\TestCase;
 class RoleIdentifyTest extends TestCase
 {
     /**
-     * @var \Ibexa\Contracts\Core\Repository\Repository|\PHPUnit_Framework_MockObject_MockObject
+     * @var Repository&Stub
      */
-    private $repositoryMock;
+    private $repository;
 
     /**
-     * @var RoleService|\PHPUnit_Framework_MockObject_MockObject
+     * @var RoleService&MockObject
      */
     private $roleServiceMock;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->repositoryMock = $this
-            ->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['getRoleService', 'getPermissionResolver'])
-            ->getMock();
-
         $this->roleServiceMock = $this->createMock(RoleService::class);
 
-        $this->repositoryMock
-            ->expects($this->any())
+        $this->repository = $this->createStub(Repository::class);
+        $this->repository
             ->method('getRoleService')
             ->willReturn($this->roleServiceMock);
+        $this->repository
+            ->method('sudo')
+            ->willReturnCallback(function (callable $callback) {
+                return $callback($this->repository);
+            });
     }
 
-    public function testSetIdentity()
+    public function testSetIdentity(): void
     {
-        $user = $this->createMock(APIUser::class);
-        $userReference = $this->createMock(UserReference::class);
+        $user = $this->createStub(APIUser::class);
+        $userReference = $this->createStub(UserReference::class);
         $userContext = new UserContext();
 
-        $permissionResolver = $this->getPermissionResolverMock();
+        $permissionResolver = $this->createStub(PermissionResolver::class);
         $permissionResolver
             ->method('getCurrentUserReference')
             ->willReturn($userReference);
 
-        $this->repositoryMock
-            ->expects($this->any())
+        $this->repository
             ->method('getPermissionResolver')
             ->willReturn($permissionResolver);
 
-        $userService = $this->getUserServiceMock();
+        $userService = $this->createStub(UserService::class);
         $userService
             ->method('loadUser')
             ->willReturn($user);
@@ -126,7 +126,7 @@ class RoleIdentifyTest extends TestCase
 
         $this->assertSame([], $userContext->getParameters());
         $contextProvider = new RoleIdentify(
-            $this->repositoryMock,
+            $this->repository,
             $permissionResolver,
             $userService
         );
@@ -146,7 +146,10 @@ class RoleIdentifyTest extends TestCase
         );
     }
 
-    private function generateRoleAssignmentMock(array $properties = [])
+    /**
+     * @param array<string, mixed> $properties
+     */
+    private function generateRoleAssignmentMock(array $properties = []): UserRoleAssignment
     {
         return $this
             ->getMockBuilder(UserRoleAssignment::class)
@@ -154,7 +157,10 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateRoleMock(array $properties = [])
+    /**
+     * @param array<string, mixed> $properties
+     */
+    private function generateRoleMock(array $properties = []): Role
     {
         return $this
             ->getMockBuilder(Role::class)
@@ -162,7 +168,10 @@ class RoleIdentifyTest extends TestCase
             ->getMockForAbstractClass();
     }
 
-    private function generateLimitationMock(array $properties = [])
+    /**
+     * @param array<string, mixed> $properties
+     */
+    private function generateLimitationMock(array $properties = []): RoleLimitation
     {
         $limitationMock = $this
             ->getMockBuilder(RoleLimitation::class)
@@ -174,22 +183,6 @@ class RoleIdentifyTest extends TestCase
             ->willReturn(\get_class($limitationMock));
 
         return $limitationMock;
-    }
-
-    protected function getPermissionResolverMock()
-    {
-        return $this
-            ->getMockBuilder(PermissionResolver::class)
-            ->setMethods(['getCurrentUserReference'])
-            ->disableOriginalConstructor()
-            ->getMock();
-    }
-
-    protected function getUserServiceMock()
-    {
-        return $this
-            ->getMockBuilder(UserService::class)
-            ->getMockForAbstractClass();
     }
 }
 

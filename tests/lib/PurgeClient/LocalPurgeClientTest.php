@@ -14,7 +14,7 @@ use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 class LocalPurgeClientTest extends TestCase
 {
-    /** @var MockObject|Psr6StoreInterface */
+    /** @var Psr6StoreInterface&MockObject */
     private $store;
 
     protected function setUp(): void
@@ -23,7 +23,7 @@ class LocalPurgeClientTest extends TestCase
         $this->store = $this->createMock(Psr6StoreInterface::class);
     }
 
-    public function testPurge()
+    public function testPurge(): void
     {
         $keys = array_map(
             static function ($id) {
