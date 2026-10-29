@@ -3,7 +3,7 @@
 // The backend is on a fixed port so that it can be referenced from a static file, see the
 // "server s1 -listen" line in the .vtc files.
 
-backend ezplatform {
+backend ibexa {
     .host = "127.0.0.1";
     .port = "9081";
 }
