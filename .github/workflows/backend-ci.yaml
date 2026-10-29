@@ -83,6 +83,25 @@ jobs:
       - name: Run test suite
         run: composer run-script --timeout=600 test
 
+  varnish-vcl-tests:
+    name: Varnish VCL tests
+    runs-on: "ubuntu-26.04"
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build varnishtest images
+        run: |
+          docker build -t ibexa-varnishtest:7 tests/varnish
+          docker build -t ibexa-varnishtest:9 -f tests/varnish/Dockerfile-9 tests/varnish
+
+      - name: Run varnishtest suite
+        env:
+          IMAGE_VARNISH7: ibexa-varnishtest:7
+          IMAGE_VARNISH9: ibexa-varnishtest:9
+        run: tests/varnish/run.sh varnish7.vcl varnish9.vcl
+
   integration-tests:
       name: "REST integration tests"
       uses: ibexa/rest/.github/workflows/integration-tests-callable.yaml@5.0
