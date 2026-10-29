@@ -11,7 +11,6 @@ jobs:
         name: "Symfony Cache integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             test-suite: '--mode=standard --profile=httpCache --suite=symfonycache'
             test-setup-phase-1:  '--mode=standard --profile=httpCache --suite=setup-symfony-cache'
@@ -21,7 +20,6 @@ jobs:
         name: "Varnish 6 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6'
@@ -31,7 +29,6 @@ jobs:
         name: "Varnish 7 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish7.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7'
@@ -41,7 +38,6 @@ jobs:
         name: "Varnish integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6-translation-aware'
@@ -52,7 +48,6 @@ jobs:
         name: "Varnish 7 integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish7.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7-translation-aware'
@@ -63,7 +58,6 @@ jobs:
         name: "Varnish 6 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish6'
@@ -74,7 +68,6 @@ jobs:
         name: "Varnish 7 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish7.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish7'
@@ -85,7 +78,6 @@ jobs:
         name: "Varnish 9 integration tests"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
@@ -95,7 +87,6 @@ jobs:
         name: "Varnish 9 integration tests (translation-aware)"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9-translation-aware'
@@ -106,7 +97,6 @@ jobs:
         name: "Varnish 9 integration tests with invalidate token"
         uses: ibexa/gh-workflows/.github/workflows/browser-tests.yml@main
         with:
-            php-image: 'ghcr.io/ibexa/docker/php:8.5-node22'
             project-edition: 'oss'
             setup: "doc/docker/base-dev.yml:doc/docker/varnish9.yml:doc/docker/selenium.yml"
             test-suite:  '--mode=standard --profile=httpCache --suite=varnish9'
