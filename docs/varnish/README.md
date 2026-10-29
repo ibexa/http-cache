@@ -12,7 +12,6 @@ Recommended VCL base files
 For Varnish to work properly with eZ, you'll need to use the provided configuration:
 
 * [Varnish 6.0 LTS VCL](vcl/varnish6.vcl)
-* [Varnish 7 VCL](vcl/varnish7.vcl)
 * [Varnish 9 VCL](vcl/varnish9.vcl)
 
 For tuning the VCL further to you needs, see the following relevant examples:
