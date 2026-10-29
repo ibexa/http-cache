@@ -7,11 +7,11 @@
 #
 # Usage:
 #   tests/varnish/run.sh                 # all VCLs, using Docker
-#   tests/varnish/run.sh varnish7.vcl    # a single VCL
+#   tests/varnish/run.sh varnish9.vcl    # a single VCL
 #
-# varnish6.vcl targets Varnish 6.0LTS and does not compile on 7.x (vcl_hit returns miss, which 7.x
-# rejects), so it needs a different image than varnish7.vcl. varnish9.vcl needs a third, built from
-# Dockerfile-9. All images must carry the xkey vmod, since the VCLs import it.
+# varnish6.vcl targets Varnish 6.0LTS and does not compile on 9.x (vcl_hit returns miss, which 9.x
+# rejects), so it needs a different image than varnish9.vcl, which is built from Dockerfile-9. Both
+# images must carry the xkey vmod, since the VCLs import it.
 
 set -euo pipefail
 
@@ -19,14 +19,12 @@ TESTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VCLDIR="$(cd "$TESTDIR/../../docs/varnish/vcl" && pwd)"
 
 IMAGE_VARNISH6="${IMAGE_VARNISH6:-ibexa-varnishtest:6}"
-IMAGE_VARNISH7="${IMAGE_VARNISH7:-ibexa-varnishtest:7}"
 IMAGE_VARNISH9="${IMAGE_VARNISH9:-ibexa-varnishtest:9}"
 
 image_for() {
     local vcl="$1"
 
     case "$vcl" in
-        varnish7.vcl) echo "$IMAGE_VARNISH7" ;;
         varnish9.vcl) echo "$IMAGE_VARNISH9" ;;
         *)            echo "$IMAGE_VARNISH6" ;;
     esac
@@ -44,7 +42,7 @@ run_case() {
         --entrypoint varnishtest "$image" "/${case_name}.vtc"
 }
 
-vcls=("${@:-varnish6.vcl varnish7.vcl varnish9.vcl}")
+vcls=("${@:-varnish6.vcl varnish9.vcl}")
 # shellcheck disable=SC2206
 vcls=(${vcls[@]})
 
