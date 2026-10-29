@@ -15,7 +15,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ibexa/core": "~4.6.x-dev",
-        "ibexa/rest": "~4.6.0@dev",
+        "ibexa/rest": "~4.6.x-dev",
         "friendsofsymfony/http-cache-bundle": "^2.8",
         "friendsofsymfony/http-cache": "^2.9",
         "symfony/http-foundation": "^5.0",
@@ -30,9 +30,8 @@
         "toflar/psr6-symfony-http-cache-store": "^2.2 || ^3.0"
     },
     "require-dev": {
-        "ibexa/behat": "~4.6.0",
-        "ibexa/ci-scripts": "^0.2@dev",
-        "ibexa/doctrine-schema": "~4.6.0@dev",
+        "ibexa/behat": "~4.6.x-dev",
+        "ibexa/doctrine-schema": "~4.6.x-dev",
         "ibexa/doctrine-migrations": "~4.6.x-dev",
         "phpunit/phpunit": "^9.6",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
