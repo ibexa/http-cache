@@ -31,6 +31,8 @@
         "toflar/psr6-symfony-http-cache-store": "^4.2"
     },
     "require-dev": {
+        "behat/behat": "^4.0@alpha",
+        "friends-of-behat/mink-extension": "^3.0@alpha",
         "guzzlehttp/psr7": "^2.7",
         "ibexa/behat": "~6.0.x-dev",
         "ibexa/code-style": "~2.3.1",
