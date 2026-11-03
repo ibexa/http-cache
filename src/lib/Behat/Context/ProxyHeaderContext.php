@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\HttpCache\Behat\Context;
 
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Step\Given;
 
 /**
  * Lets a scenario send request headers, so that the VCL's filtering of client supplied reverse
@@ -16,9 +17,7 @@ use Behat\MinkExtension\Context\RawMinkContext;
  */
 final class ProxyHeaderContext extends RawMinkContext
 {
-    /**
-     * @Given I set request header :name to :value
-     */
+    #[Given('I set request header :name to :value')]
     public function iSetRequestHeader(
         string $name,
         string $value
