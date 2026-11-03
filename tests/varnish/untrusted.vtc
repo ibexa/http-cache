@@ -1,0 +1,41 @@
+varnishtest "Proxy headers from a client that is not a trusted proxy never reach the backend"
+
+# Run with fixtures/parameters-untrusted.vcl mounted as /etc/varnish/parameters.vcl, and the VCL
+# under test as /etc/varnish/default.vcl. See run.sh.
+
+server s1 -listen "127.0.0.1:9081" {
+    rxreq
+
+    # Everything the client made up is gone.
+    expect req.http.X-Forwarded-Host   == <undef>
+    expect req.http.X-Forwarded-Prefix == <undef>
+    expect req.http.X-Forwarded-Proto  == <undef>
+    expect req.http.Forwarded          == <undef>
+    expect req.http.X-Client-IP        == <undef>
+    expect req.http.Client-Cdn         == <undef>
+
+    # Varnish appends client.ip to X-Forwarded-For before vcl_recv is entered, so the header is
+    # overwritten rather than unset: the real client IP is the only entry left.
+    expect req.http.X-Forwarded-For == "127.0.0.1"
+
+    # Derived by the VCL from the (now absent) X-Forwarded-Proto, not taken from the client.
+    expect req.http.X-Forwarded-Port == "80"
+
+    txresp
+} -start
+
+varnish v1 -arg "-f /etc/varnish/default.vcl" -start
+
+client c1 {
+    txreq -url "/untrusted" \
+        -hdr "X-Forwarded-Host: evil.example" \
+        -hdr "X-Forwarded-Proto: https" \
+        -hdr "X-Forwarded-Port: 443" \
+        -hdr "X-Forwarded-Prefix: /admin" \
+        -hdr "X-Forwarded-For: 6.6.6.6" \
+        -hdr "X-Client-IP: 6.6.6.6" \
+        -hdr "Client-Cdn: fastly" \
+        -hdr "Forwarded: for=6.6.6.6;host=evil.example;proto=https"
+    rxresp
+    expect resp.status == 200
+} -run

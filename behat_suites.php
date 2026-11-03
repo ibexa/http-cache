@@ -22,6 +22,7 @@ use Ibexa\Behat\Browser\Context\ContentPreviewContext;
 use Ibexa\Behat\Core\Context\ConfigurationContext;
 use Ibexa\Behat\Core\Context\FileContext;
 use Ibexa\Behat\Core\Context\TimeContext;
+use Ibexa\HttpCache\Behat\Context\ProxyHeaderContext;
 
 $varnishFeaturesPath = '%paths.base%/vendor/ibexa/http-cache/features/varnish';
 
@@ -37,35 +38,41 @@ $browserContexts = [
     ContentPreviewContext::class,
 ];
 
+$varnishContexts = [...$browserContexts, ProxyHeaderContext::class];
+
 return (new Config())
     ->withProfile((new Profile('httpCache'))
         ->withSuite((new Suite('symfonycache'))
             ->withContexts(...$browserContexts)
             ->withPaths('%paths.base%/vendor/ibexa/http-cache/features/symfony'))
         ->withSuite((new Suite('varnish6'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish6&&~@translationAware')))
+            ->withFilter(new TagFilter('@varnish6&&~@translationAware&&~@trustedProxy')))
         ->withSuite((new Suite('varnish6-translation-aware'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish6&&~@translationNotAware')))
+            ->withFilter(new TagFilter('@varnish6&&~@translationNotAware&&~@trustedProxy')))
         ->withSuite((new Suite('varnish7'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish7&&~@translationAware')))
+            ->withFilter(new TagFilter('@varnish7&&~@translationAware&&~@trustedProxy')))
+        ->withSuite((new Suite('varnish-trusted-proxy'))
+            ->withContexts(...$varnishContexts)
+            ->withPaths($varnishFeaturesPath)
+            ->withFilter(new TagFilter('@trustedProxy')))
         ->withSuite((new Suite('varnish7-translation-aware'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish7&&~@translationNotAware')))
+            ->withFilter(new TagFilter('@varnish7&&~@translationNotAware&&~@trustedProxy')))
         ->withSuite((new Suite('varnish9'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish9&&~@translationAware')))
+            ->withFilter(new TagFilter('@varnish9&&~@translationAware&&~@trustedProxy')))
         ->withSuite((new Suite('varnish9-translation-aware'))
-            ->withContexts(...$browserContexts)
+            ->withContexts(...$varnishContexts)
             ->withPaths($varnishFeaturesPath)
-            ->withFilter(new TagFilter('@varnish9&&~@translationNotAware')))
+            ->withFilter(new TagFilter('@varnish9&&~@translationNotAware&&~@trustedProxy')))
         ->withSuite((new Suite('setup'))
             ->withContexts(
                 TestContext::class,
