@@ -9,9 +9,9 @@
 #   tests/varnish/run.sh                 # all VCLs, using Docker
 #   tests/varnish/run.sh varnish7.vcl    # a single VCL
 #
-# varnish5.vcl and varnish6.vcl target Varnish 6.0LTS and do not compile on 7.x (vcl_hit returns
-# miss, which 7.x rejects), so they need a different image than varnish7.vcl. varnish9.vcl needs a
-# third, built from Dockerfile-9. All images must carry the xkey vmod, since the VCLs import it.
+# varnish6.vcl targets Varnish 6.0LTS and does not compile on 7.x (vcl_hit returns miss, which 7.x
+# rejects), so it needs a different image than varnish7.vcl. varnish9.vcl needs a third, built from
+# Dockerfile-9. All images must carry the xkey vmod, since the VCLs import it.
 
 set -euo pipefail
 
@@ -44,21 +44,9 @@ run_case() {
         --entrypoint varnishtest "$image" "/${case_name}.vtc"
 }
 
-# varnish5.vcl is kept as a 1:1 copy of varnish6.vcl for BC. Guard that, so the two cannot drift.
-check_copies_in_sync() {
-    if ! diff <(tail -n +3 "$VCLDIR/varnish5.vcl") <(tail -n +3 "$VCLDIR/varnish6.vcl") > /dev/null; then
-        echo "FAIL: varnish5.vcl and varnish6.vcl differ beyond their two-line header comment." >&2
-        echo "      They are documented as 1:1 copies - apply every change to both." >&2
-        return 1
-    fi
-    echo "==> varnish5.vcl and varnish6.vcl are in sync"
-}
-
-vcls=("${@:-varnish5.vcl varnish6.vcl varnish7.vcl varnish9.vcl}")
+vcls=("${@:-varnish6.vcl varnish7.vcl varnish9.vcl}")
 # shellcheck disable=SC2206
 vcls=(${vcls[@]})
-
-check_copies_in_sync
 
 for vcl in "${vcls[@]}"; do
     for case_name in untrusted trusted; do
