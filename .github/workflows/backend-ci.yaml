@@ -97,14 +97,16 @@ jobs:
 
       - name: Build varnishtest images
         run: |
+          docker build -t ibexa-varnishtest:6 -f tests/varnish/Dockerfile-6 tests/varnish
           docker build -t ibexa-varnishtest:7 tests/varnish
           docker build -t ibexa-varnishtest:9 -f tests/varnish/Dockerfile-9 tests/varnish
 
       - name: Run varnishtest suite
         env:
+          IMAGE_VARNISH6: ibexa-varnishtest:6
           IMAGE_VARNISH7: ibexa-varnishtest:7
           IMAGE_VARNISH9: ibexa-varnishtest:9
-        run: tests/varnish/run.sh varnish7.vcl varnish9.vcl
+        run: tests/varnish/run.sh
 
   integration-tests:
       name: "REST integration tests"
