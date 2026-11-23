@@ -3,7 +3,7 @@ eZ Platform Varnish configuration
 
 Prerequisites
 -------------
-* A working Varnish 6.0 LTS or higher
+* A working Varnish 6.0 LTS or Varnish 9.0 or higher
   * With 'xkey' VMOD, correct version is provided with `varnish-modules` 0.10.2 or higher
 * Varnish Plus comes with xkey out of the box and can also be used.
 
