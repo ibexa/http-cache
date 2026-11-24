@@ -30,11 +30,11 @@ RUN set -xe \
         " \
         && apt-get update -q -y \
         && apt-get install -q -y --no-install-recommends ca-certificates curl \
-        && curl -s ${PACKAGECLOUD_URL} | bash \
-        && apt-get install -q -y --no-install-recommends varnish=${VARNISH_VERSION} $buildDeps \
-        && curl -A "Docker" -o /tmp/varnish-modules.tar.gz -L -s https://github.com/varnish/varnish-modules/archive/refs/tags/${VARNISH_MODULES_VERSION}.tar.gz \
+        && curl -s "${PACKAGECLOUD_URL}" | bash \
+        && apt-get install -q -y --no-install-recommends varnish="${VARNISH_VERSION}" $buildDeps \
+        && curl -A "Docker" -o /tmp/varnish-modules.tar.gz -L -s --proto '=https' --proto-redir '=https' "https://github.com/varnish/varnish-modules/archive/refs/tags/${VARNISH_MODULES_VERSION}.tar.gz" \
         && tar zxpf /tmp/varnish-modules.tar.gz -C /tmp/ \
-        && cd /tmp/varnish-modules-${VARNISH_MODULES_VERSION} \
+        && cd "/tmp/varnish-modules-${VARNISH_MODULES_VERSION}" \
         && ./bootstrap \
         && ./configure \
         && make \
