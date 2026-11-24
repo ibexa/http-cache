@@ -1,0 +1,44 @@
+# Image for running the varnishtest suite in tests/varnish/ against varnish5.vcl and varnish6.vcl.
+#
+# Mirrors doc/docker/Dockerfile-varnish from ibexa/docker: Varnish 6.0LTS from packagecloud, with
+# varnish-modules built from source for the xkey vmod, which no official 6.0 image ships.
+
+FROM debian:bookworm-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ARG PACKAGECLOUD_URL=https://packagecloud.io/install/repositories/varnishcache/varnish60lts/script.deb.sh
+ARG VARNISH_MODULES_VERSION=0.15.0
+# Bookworm ships Varnish 7.1, which outranks the packagecloud 6.0 line as apt candidate, so both
+# packages are pinned - unpinned, apt pairs a 7.1 daemon with 6.0 headers and refuses to install
+ARG VARNISH_VERSION=6.0.18-1~bookworm
+
+RUN set -xe \
+        && buildDeps=" \
+            make \
+            automake \
+            autotools-dev \
+            libedit-dev \
+            libjemalloc-dev \
+            libncurses-dev \
+            libpcre3-dev \
+            libtool \
+            pkg-config \
+            python3-docutils \
+            sphinx-common \
+            varnish-dev=${VARNISH_VERSION} \
+        " \
+        && apt-get update -q -y \
+        && apt-get install -q -y --no-install-recommends ca-certificates curl \
+        && curl -s "${PACKAGECLOUD_URL}" | bash \
+        && apt-get install -q -y --no-install-recommends varnish="${VARNISH_VERSION}" $buildDeps \
+        && curl -A "Docker" -o /tmp/varnish-modules.tar.gz -L -s --proto '=https' --proto-redir '=https' "https://github.com/varnish/varnish-modules/archive/refs/tags/${VARNISH_MODULES_VERSION}.tar.gz" \
+        && tar zxpf /tmp/varnish-modules.tar.gz -C /tmp/ \
+        && cd "/tmp/varnish-modules-${VARNISH_MODULES_VERSION}" \
+        && ./bootstrap \
+        && ./configure \
+        && make \
+        && make install \
+        && rm -rf /tmp/varnish-modules* \
+        && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps \
+        && rm -rf /var/lib/apt/lists/*

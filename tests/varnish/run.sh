@@ -10,8 +10,9 @@
 #   tests/varnish/run.sh varnish7.vcl    # a single VCL
 #
 # varnish5.vcl and varnish6.vcl target Varnish 6.0LTS and do not compile on 7.x (vcl_hit returns
-# miss, which 7.x rejects), so they need a different image than varnish7.vcl. varnish9.vcl needs a
-# third, built from Dockerfile-9. All images must carry the xkey vmod, since the VCLs import it.
+# miss, which 7.x rejects), so they need a different image than varnish7.vcl, built from
+# Dockerfile-6. varnish9.vcl needs a third, built from Dockerfile-9. All images must carry the xkey
+# vmod, since the VCLs import it.
 
 set -euo pipefail
 
